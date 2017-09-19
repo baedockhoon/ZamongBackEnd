@@ -325,6 +325,16 @@
     <url-pattern>/ZAMONG/times1990.do</url-pattern>
   </servlet-mapping>
  
+  <!-- 평점 -->
+ <servlet>
+    <servlet-name>ZamongAssign</servlet-name>
+    <servlet-class>com.zamong.web.assign.AssignController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ZamongAssign</servlet-name>
+    <url-pattern>/ZAMONG/zamongAssign.do</url-pattern>
+  </servlet-mapping>
+ 
  <!-- MAGAZINE,COMMENT -->
  
  <servlet>
