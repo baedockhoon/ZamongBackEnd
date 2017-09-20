@@ -18,7 +18,6 @@ import javax.sql.DataSource;
 import com.zamong.mv.service.MusicVideoDTO;
 import com.zamong.nt.service.NotiDataDTO;
 
-
 public class MusicVideoDAO {
 
 	//멤버변수]
