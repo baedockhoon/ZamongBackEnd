@@ -576,6 +576,23 @@
 		<url-pattern>/ZAMONG/Payment/List.do</url-pattern>
 	</servlet-mapping>
 
+<servlet>
+		<servlet-name>ZamongCashWrite</servlet-name>
+		<servlet-class>com.zamong.web.cash.CashWriteController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ZamongCashWrite</servlet-name>
+		<url-pattern>/ZAMONG/Cash/Write.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ZamongCashList</servlet-name>
+		<servlet-class>com.zamong.web.cash.CashListController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ZamongCashList</servlet-name>
+		<url-pattern>/ZAMONG/Cash/List.do</url-pattern>
+	</servlet-mapping>
 
 <jsp-config>
 							<taglib>

@@ -4,6 +4,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+String no = request.getParameter("me_no"); 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +26,7 @@
 <!-- 부가적인 테마(Bootstrap theme) -->
 <link rel="stylesheet"
 	href="<c:url value='/bootstrap/css/bootstrap-theme.min.css'/>">
- <!-- 	<script>
+	<script>
 	function goSubmit() {
 	    window.opener.name = "parentPage"; // 부모창의 이름 설정
 	    document.myForm.target = "parentPage"; // 타켓을 부모창으로 설정 
@@ -33,7 +36,7 @@
 	    self.close();
 	}
 	
-	</script>   -->
+	</script>  
 </head>
 
 <body>
@@ -51,10 +54,10 @@
 
 
 	<div class="popup_cntt box_scroll">
-	   <form action="${pageContext.request.contextPath}/ZAMONG/Payment/Write.do?${me_no}" method="post">   
-	 <!-- 	<form name="myForm" method="post">   -->
+	  <%--   <form action="${pageContext.request.contextPath}/ZAMONG/Payment/Write.do" method="post">     --%>
+<form name="myForm" method="post">    
+	 <input type="hidden" name="me_no" value="<%=no%>"/>
 		<div class="tbl_style">
-		<input type="hidden" name="me_no"/> 
 		
 			<table border="1" style="width: 100%" class="board_style03">
 				<caption>이 표는 자몽캐쉬 충전 결제 리스트로 최종 결제금액, 결제방법 내용을 포함하고 있습니다.</caption>
@@ -110,8 +113,8 @@
 				</tbody>
 			</table>
 			<div class="popup_cntt box_scroll" style="text-align: center;">
-				<!--  <input type="button" onclick="goSubmit()" value="확인" />  -->
-		  <input type="submit" value="확인"/>   
+			 	 <input type="button" onclick="goSubmit()" value="확인" /> 
+<!-- 		 <input type="submit" value="확인"/>    --> 
 			</div>
 
 		</div>

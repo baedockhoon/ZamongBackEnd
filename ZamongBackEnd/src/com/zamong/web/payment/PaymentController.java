@@ -29,7 +29,7 @@ public class PaymentController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-		req.getRequestDispatcher("/ZAMONG/MemberList.do").forward(req,resp);
+		req.getRequestDispatcher("/ZAMONG/Cash/Write.do").forward(req,resp);
 	}
 
 	@Override
@@ -44,14 +44,14 @@ public class PaymentController extends HttpServlet {
 
 		BuyproductDAO dao = new BuyproductDAO(req.getServletContext());
 		BuyproductDTO dto = new BuyproductDTO();
-		/*dao.selectOne(no);*/
+		//dao.selectOne(no);
 		dto.setBp_price(price);
-		//dto.setMe_no(me_no);
-	
-		dao.insert(dto);	
-		
+		dto.setMe_no(me_no);
+		dao.insert(dto);
+		req.setAttribute("dto",dto);
 		dao.close();
-		req.getRequestDispatcher("/ZAMONG/MemberList.do").forward(req, resp);
+		req.getRequestDispatcher("/ZAMONG/Cash/Write.do").forward(req, resp);
+	/*	req.getRequestDispatcher("/ZAMONG/MemberList.do").forward(req, resp);*/
 	}
 	
 

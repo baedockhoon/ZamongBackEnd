@@ -66,21 +66,32 @@
 					<col style="width: 160px; *width: 144px;">
 					<col>
 				</colgroup>
-			
+			<c:choose>
+							<c:when test="${empty list }">
 							<tr bgcolor="white" align="center">
 								<td colspan="3">충전금액 :0원</td>
 							</tr>
-					
-						
-						
-							<tr>
-						<th scope="row" class="bg_gray">충전금액 : ${dto.bp_price }원</th>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="item" items="${list}" varStatus="loop">
+									<tr bgcolor="white" align="center">
+										<th scope="row" class="bg_gray">충전금액 : ${item.bp_price }원</th>
 															
 					<td style="vertical-align: middle">
 		 		<input type="submit" value="전환"/> 		 				 
 						</td>
 						<th scope="row" class="bg_gray">포인트 : ${item.bp_price }원</th>
 						</tr>
+								
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+							
+					
+						
+						
+						
+					
 							
 						
 					

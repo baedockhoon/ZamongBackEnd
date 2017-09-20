@@ -120,11 +120,11 @@ public List<BuyproductDTO> selectList(){
 		//입력용]
 		public int insert(BuyproductDTO dto) {
 			int affected=0;
-			String sql="INSERT INTO BP_BUYPRODUCT VALUES(BP_SEQ.NEXTVAL,SYSDATE,2,10,?,1)";
+			String sql="INSERT INTO BP_BUYPRODUCT VALUES(BP_SEQ.NEXTVAL,SYSDATE,2,?,?,1)";
 			try {
 				psmt = conn.prepareStatement(sql);
-			/*	psmt.setString(1, dto.getMe_no());*/
-				psmt.setString(1,dto.getBp_price());
+			    psmt.setString(1, dto.getMe_no());
+				psmt.setString(2,dto.getBp_price());
 				//psmt.setString(2,dto.getBp_buyway());
 				affected = psmt.executeUpdate();
 				
@@ -136,7 +136,7 @@ public List<BuyproductDTO> selectList(){
 		
 		public BuyproductDTO selectOne(String no) {
 			BuyproductDTO dto=null;
-			String sql="SELECT * FROM BP_BUYPRODUCT B join ME_MEMBER M ON M.ME_NO = B.ME_NO WHERE BP_NO=?";
+			String sql="SELECT * FROM BP_BUYPRODUCT  WHERE BP_NO=?";
 			try {
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1, no);

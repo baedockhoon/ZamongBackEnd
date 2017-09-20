@@ -8,7 +8,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html> 
+<html>
+<% String no = request.getParameter("me_no"); 
+
+%> 
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,16 +26,16 @@
 	<!-- 부가적인 테마(Bootstrap theme) -->
 	<link rel="stylesheet" href="<c:url value='/bootstrap/css/bootstrap-theme.min.css'/>">
   </head>
-<script>
-function goPopup() {
+ <script>
+function goPopup(me_no) {
 	// 주소검색을 수행할 팝업 페이지를 호출합니다.
 	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
-	var pop = window.open("<c:url value='/bbs/payment/Payment.jsp'/>", "pop",
+	var pop = window.open("<c:url value='/bbs/payment/Payment.jsp?me_no='/>"+me_no, "pop",
 			"width=700,height=600, scrollbars=yes, resizable=yes");
 
 	
 }
-</script>
+</script> 
 <script>
 	function iswrite() {
 		
@@ -112,8 +115,8 @@ function isList() {
 										<td>${item.me_email}</td>
 										<td>${item.me_regidate}</td>
 										<!-- <td><a class="btn btn-sm btn-primary" href="javascript:iswrite()">충전</a><td> -->
-										 <!-- <td><input type="button" value="충전" onclick="goPopup();"/> -->
-										 <td><a class="btn btn-sm btn-primary" href='<c:url value="/bbs/payment/Payment.jsp?me_no=${item.me_no}"/>'>충전</a></td>  
+									  <td><input type="button" value="충전" onclick="goPopup(${item.me_no});"/>  
+									<%--  <td><a class="btn btn-sm btn-primary" href='<c:url value="/bbs/payment/Payment.jsp?me_no=${item.me_no }"/>'>충전</a></td> --%>   
 										<td><a class="btn btn-sm btn-primary" href="javascript:isList()">포인트전환</a><td>
 									</tr>
 								</c:forEach>
