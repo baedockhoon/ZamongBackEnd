@@ -29,7 +29,6 @@ public class BroadCastDAO {
 				Context ctx = new InitialContext();
 				DataSource source=(DataSource)ctx.lookup(context.getInitParameter("TOMCAT_JNDI_ROOT")+"/jdbc/zamong");
 				conn = source.getConnection();	
-				
 			} 
 			catch (NamingException e) {e.printStackTrace();}
 			catch (SQLException e) {e.printStackTrace();}
