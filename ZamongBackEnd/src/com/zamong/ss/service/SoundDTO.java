@@ -1,8 +1,7 @@
 package com.zamong.ss.service;
 
-import java.util.Date;
-
 import com.zamong.al.service.AlbumDTO;
+
 //음원 DTO 수정 필요할 수 있음
 public class SoundDTO extends AlbumDTO{
 	private String ss_no; //음원 고유번호
@@ -14,6 +13,7 @@ public class SoundDTO extends AlbumDTO{
 	private String ss_path; //노래파일경로
 	private String ss_albumtitle; //대표여부
 	private String ly_contents;//가사
+	private String ss_likecount;//좋아요
 	
 	
 	
@@ -94,5 +94,16 @@ public class SoundDTO extends AlbumDTO{
 	public void setLy_contents(String ly_contents) {
 		this.ly_contents = ly_contents;
 	}
+
+
+	public String getSs_likecount() {
+		return ss_likecount;
+	}
+
+
+	public void setSs_likecount(String ss_likecount) {
+		this.ss_likecount = ss_likecount;
+	}
+	
 
 }

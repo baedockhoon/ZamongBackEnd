@@ -57,23 +57,24 @@ public class SoundDAO {
 	public List<SoundDTO> selectList(Map<String, Object> map) {
 
 		List<SoundDTO> records = new Vector<SoundDTO>();
+		
+		String sql = "SELECT * FROM (SELECT T.*, ROWNUM R FROM (SELECT * FROM AL_ALBUM A FULL OUTER JOIN SS_SOUNDSOURCE S ON  A.AL_NO = S.AL_NO ";
+				
 
-		/*// 페이징 미 적용
-
-		String sql = "SELECT * FROM (SELECT T.*, ROWNUM R FROM (SELECT * FROM AT_ARTIST ";
+		if (map.get("searchColumn") != null && map.get("searchWord") != null) {
 		// 검색용 쿼리 추가
-		if (!(map.get("searchWord") == null && map.get("Notice_category") == null)) {
 			sql += " WHERE ";
-
-			if (!(map.get("searchColumn").equals(""))) {
-				sql += map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
+			if (map.get("searchColumn").toString().equalsIgnoreCase("AT")) {
+				sql += " AL_ARTIST LIKE '%" + map.get("searchWord") + "%' ";
 			}
-			if (!map.get("Notice_category").equals("")) {
-				sql += " NT_CLASSIFICATION = '" + map.get("Notice_category") + "'";
+			else if (map.get("searchColumn").toString().equalsIgnoreCase("AL")) {
+				sql += " AL_ALBUMNAME LIKE '%" + map.get("searchWord") + "%' ";
 			}
-
+			else if (map.get("searchColumn").toString().equalsIgnoreCase("SS")) {
+				sql += " S.SS_TITLE LIKE '%" + map.get("searchWord") + "%'";
+			}
 		}
-		sql += " ORDER BY AT_NO DESC) T) " + "WHERE R BETWEEN ? AND ?";
+		sql += " ORDER BY AL_NO DESC) T) WHERE R BETWEEN ? AND ?";
 		try {
 			psmt = conn.prepareStatement(sql);
 
@@ -82,25 +83,71 @@ public class SoundDAO {
 			psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
 
 			rs = psmt.executeQuery();
+			/* 곡번호 / 곡명 / 아티스트 / 앨범 / 좋아요 / */
 			while (rs.next()) {
-				SoundDTO dto = new SoundDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getDate(5).toString(), rs.getString(6), rs.getDate(7).toString(), rs.getString(8),
-						rs.getString(9), rs.getString(10), rs.getString(11));
+				SoundDTO dto = new SoundDTO();
+				dto.setAl_no(rs.getString(1));
+				dto.setAl_albumname(rs.getString(3));
+				dto.setAl_artist(rs.getString(4));
+				if (rs != null)
+					dto.setAl_soundcount(rs.getString(12));
 
 				records.add(dto);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}*/
+		}
 		return records;
 	}///////////////// selectList
+	
+	public List<SoundDTO> selectSoundList(Map<String, Object> map) {
+
+		List<SoundDTO> records = new Vector<SoundDTO>();
+		String sql = "SELECT * FROM (SELECT T.*, ROWNUM R FROM "
+				+ " (SELECT * FROM (SELECT A.*, S.SS_NO, SS_TITLE, SS_ALBUMTITLE FROM AL_ALBUM A FULL OUTER JOIN SS_SOUNDSOURCE S ON  A.AL_NO = S.AL_NO ";
+		if (map.get("searchWord") != null) {
+			sql += " WHERE S.SS_TITLE LIKE '%" + map.get("searchWord") + "%'";
+		}
+		sql += " ) A FULL OUTER JOIN ";
+		sql += " (SELECT COUNT(*) LK_COUNT, LK_TARGETNO FROM LK_LIKE WHERE LK_FLAG = 'SS' GROUP by LK_TARGETNO) L "
+			+ " ON A.SS_NO = L.LK_TARGETNO ORDER BY AL_NO DESC, LK_COUNT DESC ";
+		sql += " ) T) WHERE R BETWEEN ? AND ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			// 페이징을 위한 시작 및 종료 rownum설정]
+			psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
+			psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
+
+			rs = psmt.executeQuery();
+			/* 곡번호 / 곡명 / 아티스트 / 앨범 / 좋아요 / */
+			while (rs.next()) {
+				SoundDTO dto = new SoundDTO();
+				dto.setAl_no(rs.getString(1));
+				dto.setAl_albumname(rs.getString(3));
+				dto.setAl_artist(rs.getString(4));
+				dto.setSs_no(rs.getString(12));
+				dto.setSs_title(rs.getString(13));
+				dto.setSs_albumtitle(rs.getString(14));
+				if (rs != null)
+					dto.setSs_likecount(rs.getString(15));
+				
+				records.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return records;
+	}///////////////// selectList
+	
+	
 
 	public int getTotalRecordCount(Map<String, Object> map) {
 		int totalCount = 0;
-		String sql = "SELECT COUNT(*) FROM AT_ARTIST ";
+		String sql = "SELECT COUNT(*) FROM SS_SOUNDSOURCE ";
 		// 검색용 쿼리 추가
 		if (map.get("searchWord") != null) {
-			sql += " WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
+			sql += " WHERE SS_TITLE LIKE '%" + map.get("searchWord") + "%' ";
 		}
 
 		try {
@@ -128,7 +175,7 @@ public class SoundDAO {
 	 * dto.setNt_hitcount(rs.getString(7)); list.add(dto); } } catch(SQLException
 	 * e){e.printStackTrace();} return list; }/////////////selectList()
 	 */
-	public void updateVisitCount(String no) {
+	/*public void updateVisitCount(String no) {
 		String sql = "UPDATE NT_NOTICE SET NT_HITCOUNT=NT_HITCOUNT+1 WHERE NT_NO=?";
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -138,7 +185,7 @@ public class SoundDAO {
 			e.printStackTrace();
 		}
 	}//////////////////// updateVisitCount
-
+*/
 	// 입력용]
 	public int insert(SoundDTO dto) {
 		int affected = 0;

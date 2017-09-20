@@ -95,13 +95,65 @@ public class AlbumDAO extends SoundDAO {
 		}*/
 		return records;
 	}///////////////// selectList
+	
+	public List<SoundDTO> selectAlbumList(Map<String, Object> map) {
+
+		List<SoundDTO> records = new Vector<SoundDTO>();
+		
+		String sql = "SELECT * FROM (SELECT T.*, ROWNUM R FROM "
+				+ " (SELECT Z.* FROM ( " 
+				+ " SELECT X.*, ROW_NUMBER() OVER (PARTITION BY X.AL_NO ORDER BY X.AL_NO DESC ,X.LK_COUNT DESC) NO FROM ( "
+				+ " SELECT A.*, SL.SS_NO, SL.SS_TITLE, SL.SS_ALBUMTITLE, SL.LK_COUNT FROM AL_ALBUM A FULL OUTER JOIN ( "
+				+ " SELECT * FROM SS_SOUNDSOURCE S FULL OUTER JOIN " 
+				+ " (SELECT COUNT(*) LK_COUNT, LK_TARGETNO FROM LK_LIKE WHERE LK_FLAG = 'SS' GROUP by LK_TARGETNO ORDER BY LK_TARGETNO DESC) "
+				+ " L ON S.SS_NO = L.LK_TARGETNO "
+				+ " ) SL ON A.AL_NO = SL.AL_NO ";
+		
+		//앨범 총 곡수 구하기
+		/*String sql = "SELECT * FROM (SELECT T.*, ROWNUM R FROM "
+				+ " (SELECT * FROM AL_ALBUM A FULL OUTER JOIN "
+				+ " (SELECT count(*), al_no FROM SS_SOUNDSOURCE GROUP by al_no) S ON  A.AL_NO = S.AL_NO ";*/
+				
+		if (map.get("searchWord") != null) {
+			sql += " WHERE A.AL_ALBUMNAME LIKE '%" + map.get("searchWord") + "%'";
+		}
+
+		sql += " ORDER BY A.AL_NO DESC ,LK_COUNT DESC ) X ) Z  WHERE Z.NO=1 ";
+		sql += " ) T) WHERE R BETWEEN ? AND ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			// 페이징을 위한 시작 및 종료 rownum설정]
+			psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
+			psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
+
+			rs = psmt.executeQuery();
+			/* 곡번호 / 곡명 / 아티스트 / 앨범 / 좋아요 / */
+			while (rs.next()) {
+				SoundDTO dto = new SoundDTO();
+				dto.setAl_no(rs.getString(1));
+				dto.setAl_albumname(rs.getString(3));
+				dto.setAl_artist(rs.getString(4));
+				dto.setSs_no(rs.getString(12));
+				dto.setSs_title(rs.getString(13));
+				dto.setSs_albumtitle(rs.getString(14));
+				if (rs != null)
+					dto.setSs_likecount(rs.getString(15));
+				
+				records.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return records;
+	}///////////////// selectList
 
 	public int getTotalRecordCount(Map<String, Object> map) {
 		int totalCount = 0;
-		String sql = "SELECT COUNT(*) FROM AT_ARTIST ";
+		String sql = "SELECT COUNT(*) FROM AL_ALBUM ";
 		// 검색용 쿼리 추가
 		if (map.get("searchWord") != null) {
-			sql += " WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
+			sql += " WHERE AL_ALBUMNAME LIKE '%" + map.get("searchWord") + "%' ";
 		}
 
 		try {

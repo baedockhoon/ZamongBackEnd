@@ -1,12 +1,9 @@
-<%@page import="com.zamong.nt.service.impl.NotiDataDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-
-
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,11 +13,9 @@
 <title>앨범 리스트</title>
 <!-- Bootstrap core CSS -->
 <!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 부가적인 테마(Bootstrap theme) -->
-<link rel="stylesheet"
-	href="<c:url value='/bootstrap/css/bootstrap-theme.min.css'/>">
+<link rel="stylesheet" href="<c:url value='/bootstrap/css/bootstrap-theme.min.css'/>">
 </head>
 
 <body role="document">
@@ -41,6 +36,23 @@
 			<h1>음원 보기</h1>
 		</div>
 		<!-- 아래에 실제내용 표시 -->
+		<div class="page-header">
+			<!-- 아래에 실제내용 표시 -->
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active">
+					<a href="<c:url value='/ZAMONG/Album/List.do?searchColumn='/>">통합검색</a>
+				</li>
+				<li role="presentation">
+					<a href="<c:url value='/ZAMONG/Album/List.do?searchColumn=at'/>">아티스트</a>
+				</li>
+				<li role="presentation">
+					<a href="<c:url value='/ZAMONG/ProblemList.do?searchColumn=ss'/>">곡</a>
+				</li>
+				<li role="presentation">
+					<a href="<c:url value='/ZAMONG/ProblemList.do?searchColumn=al'/>">앨범</a>
+				</li>
+			</ul>
+		</div>
 		<div>
 			<form method="post">
 				<!--
@@ -56,43 +68,51 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<td colsapn="6">
+							<td colspan="5">
 								<a href="<c:url value='/ZAMONG/Album/Write.do'/>" class="btn btn-sm btn-info">등록</a>
 							</td>
 						</tr>
 						<tr>
+							<td colspan="5">
+								앨범명으로 검색
+							</td>
+						</tr>
+						<tr>
 							<th>번호</th>
-							<th colspan="2">가수</th>
-							<th>그룹명</th>
-							<th>데뷔곡</th>
-							<th>등록일</th>
+							<th>곡명</th>
+							<th>아티스트</th>
+							<th>앨범</th>
+							<th>좋아요</th>
 						</tr>
 
 					</thead>
 					<c:choose>
-						<c:when test="${empty list }">
+						<c:when test="${empty album }">
 							<tr bgcolor="white" align="center">
 								<td colspan="6">등록된 자료가 없어요</td>
 							</tr>
 						</c:when>
 						<c:otherwise>
-							<c:forEach var="item" items="${list}" varStatus="loop">
+							<c:forEach var="alItem" items="${album }" varStatus="loop">
 								<tr bgcolor="white" align="center">
-									<td>${item.at_no}</td>
+									<td>${alItem.al_no}</td>
 									<td>
-										<a href='<c:url value="/ZAMONG/Artist/View.do?at_no=${item.at_no}&nowPage=${nowPage }"/>'>
-										<img src="<c:url value='/Images/Artist/${item.at_image}'/>" style="width: 50px; height: 70px;"/>
+										<a href='<c:url value="/ZAMONG/Album/View.do?at_no=${alItem.ss_no}&nowPage=${nowPage }"/>'>
+										<c:if test="${not empty alItem.ss_albumtitle }" var="result">
+											타이틀 
+										</c:if>
+										${alItem.ss_title }
 										</a>
 									</td>
 									<td>
-										${item.at_name} <br />
-										${item.at_contry }/${item.at_gender }/${item.at_belong } 
+										${alItem.al_artist } 
 									</td>
 									<td>
-										${item.gp_name } 
+										<a href='<c:url value="/ZAMONG/Album/View.do?at_no=${alItem.al_no}&nowPage=${nowPage }"/>'>
+											${alItem.al_albumname }
+										</a>
 									</td>
-									<td>${item.at_debutsong }</td>
-									<td>${item.at_regidate }</td>
+									<td>${empty alItem.ss_likecount ? "0" : alItem.ss_likecount }</td>
 
 								</tr>
 							</c:forEach>
@@ -102,7 +122,63 @@
 				</table>
 				<table width="100%">
 					<tr align="center">
-						<td>${pagingString }</td>
+						<td>${alPageing }</td>
+					</tr>
+				</table>
+				
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<td colspan="5">
+								곡명으로 검색
+							</td>
+						</tr>
+						<tr>
+							<th>번호</th>
+							<th>곡명</th>
+							<th>아티스트</th>
+							<th>앨범</th>
+							<th>좋아요</th>
+						</tr>
+
+					</thead>
+					<c:choose>
+						<c:when test="${empty sound }">
+							<tr bgcolor="white" align="center">
+								<td colspan="6">등록된 자료가 없어요</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="ssItem" items="${sound }" varStatus="loop">
+								<tr bgcolor="white" align="center">
+									<td>${ssItem.al_no}</td>
+									<td>
+										<a href='<c:url value="/ZAMONG/Album/View.do?at_no=${ssItem.ss_no}&nowPage=${nowPage }"/>'>
+										<c:if test="${not empty ssItem.ss_albumtitle }" var="result">
+											타이틀 
+										</c:if>
+										${ssItem.ss_title }
+										</a>
+									</td>
+									<td>
+										${ssItem.al_artist } 
+									</td>
+									<td>
+										<a href='<c:url value="/ZAMONG/Album/View.do?at_no=${ssItem.al_no}&nowPage=${nowPage }"/>'>
+											${ssItem.al_albumname }
+										</a>
+									</td>
+									<td>${empty ssItem.ss_likecount ? "0" : ssItem.ss_likecount }</td>
+
+								</tr>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+
+				</table>
+				<table width="100%">
+					<tr align="center">
+						<td>${ssPageing }</td>
 					</tr>
 				</table>
 				<hr />
@@ -122,20 +198,30 @@
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script> 
+	<!-- <script>
+		function isDelete(nt_no) {
+			if (confirm("정말로 삭제 할래?")) {
+				location.href = "NoticeDelete.do?nt_no=" + nt_no;
+			}//////////////////			
 
-	function isDelete(nt_no){
-		if(confirm("정말로 삭제 할래?")){
-			location.href="NoticeDelete.do?nt_no="+nt_no;
-		}//////////////////			
-		
-	}/////////////////////	
-	function isabc(){
-		alert($("form").get(0));
-		$("form").submit();
-	}
-	
-</script>
+		}/////////////////////	
+		function isabc() {
+			alert($("form").get(0));
+			$("form").submit();
+		}
+	</script> -->
+	<script type="text/javascript">
+		$(function(){
+			//alert($(".page-header li:eq(0)").html());
+			$("li").click(function(){
+				//alert($(this).html());
+				for(var i = 0; i < $(".page-header li").length; i++){
+					$(".page-header li:eq("+i+")").removeClass("active");
+				}
+				$(this).addClass("active");
+			});
+		});
+	</script>
 	<script src="<c:url value='/bootstrap/js/bootstrap.min.js'/>"></script>
 </body>
 </html>
