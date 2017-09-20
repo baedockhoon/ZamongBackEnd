@@ -64,15 +64,6 @@ public class BroadCastDAO {
 					dto.setBr_programname(rs.getString(8));
 					dto.setBr_endof(rs.getString(9));
 					list.add(dto);
-					
-					/*	BR_NO
-					MV_REGIDATE
-					AT_NO
-					SS_NO
-					MV_TITLE
-					MV_CONTENTS
-					MV_LINK
-					BR_HITCOUNT*/
 				}
 			}
 			catch(SQLException e){e.printStackTrace();}
