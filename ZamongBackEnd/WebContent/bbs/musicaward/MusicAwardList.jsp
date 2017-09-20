@@ -44,14 +44,18 @@
 	<div class="container theme-showcase" role="main">
 
 		<!-- Main jumbotron for a primary marketing message or call to action -->
-		<div class="jumbotron">
-			<h1>뮤직어워드 목록</h1>
-		</div>
-
-		<!-- 실제내용의 제목표시 -->
+	<hr/>
 		<div class="page-header">
-			<h1>뮤직어워드 목록</h1>
+			<h1>뮤직어워드 전체목록</h1>
 		</div>
+			<div class="page-header">
+		<!-- 아래에 실제내용 표시 -->
+			<ul class="nav nav-tabs" role="tablist">
+        		<li role="presentation" class="active"><a href="<c:url value='/ZAMONG/MusicAwardList.do'/>">뮤직어워드</a></li>
+        		<li role="presentation"><a href="<c:url value='/ZAMONG/MusicAwardCandidates.do'/>">어워드 후보등록</a></li>
+      		</ul>
+      	</div>
+	<hr/>
 		<!-- 아래에 실제내용 표시 -->
 		<div>
 		<table style="width:100%">

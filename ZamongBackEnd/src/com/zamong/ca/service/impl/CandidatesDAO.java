@@ -75,14 +75,12 @@ public class CandidatesDAO {
 	//입력용]
 	public int insert(CandidatesDTO dto) {
 		int affected=0;
-		//String sql="INSERT INTO MA_MUSICAWARD VALUES(MA_MUSICAWARD_SEQ.NEXTVAL,SYSDATE,?,?,TO_DATE(? '23:59:59','yyyy/mm/dd hh24:mi:ss'))";
 		String sql="INSERT INTO CA_CANDIDATES VALUES(CA_SEQ.NEXTVAL,SYSDATE,?,?,?)";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getSs_no());
 			psmt.setString(2, dto.getAt_no());
 			psmt.setString(3, dto.getMa_no());
-			//System.out.println("dto.getMa_endofday() :"+dto.getMa_endofday());
 			affected = psmt.executeUpdate();
 			
 		} catch (SQLException e) {e.printStackTrace();}
@@ -152,26 +150,13 @@ public class CandidatesDAO {
 
 		List<CandidatesDTO> records = new Vector<CandidatesDTO>();
 
-		//페이징 미 적용
-		//String sql="SELECT B.*,M.NAME FROM BBS B JOIN MEMBER M ON B.ID=M.ID ORDER BY NO DESC";
-		//페이징 적용-구간쿼리로 변경
-		String sql="SELECT * FROM CA_CANDIDATES ORDER BY CA_NO DESC";
-		/*String sql="SELECT * FROM (SELECT T.*, ROWNUM R FROM (SELECT MA_NO, MA_REGIDATE,MA_TITLE,MA_CONTENTS,TO_CHAR(ma_endofday, 'YYYYMMDDHH24MISS')endofday FROM ma_musicaward ";
-		//String sql="SELECT * FROM (SELECT T.*, ROWNUM R FROM (SELECT * FROM MA_MUSICAWARD ";
-		//검색용 쿼리 추가
-		if(map.get("searchWord") !=null){
-			sql+=" WHERE "+map.get("searchColumn")+ " LIKE '%"+map.get("searchWord")+"%' ";
-		}		
-		//sql+=" ORDER BY MA_NO DESC) T) WHERE R BETWEEN ? AND ?";
-		sql+=" ORDER BY MA_NO DESC) T) WHERE R BETWEEN ? AND ?";*/
-		
+		//String sql="SELECT * FROM CA_CANDIDATES ORDER BY CA_NO DESC";
+		String sql = "select c.ca_no,c.ca_regidate,s.ss_title,at_name,ma_title "
+				+ "from ca_candidates c join SS_SOUNDSOURCE s on c.ss_no=s.ss_no join AT_artist a on c.at_no=a.at_no join MA_musicaward m on c.ma_no=m.ma_no "
+				+ "order by c.ca_no desc";
+
 		try {
 			psmt = conn.prepareStatement(sql);
-			
-			//페이징을 위한 시작 및 종료 rownum설정]
-			psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
-			psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
-			
 			rs = psmt.executeQuery();
 			while(rs.next()){
 				CandidatesDTO dto = new CandidatesDTO(
