@@ -1,6 +1,5 @@
 <%@page import="com.zamong.me.service.MemberDTO"%>
 <%@page import="java.util.List"%>
-<%@page import="com.zamong.me.service.MemberDAO"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="com.zamong.nt.service.impl.NotiDataDAO"%>
@@ -9,9 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<% String no = request.getParameter("me_no"); 
 
-%> 
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -62,18 +59,7 @@ function isList() {
 			<h1>회원 목록</h1>
 		</div>
 		<!-- 아래에 실제내용 표시 -->
-<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active"><a
-					href="<c:url value='/ZAMONG/MemberList.do'/>">회원관리</a></li>
-				<li role="presentation" ><a
-					href="<c:url value='/ZAMONG/Cash/List.do'/>">결제내역</a></li>
-					
-				<li role="presentation"><a
-					href="<c:url value='/ZAMONG/UserQuestionList.do'/>">스트리밍</a></li>
-				<li role="presentation"><a
-					href="<c:url value='/ZAMONG/ProblemList.do'/>">상품</a></li>
-			</ul>
-			<hr/>
+
 	<form method="post">
 	
 		<div class="search">
@@ -126,7 +112,7 @@ function isList() {
 										<td>${item.me_email}</td>
 										<td>${item.me_regidate}</td>
 										<!-- <td><a class="btn btn-sm btn-primary" href="javascript:iswrite()">충전</a><td> -->
-									  <td><input class="btn btn-sm btn-primary" type="button" value="충전" onclick="goPopup(${item.me_no});"/>  
+									  <td><input type="button" value="충전" onclick="goPopup(${item.me_no});"/>  
 									<%--  <td><a class="btn btn-sm btn-primary" href='<c:url value="/bbs/payment/Payment.jsp?me_no=${item.me_no }"/>'>충전</a></td> --%>   
 										<td><a class="btn btn-sm btn-primary" href="javascript:isList()">포인트전환</a><td>
 									</tr>
