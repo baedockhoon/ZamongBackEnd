@@ -31,7 +31,7 @@
 	  <script> 
 	function isDelete(ca_no){
 		if(confirm("정말로 삭제 하시겠습니까?")){
-			location.href="CandidatesDelete.do?ca_no="+ca_no;
+			location.href="MusicAwardCandidatesDelete.do?ca_no="+ca_no;
 		}//////////////////			
 		
 	}/////////////////////	
@@ -46,33 +46,34 @@
 	<div class="container theme-showcase" role="main">
 
 		<!-- Main jumbotron for a primary marketing message or call to action -->
-		<div class="jumbotron">
-			<h1>어워드 후보등록</h1>
-		</div>
-
-		<!-- 실제내용의 제목표시 -->
-		<div class="page-header">
-			<h1>어워드 후보등록</h1>
-		</div>
+		<hr/>
+			<div class="page-header">
+				<h1>뮤직어워드 후보관리</h1>
+			</div>
+				<div class="page-header">
+			<!-- 아래에 실제내용 표시 -->
+				<ul class="nav nav-tabs" role="tablist">
+	        		<li role="presentation"><a href="<c:url value='/ZAMONG/MusicAwardList.do'/>">뮤직어워드</a></li>
+	        		<li role="presentation" class="active"><a href="<c:url value='/ZAMONG/MusicAwardCandidates.do'/>">어워드 후보등록</a></li>
+	      		</ul>
+	      	</div>
+		<hr/>
 		<!-- 아래에 실제내용 표시 -->
 		<div>
 		<table style="width:100%">
 	        <tr align="right">		                          
-	         <td><a href="<c:url value='/ZAMONG/CandidatesWrite.do'/>"><button type="button" class="btn btn-sm btn-info">글작성</button></a></td>
+	         <td><a href="<c:url value='/ZAMONG/MusicAwardCandidatesWrite.do'/>"><button type="button" class="btn btn-sm btn-info">글작성</button></a></td>
 	        </tr>
 	      </table>
 		                        
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>번호</th>
-                        <th>아티스트번호</th>
+						<th>후보고유번호</th>
+                        <th>등록일</th>
                         <th>음원번호</th>
-                        <th>뮤직비디오 제목 </th>
-                        <!-- <th>링크 </th> -->
-                        <!-- <th>뮤비 설명</th> -->
-                        <th>조회수</th>
-                        <th>게시일</th>
+                        <th>아티스트번호</th>
+                        <th>뮤직어워드 번호</th>
                         <th>관리</th>
 					</tr>
 				</thead>
@@ -87,21 +88,22 @@
                           <c:forEach var="item" items="${list }">
                        	<tr bgcolor="white" align="center">
                           <td>${item.ca_no}</td>					                             
-                          <td>${item.at_no}</td>
-                          <td>${item.ss_no}</td>
-                          <td align="left"><a href='<c:url value="/ZAMONG/CandidatesView.do?ca_no=${item.ca_no}"/>'>${item.ca_title}</a></td>
-                          <%-- <td>${item.ca_link}</td> --%>
-                          <%-- <td>${item.ca_contents}</td> --%>
-                          <td>${item.ca_hitcount}</td>
                           <td>${item.ca_regidate}</td>
-                          <td><a href='<c:url value="/ZAMONG/CandidatesEdit.do?ca_no=${item.ca_no}"/>'>수정</a> | 
-                          <a href='javascript:isDelete(${item.ca_no})'>삭제</a></td>
+                          <td>${item.ss_no}</td>
+                          <td>${item.at_no}</td>
+                          <td>${item.ma_no}</td>
+                          <td><a href='javascript:isDelete(${item.ca_no})'>삭제</a></td>
                        	</tr>
                       	</c:forEach>
                      	</c:otherwise>                           
                  </c:choose>
 				</tbody>
 			</table>
+	<!--private String ca_no;
+		private java.sql.Date ca_regidate;
+		private String ss_no;
+		private String at_no;
+		private String ma_no; -->
 			<!-- 페이징 -->
             <!-- 페이징 -->
 			<table style="width:100%">

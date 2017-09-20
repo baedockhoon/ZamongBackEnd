@@ -5,19 +5,14 @@
 <!-- 어느 컨트롤러에서 왔는지에 따라 분기 -->
 <c:choose>
 	<c:when test="${WHERE eq 'INS' }">
-		<c:set var="SUC_MSG" value="입력 성공"/>
-		<c:set var="FAIL_MSG" value="입력 실패"/>
-		<c:set var="SUC_URL" value="/ZAMONG/MusicVideoList.do"/>
-	</c:when>
-	<c:when test="${WHERE eq 'EDT' }">
-		<c:set var="SUC_MSG" value="수정 성공"/>
-		<c:set var="FAIL_MSG" value="수정 실패"/>
-		<c:set var="SUC_URL" value="/ZAMONG/MusicVideoView.do?mv_no=${requestScope.mv_no}"/>
+		<c:set var="SUC_MSG" value="어워드 후보등록 성공"/>
+		<c:set var="FAIL_MSG" value="어워드 후보등록 실패"/>
+		<c:set var="SUC_URL" value="/ZAMONG/MusicAwardCandidates.do"/>
 	</c:when>
 	<c:otherwise>
-		<c:set var="SUC_MSG" value="삭제 성공"/>
-		<c:set var="FAIL_MSG" value="삭제 실패"/>
-		<c:set var="SUC_URL" value="/ZAMONG/MusicVideoList.do"/>
+		<c:set var="SUC_MSG" value="어워드 후보삭제 성공"/>
+		<c:set var="FAIL_MSG" value="어워드 후보삭제 실패"/>
+		<c:set var="SUC_URL" value="/ZAMONG/MusicAwardCandidates.do"/>
 	</c:otherwise>
 </c:choose>
 

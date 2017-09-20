@@ -50,9 +50,15 @@
 		</div>
 		<!-- 아래에 실제내용 표시 -->
 		<div>
-			<form action="${pageContext.request.contextPath}/ZAMONG/MusicVideoWrite.do" method="post" name="p_form">
+			<form action="${pageContext.request.contextPath}/ZAMONG/MusicAwardCandidatesWrite.do" method="post" name="p_form">
 				<table class="table table-striped" style="">
-					<tr>
+		            <tr>
+					
+						<!-- /*	private String ca_no;
+								private java.sql.Date ca_regidate;
+								private String ss_no;
+								private String at_no;
+								private String ma_no;*/ -->
               			<td>아티스트</td>
               			<td>
               			<input id="p_txt" type="text"  name="artist" style="width:10%"/><a href="javascript:FindArtistPopup();"><button type="button" class="btn btn-default" id="assign">아티스트 찾기</button></a> ${artistnull }
@@ -61,27 +67,15 @@
 		            <tr>
               			<td>음원</td>
               			<td>
-              			<input id="p2_txt" type="text"  name="soundSource" style="width:10%"/><a href="javascript:FindArtistPopup();"><button type="button" class="btn btn-default" id="assign">아티스트 찾기</button></a> ${artistnull }
+              			<input id="p2_txt" type="text"  name="soundSource" style="width:10%"/><a href="javascript:FindArtistPopup();"><button type="button" class="btn btn-default" id="assign">음원 찾기</button></a> ${artistnull }
               			</td>
 		            </tr>
-					<tr bgcolor="white">
-              			<td>제목</td>
-              			<td >
-              			<input type="text"  name="title" style="width:80%"/>
+		            <tr>
+              			<td>뮤직어워드 번호</td>
+              			<td>
+              			<input id="p2_txt" type="text"  name="ma_no" style="width:10%"/><a href="javascript:FindArtistPopup();"><button type="button" class="btn btn-default" id="assign">어워드 찾기</button></a> ${artistnull }
               			</td>
 		            </tr>
-					<tr>
-						<td>내용</td>
-						<td><textarea cols="120" rows="20" name="contents"></textarea>
-						</td>
-					</tr>
-					<tr>
-					<!-- <input type="hidden" name="ad_no" /> -->
-						<td>링크</td>
-						<td>
-						 <input type="text"  name="link" style="width:80%"/>
-						</td>					
-					</tr>
 					<tr align="center">
 					<td colspan="50">
 					

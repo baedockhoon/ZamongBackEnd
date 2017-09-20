@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.zamong.mv.service.impl.MusicVideoDAO;
+import com.zamong.ca.service.CandidatesDTO;
+import com.zamong.ca.service.impl.CandidatesDAO;
 import com.zamong.mv.service.MusicVideoDTO;
 
 //1]HttpServlet상속-컨트롤러가 됨 즉 서블릿이 됨
@@ -32,7 +34,7 @@ public class CandidatesWriteController extends HttpServlet {
 		 *  지울시에는 신경 쓸 필요없다.
 		 */
 		//포워드]
-		req.getRequestDispatcher("/bbs/zamongtv/MusicVideo/MusicvideoWrite.jsp").forward(req, resp);
+		req.getRequestDispatcher("/bbs/musicaward/candidates/CandidatesWrite.jsp").forward(req, resp);
 		
 		//리다이렉트]
 		//resp.sendRedirect(req.getContextPath()+"/DATAROOM_13/Write.jsp");
@@ -46,18 +48,14 @@ public class CandidatesWriteController extends HttpServlet {
 		//2]파라미터 받기
 		String artist = req.getParameter("artist");
 		String soundSource = req.getParameter("soundSource");
-		String title = req.getParameter("title");
-		String contents = req.getParameter("contents");
-		String link = req.getParameter("link");
+		String ma_no = req.getParameter("ma_no");
 		
 		//3]데이타를 전달할 DTO객체 생성및 데이타 설정
-		MusicVideoDAO dao = new MusicVideoDAO(req.getServletContext());
-		MusicVideoDTO dto = new MusicVideoDTO();
+		CandidatesDAO dao = new CandidatesDAO(req.getServletContext());
+		CandidatesDTO dto = new CandidatesDTO();
 		dto.setAt_no(artist);
 		dto.setSs_no(soundSource);
-		dto.setMv_title(title);
-		dto.setMv_contents(contents);
-		dto.setMv_link(link);
+		dto.setMa_no(ma_no);
 		//4]CRUD작업용 DAO계열 객체 생성
 		int sucorfail;//DB입력 성공시에는 1,실패시 0
 		sucorfail = dao.insert(dto);
@@ -70,6 +68,6 @@ public class CandidatesWriteController extends HttpServlet {
 		
 		
 		//req.getRequestDispatcher("/ZAMONG/MusicVideoList.do").forward(req, resp);
-		req.getRequestDispatcher("/bbs/zamongtv/MusicVideo/MusicVideoMessage.jsp").forward(req, resp);
+		req.getRequestDispatcher("/bbs/musicaward/candidates/CandidatesMessage.jsp").forward(req, resp);
 	}//////////////////doPost()
 }

@@ -246,7 +246,35 @@
     <servlet-name>ZamongMusicAwardDelete</servlet-name>
     <url-pattern>/ZAMONG/MusicAwardDelete.do</url-pattern>
   </servlet-mapping>
+ 
+ 
+<!-- 후보등록 -->
+  <servlet>
+    <servlet-name>ZamongMusicAwardCandidates</servlet-name>
+    <servlet-class>com.zamong.web.musicaward.CandidatesListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ZamongMusicAwardCandidates</servlet-name>
+    <url-pattern>/ZAMONG/MusicAwardCandidates.do</url-pattern>
+  </servlet-mapping>
+ 
+   <servlet>
+    <servlet-name>ZamongMusicAwardCandidatesWrite</servlet-name>
+    <servlet-class>com.zamong.web.musicaward.CandidatesWriteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ZamongMusicAwardCandidatesWrite</servlet-name>
+    <url-pattern>/ZAMONG/MusicAwardCandidatesWrite.do</url-pattern>
+  </servlet-mapping> 
   
+  <servlet>
+    <servlet-name>ZamongMusicAwardCandidatesDelete</servlet-name>
+    <servlet-class>com.zamong.web.musicaward.CandidatesDeleteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ZamongMusicAwardCandidatesDelete</servlet-name>
+    <url-pattern>/ZAMONG/MusicAwardCandidatesDelete.do</url-pattern>
+  </servlet-mapping> 
 
 <!-- 일반 회원 -->
   <servlet>
