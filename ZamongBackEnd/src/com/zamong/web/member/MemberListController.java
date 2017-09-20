@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.zamong.me.service.MemberDAO;
 import com.zamong.me.service.MemberDTO;
+import com.zamong.me.service.impl.MemberDAO;
 import com.zamong.nt.service.NotiDataDTO;
 import com.zamong.nt.service.impl.NotiDataDAO;
 

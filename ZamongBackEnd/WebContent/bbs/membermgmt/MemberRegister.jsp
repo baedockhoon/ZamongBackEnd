@@ -8,6 +8,9 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <script type="text/javascript">
 	// opener관련 오류가 발생하는 경우 아래 주석을 해지하고, 사용자의 도메인정보를 입력합니다. ("주소입력화면 소스"도 동일하게 적용시켜야 합니다.)
 	//document.domain = "abc.go.kr";
@@ -61,8 +64,24 @@
 	<!-- 고정된 네비바 -->
 	<jsp:include page="/Template/Top.jsp" />
 	<!-- 고정 네비바 끝 -->
-	<script type="text/javascript">
-	function check(){
+	 <script type="text/javascript">
+	 $(function() {
+		    $( "#testDatepicker" ).datepicker({
+		    	numberOfMonths: [1,1],
+		         changeyear: true, 
+		         changeMonth: true, 
+		         dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+		         dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+		         monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+		         monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		         showButtonPanel: true, 
+		         currentText: '오늘 날짜', 
+		         closeText: '닫기', 
+		         dateFormat: "yy-mm-dd",
+		         
+		  });
+		});
+	/* function check(){
 		//alert($(":input").length);
 		for (var i=0; i<$("#form :input").length;i++){
 			//alert($("#form :input").get(i).type);
@@ -103,7 +122,7 @@
 			}
 				
 		}
-	}
+	}  */
 		function pwdOK() {
 			var pwd = $("#password").val();
 			var enPassword = $("#enPassword").val();
@@ -143,7 +162,7 @@
 						<td class="end">
 							<div class="divDefine fl inputBoxDefine formRelateive">
 								<span class="idInputBoxWrap"><input id="id" name="me_id"
-									type="text" title="아이디"/></span> <span class="fl pL10 dB btnInputBoxWrap" id=""></span>
+									type="text" title="아이디" required="required"/></span> <span class="fl pL10 dB btnInputBoxWrap" id=""></span>
 								<span class="fl pL10dBbtnInputBoxWrap"> </span>
 							</div>
 						</td>
@@ -153,60 +172,22 @@
 							class="txt dB lh30 alignLeft pL10 fl">이름</span></th>
 						<td class="end">
 							<div class="divDefine fl inputBoxDefine idInputBoxWrap1">
-								<input id="name" name="me_name" type="text" title="이름"/>
+								<input id="name" name="me_name" type="text" title="이름" required="required"/>
 							</div>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row"><span class="star">*</span><span
 							class="txt dB lh30 alignLeft pL10 fl">생년월일</span></th>
-						<td class="end">
-						<select name="me_year" title="연도" id="year"
-							class="m_width100">
-								<option value="">선택</option>
-								<%
-									for (int i = cal.get(Calendar.YEAR); i >= 1900; i--) {
-								%>
-
-								<option value="<%=i%>"><%=i%></option>
-								<%
-									}
-								%>
-						</select> 년 &nbsp;&nbsp;&nbsp;&nbsp; <select name="me_month" title="월"
-							id="month" class="m_width100">
-								<option value="">선택</option>
-								<option value="1">12</option>
-								<option value="2">11</option>
-								<option value="3">10</option>
-								<option value="4">9</option>
-								<option value="5">8</option>
-								<option value="6">7</option>
-								<option value="7">6</option>
-								<option value="8">5</option>
-								<option value="9">4</option>
-								<option value="10">3</option>
-								<option value="11">2</option>
-								<option value="12">1</option>
-						</select> 월 &nbsp;&nbsp;&nbsp;&nbsp; <select name="me_day" title="일"
-							id="day" class="m_width100">
-								<option value="">선택</option>
-								<%
-									for (int i = 31; i >= 1; i--) {
-								%>
-
-								<option value='<%=i%>'><%=i%></option>
-								<%
-									}
-								%>
-						</select> 일
+							<td><input type="text" name="me_birth" id="testDatepicker"></td>
 					</tr>
 					<tr>
 						<th scope="row"><span class="star">*</span><span
 							class="txt dB lh30 alignLeft pL10 fl">성별확인</span></th>
 						<td>
 							<div>
-								<span><input type="radio" name="me_gender" value="M" id="gender" title="성별" />남</span>&nbsp;&nbsp;&nbsp;&nbsp;
-								<span><input type="radio" name="me_gender" value="F" id="gender" title="성별"/>여</span>
+								<span><input type="radio" name="me_gender" value="M" id="gender" title="성별" required="required"/>남</span>&nbsp;&nbsp;&nbsp;&nbsp;
+								<span><input type="radio" name="me_gender" value="F" id="gender" title="성별" />여</span>
 							</div>
 						</td>
 					</tr>
@@ -216,7 +197,7 @@
 						<td class="end">
 							<div class="divDefine fl inputBoxDefine idInputBoxWrap1">
 								<input id="password" name="me_pass" title="비밀번호입력"
-									type="password" />
+									type="password" required="required"/>
 							</div>
 						</td>
 					</tr>
@@ -226,7 +207,7 @@
 						<td class="end">
 							<div class="divDefine fl inputBoxDefine idInputBoxWrap1">
 								<input id="enPassword" name="me_check_pass" title="비밀번호확인"
-									type="password" onkeyup="javascript:pwdOK()" /> <span
+									type="password" onkeyup="javascript:pwdOK()" required="required"/> <span
 									id="pwdOk" style="color: red; font-weight: 600;"></span>
 							</div>
 						</td>
@@ -236,7 +217,7 @@
 							class="txt dB lh30 alignLeft pL10 fl">닉네임</span></th>
 						<td class="end">
 							<div class="soloSelectBoxTd soloSelectBoxTd03">
-								<input id="nickname" type="text" name="me_nickname" title="닉네임"/>
+								<input id="nickname" type="text" name="me_nickname" title="닉네임" required="required"/>
 							</div>
 						</td>
 					</tr>
@@ -246,31 +227,10 @@
 						<td class="end">
 							<div class="emailBoxWrap">
 								<span class="boxEmailStart"><input id="email"
-									name="me_email1" title="이메일 앞자리" type="text" value="" /></span> <span
+									name="me_email1" title="이메일 앞자리" type="text" value="" required="required"/></span> <span
 									class="boxEmailMool">@</span> <span class="boxEmailEndInput"><input
 									id="emailNm" name="me_email2" title="이메일 뒷자리" type="text"
-									value="" /></span>
-							</div>
-						</td>
-					</tr>
-
-					<tr>
-						<th scope="row"><span class="txt dB lh30 alignLeft pL10 fl">주소</span></th>
-						<td class="end">
-							<div class="fullBox">
-								<span class="banBoxInput"> <input id="zipNo"
-									name="me_addr1" title="주소검색" readonly="readonly" type="text" />
-								</span> <span class="blueBtn"> <input type="button" value="주소검색"
-									onclick="goPopup();" />
-								</span>
-							</div>
-							<div class="fullBox pt0">
-								<input id="roadAddrPart1" name="me_addr2" title="주소입력"
-									readonly="readonly" type="text" />
-							</div>
-							<div class="fullBox pt0">
-								<input id="addrDetail" name="me_addr3" title="나머지 주소입력"
-									type="text" />
+									value="" required="required" /></span>
 							</div>
 						</td>
 					</tr>
@@ -279,11 +239,11 @@
 						<td class="end">
 							<div class="phoneBoxWrap">
 								<input id="tel1" name="me_tel1" type="text" value=""
-									maxlength="3" title="휴대폰 번호"/> -<span class="boxPhoneCenter"> <input
-									id="tel2" name="me_tel2" type="text" value="" maxlength="4" title="휴대폰 번호"/>
+									maxlength="3" title="휴대폰 번호" required="required"/> -<span class="boxPhoneCenter"> <input
+									id="tel2" name="me_tel2" type="text" value="" maxlength="4" title="휴대폰 번호" required="required"/>
 								</span> <span class="phoneMool">-</span> <span class="boxPhoneEnd">
 									<input id="tel3" name="me_tel3" type="text" value=""
-									maxlength="4" title="휴대폰 번호" /><span
+									maxlength="4" title="휴대폰 번호" required="required" /><span
 									id="telOk" style="color: red; font-weight: 600;"></span>
 								</span>
 							</div>
@@ -292,7 +252,7 @@
 					<tr>
 						<td>이미지를 넣어주세요</td>
 						<td><input type="file" name="me_photo" 
-							maxlength="50" id="photo" title="이미지"/><td>
+							maxlength="50" id="photo" title="이미지" /><td>
 					
 					</tr>
 				</table>

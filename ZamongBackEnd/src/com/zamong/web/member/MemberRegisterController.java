@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.zamong.me.service.MemberDAO;
 import com.zamong.me.service.MemberDTO;
+import com.zamong.me.service.impl.MemberDAO;
 
 public class MemberRegisterController extends HttpServlet {
 
@@ -26,10 +26,7 @@ public class MemberRegisterController extends HttpServlet {
 			String me_name = req.getParameter("me_name");
 			String me_nickname = req.getParameter("me_nickname");
 			String me_gender = req.getParameter("me_gender");
-			String me_year = req.getParameter("me_year");
-			String me_month = req.getParameter("me_month");
-			String me_day = req.getParameter("me_day");
-			String me_birth = me_year+"-"+me_month+"-"+me_day;
+			String me_birth = req.getParameter("me_birth");
 			String me_email1 = req.getParameter("me_email1");
 			String me_email2 = req.getParameter("me_email2");
 			String me_email = me_email1+"@"+me_email2;
@@ -37,16 +34,12 @@ public class MemberRegisterController extends HttpServlet {
 			String me_tel2 = req.getParameter("me_tel2");
 			String me_tel3 = req.getParameter("me_tel3");
 			String me_tel = me_tel1+"-"+me_tel2+"-"+me_tel3;
-			String me_addr1 = req.getParameter("me_addr1");
-			String me_addr2 = req.getParameter("me_addr2");
-			String me_addr3 = req.getParameter("me_addr3");
-			String me_addr = me_addr1+"-"+me_addr2+"-"+me_addr3;
 			String me_photo	= req.getParameter("me_photo");
 		
 			
 			MemberDTO dto = new MemberDTO();
 			
-			dto.setMe_addr(me_addr);
+		
 			dto.setMe_birth(me_birth);
 			dto.setMe_email(me_email);
 			dto.setMe_gender(me_gender);

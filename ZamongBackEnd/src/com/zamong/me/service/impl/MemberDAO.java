@@ -1,4 +1,4 @@
-package com.zamong.me.service;
+package com.zamong.me.service.impl;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -23,6 +23,7 @@ import javax.sql.DataSource;
 
 import org.apache.catalina.connector.Request;
 
+import com.zamong.me.service.MemberDTO;
 import com.zamong.mg.service.MagazineDTO;
 import com.zamong.nt.service.NotiDataDTO;
 
@@ -57,7 +58,7 @@ public class MemberDAO {
 	
 		public int insert(MemberDTO dto) {
 			int affected =0;
-			String sql="INSERT INTO me_member VALUES(me_seq.NEXTVAL,sysdate, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql="INSERT INTO me_member(me_no,me_regidate, ME_ID , ME_PASS, ME_NAME ,ME_NICKNAME,ME_GENDER ,ME_BIRTH ,ME_EMAIL ,ME_TEL ,ME_PHOTO) VALUES(me_seq.NEXTVAL,sysdate, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			try {
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1, dto.getMe_id());
@@ -68,8 +69,7 @@ public class MemberDAO {
 				psmt.setString(6, dto.getMe_birth());
 				psmt.setString(7, dto.getMe_email());
 				psmt.setString(8, dto.getMe_tel());
-				psmt.setString(9, dto.getMe_addr());
-				psmt.setString(10, dto.getMe_photo());
+				psmt.setString(9, dto.getMe_photo());
 				
 				affected = psmt.executeUpdate();
 			} 
@@ -133,12 +133,12 @@ public class MemberDAO {
 			
 		}//getTotalRecordCount
 		
-		public MemberDTO selectOne(String no) {
+		public MemberDTO selectOne(String me_no) {
 			MemberDTO dto=null;
 			String sql="SELECT * FROM me_member WHERE me_no=?";
 			try {
 				psmt = conn.prepareStatement(sql);
-				psmt.setString(1, no);
+				psmt.setString(1, me_no);
 				rs = psmt.executeQuery();
 				if(rs.next()){
 					dto = new MemberDTO();
@@ -152,8 +152,7 @@ public class MemberDAO {
 					dto.setMe_birth(rs.getString(8));
 					dto.setMe_email(rs.getString(9));
 					dto.setMe_tel(rs.getString(10));
-					dto.setMe_addr(rs.getString(11));
-					dto.setMe_photo(rs.getString(12));
+					dto.setMe_photo(rs.getString(11));
 				}			
 			} catch (SQLException e) {e.printStackTrace();}		
 			return dto;
@@ -162,7 +161,7 @@ public class MemberDAO {
 		public int update(MemberDTO dto) {
 			int affected=0;
 			String sql="UPDATE me_member "
-					+ "SET me_id=?,me_name=?,me_nickname=?,me_gender=?,me_birth=?,me_email=?,me_tel=?,me_addr=?,me_photo=? "
+					+ "SET me_id=?,me_name=?,me_nickname=?,me_gender=?,me_birth=?,me_email=?,me_tel=?,me_photo=? "
 					+ "WHERE me_no=?";
 			
 			try {
@@ -174,9 +173,8 @@ public class MemberDAO {
 				psmt.setString(5, dto.getMe_birth());
 				psmt.setString(6, dto.getMe_email());
 				psmt.setString(7, dto.getMe_tel());
-				psmt.setString(8, dto.getMe_addr());
-				psmt.setString(9, dto.getMe_photo());
-				psmt.setString(10, dto.getMe_no());
+				psmt.setString(8, dto.getMe_photo());
+				psmt.setString(9, dto.getMe_no());
 				affected = psmt.executeUpdate();
 				
 			} catch (SQLException e) {e.printStackTrace();}

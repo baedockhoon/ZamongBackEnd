@@ -132,7 +132,7 @@
 						<th scope="row"><span class="star">*</span><span class="txt dB lh30 alignLeft pL10 fl">주소</span></th>
 						<td class="end">
 							<div class="fullBox">
-								${dto.me_addr }
+								${ad_dto.ad_zip }${ad_dto.ad_basic_addr }${ad_dto.ad_detail_addr }
 							</div>
 						</td>
 					</tr>
