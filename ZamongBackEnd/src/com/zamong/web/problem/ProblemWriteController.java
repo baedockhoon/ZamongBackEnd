@@ -121,6 +121,7 @@ public class ProblemWriteController extends HttpServlet {
 					dto.setMq_mediumdivide(mq_mediumdivide);
 					req.setAttribute("dto",dto);
 					sucorfail =dao.insert(dto);
+					
 					dao.close();			  
 		}
 					else{

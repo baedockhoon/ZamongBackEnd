@@ -2,7 +2,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
-<%@page import="com.zamong.me.service.MemberDAO"%>
+
 <%@page import="com.zamong.nt.service.impl.NotiDataDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -61,6 +61,7 @@ request.setCharacterEncoding("UTF-8");
 		<div class="page-header">
 			<h1>결제내역 보기</h1>
 		</div>
+		
 		<div class="page-header">
 			<!-- 아래에 실제내용 표시 -->
 			<ul class="nav nav-tabs" role="tablist">
@@ -82,11 +83,23 @@ request.setCharacterEncoding("UTF-8");
 		
 		
 		<div>
-					<%-- <%=dto.getMe_id() %> --%>
+					
+			<form>
 			<table class="table table-striped">
+			<caption>이 표는 자몽캐쉬 충전 결제 리스트로 최종 결제금액, 결제방법 내용을 포함하고 있습니다.<hr/>
+			
+			회원님의 총금액을 확인 하시려면 아이디를 눌러주세요.
+			</caption>
+			
+				<colgroup>
+					<col style="width: 119px; *width: 103px;">
+					<col style="width: 160px; *width: 144px;">
+					<col>
+				</colgroup>
 				<thead>
 					<tr>
 						<th>NO</th>
+						<th>아이디</th>
 						<th>결제 날짜</th>
 						<th>포인트</th>
 
@@ -102,10 +115,14 @@ request.setCharacterEncoding("UTF-8");
 					</c:when>
 					<c:otherwise>
 						<c:forEach var="item" items="${list}" varStatus="loop">
+								<input type="hidden" name="me_no" value="${item.me_no }" />
 							<tr bgcolor="white" align="center">
 								<td>${item.ch_no}</td>
-								<td>${item.ch_regidate}</td>
+							<td><a
+									href='<c:url value="/ZAMONG/Cash/View.do?ch_no=${item.ch_no}&me_no=${item.me_no }&nowPage=${nowPage }"/>'>${item.me_id}</a></td>
+								<td>${item.ch_regidate}</td>							
 								<td>${item.ch_havecash}원</td>
+								
 
 								<%-- <td><a href='javascript:isDelete(${item.nt_no})'><button
 											type="button" class="btn btn-xs btn-primary">삭제</button></a></td> --%>
@@ -115,7 +132,15 @@ request.setCharacterEncoding("UTF-8");
 					</c:otherwise>
 				</c:choose>
 
+
 			</table>
+			<select name="searchColumn">
+					<option value="me_id">아이디</option>
+				
+
+				</select> &nbsp; <input type="text" size="30" name="searchWord" /><input
+					type="submit" value="검색" />
+			</form>
 			<table width="100%">
 				<tr align="center">
 					<td>${pagingString }</td>

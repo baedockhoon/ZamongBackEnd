@@ -240,9 +240,7 @@ $(function(){
 					<td><input type="text" name="usemodel" title="제목 입력란"  required="required" required="required" /></td>
 				</tr>
 				<tr>
-				<th>아이디</th>
-				<td><input type="text" name="name" required="required"/></td>
-				</tr>
+				
 			  
 			  
 			  <tr>

@@ -692,6 +692,16 @@
 		<servlet-name>ZamongCashList</servlet-name>
 		<url-pattern>/ZAMONG/Cash/List.do</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ZamongCashView</servlet-name>
+		<servlet-class>com.zamong.web.cash.CashViewController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ZamongCashView</servlet-name>
+		<url-pattern>/ZAMONG/Cash/View.do</url-pattern>
+	</servlet-mapping>
+
 
 <jsp-config>
 							<taglib>
