@@ -26,17 +26,18 @@ public class CashWriteController extends HttpServlet {
 	String bp_no = req.getParameter("bp_no");
 		
 
-	String ch_havecash = req.getParameter("havecash");
+	String ch_havecash = req.getParameter("price");
 	String me_no = req.getParameter("me_no");
-
+	BuyproductDAO dao1 = new BuyproductDAO(req.getServletContext());
+	BuyproductDTO dto1 = new BuyproductDTO();
 		CashDAO dao = new CashDAO(req.getServletContext());
 		CashDTO dto = new CashDTO();
+	/*
 	
-		//dto.setBp_no(bp_no);
 		dto.setMe_no(me_no);
 		dto.setCh_havecash(ch_havecash);
 	
-		dao.insert(dto);
+	dao1.insert(dto1,dto);*/
 		
 		dao.close();
 		req.getRequestDispatcher("/ZAMONG/Cash/List.do").forward(req, resp);

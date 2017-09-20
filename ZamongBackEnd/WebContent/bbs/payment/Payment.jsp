@@ -18,9 +18,10 @@ String no = request.getParameter("me_no");
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <link rel="icon" href="<c:url value='/Images/zamonglogo.gif'/>" />
 
-<title>공지사항</title>
+<title>결제 페이지</title>
 <!-- Bootstrap core CSS -->
 <!-- 합쳐지고 최소화된 최신 CSS -->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 부가적인 테마(Bootstrap theme) -->
@@ -67,15 +68,17 @@ String no = request.getParameter("me_no");
 					<col>
 				</colgroup>
 				<tbody>
-					
+					 
 					<tr>
 						<th scope="row" class="bg_gray">충전금액</th>
 						<!--141021 수정 lyr-->
 				 <td style="vertical-align: middle"> <input type="radio"
 							name="chargeRates" class="input_radio" value="selectRate"
-							checked="checked"> 
-								<select name="price"
-							title="충전금액 선택" style="width: 93px; height: 31px;">
+							checked="checked">              
+                             <select id="anwser" name="price" title="결제금액" onchange="javascript:selChange(this.value);">
+                                <option value="">결제금액 선택</option>
+                                 
+			                    <option value="sel">직접입력</option>
 
 								<option value="1000">1,000 원</option>
 
@@ -99,19 +102,14 @@ String no = request.getParameter("me_no");
 								
 								<option value="11000">11,000 원</option>
 						</select> 원</td> 
-						
-						
-						<!--//141021 수정 lyr-->
-						<td><input type="text" name="price"></td>
-						<td><input type="radio" id="chargeRates" name="chargeRates"
-							value="entryRate"><label for="chargeRates"><input
-								type="text" class="text33 text_cash" title="충전금액 입력 편집창"
-								name="price" style="width: 77px;" maxlength="5"></label>원
-							(1,000원 단위 충전)</td>
-
+							<td><span class="boxEmailEndInput"><input type="text" title="결제 도메인 입력란" name="price1"  value="" />원</span></td>
+			
 					</tr>
+					
 				</tbody>
 			</table>
+					
+			
 			<div class="popup_cntt box_scroll" style="text-align: center;">
 			 	 <input type="button" onclick="goSubmit()" value="확인" /> 
 <!-- 		 <input type="submit" value="확인"/>    --> 
@@ -120,7 +118,16 @@ String no = request.getParameter("me_no");
 		</div>
 	 	</form> 
 	</div>
-
+<script>
+function selChange(val){
+    if(val=="sel"){
+         $(".boxEmailEndInput > input").val("");
+       }else{
+         $(".boxEmailEndInput > input").val(val); 
+       }
+    
+}
+</script>
 
 </body>
 </html>

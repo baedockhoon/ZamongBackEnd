@@ -13,7 +13,6 @@ public class CashDTO {
 private String ch_no;
 private java.util.Date ch_regidate;
 private String me_no;
-private String bp_no;
 private String ch_havecash;
 public String getCh_no() {
 	return ch_no;
@@ -33,28 +32,20 @@ public String getMe_no() {
 public void setMe_no(String me_no) {
 	this.me_no = me_no;
 }
-public String getBp_no() {
-	return bp_no;
-}
-public void setBp_no(String bp_no) {
-	this.bp_no = bp_no;
-}
 public String getCh_havecash() {
 	return ch_havecash;
 }
 public void setCh_havecash(String ch_havecash) {
 	this.ch_havecash = ch_havecash;
 }
-public CashDTO(String ch_no, Date ch_regidate, String me_no, String bp_no, String ch_havecash) {
-
+public CashDTO(String ch_no, Date ch_regidate, String me_no, String ch_havecash) {
+	super();
 	this.ch_no = ch_no;
 	this.ch_regidate = ch_regidate;
 	this.me_no = me_no;
-	this.bp_no = bp_no;
 	this.ch_havecash = ch_havecash;
 }
 public CashDTO() {}
-
 
 
 

@@ -56,7 +56,7 @@
 		<hr />
 
 				
-		<table border="1" class="table table-striped">
+		<!-- <table border="1" class="table table-striped">
 
 			<tr>
 				<td style="cursor: pointer; text-align: center; height: 50px;">서비스문의/오류</td>
@@ -67,10 +67,31 @@
 				<td style="cursor: pointer; text-align: center;">아지톡</td>
 				<td style="cursor: pointer; text-align: center;">기타</td>
 			</tr>
-		</table>
+		</table> -->
 
 
 		<div>
+		<form method="post">
+				<select name="qu_largedivide">
+						<option value="">대분류</option>				
+					<option value="서비스문의/오류">서비스문의/오류</option>
+					<option value="결제/해지/환불">결제/해지/환불</option>
+					<option value="이벤트">이벤트</option>
+					<option value="이용권 사용문의">이용권 사용문의</option>
+					<option value="회원정보">회원정보</option>				
+				</select> <input type="submit" value="검색" />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<select name="qu_mediumdivide">
+				<option value="">중분류</option>		
+					<option value="Windows 플레이어">Windows 플레이어</option>
+					<option value="재생/다운로드">재생/다운로드</option>
+					<option value="멜론설치/지원가기">멜론설치/지원가기</option>
+					<option value="이용권 사용문의">이용권 사용문의</option>
+					<option value="회원탈퇴">회원탈퇴</option>
+					<option value="결제방법">결제방법</option>
+					<option value="이벤트">이벤트</option>
+				</select> <input type="submit" value="검색" />
+		
 			<div style="text-align: right">
 				<a class="btn btn-sm btn-primary" href="javascript:iswrite()">글쓰기</a>
 							</div>
@@ -118,13 +139,20 @@
 					<td>${pagingString }</td>
 				</tr>
 			</table>
-			<!-- /container(내용 끝) -->
+			<select name="searchColumn">
+					<option value="qu_title">제목</option>
+					<option value="qu_contents">내용</option>
+
+				</select> &nbsp; <input type="text" size="30" name="searchWord" /><input
+					type="submit" value="검색" />
+
+			</form>
 		</div>
 	</div>
 
 	<script>
 function isDelete(qu_no){
-	if(confirm("정말로 삭제 할래?")){
+	if(confirm("정말로 삭제 하시겠습니까?")){
 		location.href="UserQuestionDelete.do?qu_no="+qu_no;
 	}//////////////////			
 	

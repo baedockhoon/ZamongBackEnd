@@ -78,7 +78,7 @@ $(function(){
 	
 
 </script>
-<script>
+<!-- <script>
 	function isValidate(formObject) {
 		if(formObject.qu_largedivide.value == ""){
 			alert("대분류를 선택하세요");
@@ -104,7 +104,7 @@ $(function(){
 		
 	}//isValidate()
 </script>
-  	
+  	 -->
   	
   </head>
 
@@ -133,7 +133,7 @@ $(function(){
 					<tr>
 						<td>대분류</td>
 						<td>
-						 <select name="qu_largedivide">
+						 <select name="qu_largedivide" required="required">
 						 	<option value="">대분류</option>
 							<option value="서비스문의/오류">서비스문의/오류</option>
 							<option value="결제/해지/환불">결제/해지/환불</option>
@@ -144,7 +144,7 @@ $(function(){
 						</td> 
 						<td style="">중분류</td>	
 						<td>										
-						 <select name="qu_mediumdivide">
+						 <select name="qu_mediumdivide" required="required">
 						 	<option value="">중분류</option>
 							<option value="Windows 플레이어">Windows 플레이어</option>
 							<option value="재생/다운로드">재생/다운로드</option>
@@ -158,17 +158,17 @@ $(function(){
 					</tr>
 				        <tr>
 				            <td>제목</td>
-				            <td><input type="text" id="title" name="title" style="width:650px"/></td>
+				            <td><input type="text" id="title" name="title" style="width:650px" required="required"/></td>
 				        </tr>
 				        <tr>
 				            <td>내용</td>
 				            <td>
-				                <textarea rows="10" cols="30" id="ir1" name="contents" style="width:650px; height:350px;"></textarea>
+				                <textarea rows="10" cols="30" id="ir1" name="contents" style="width:650px; height:350px;" required="required"></textarea>
 				            </td>
 				        </tr>
 				        <tr>
 				            <td colspan="2">
-				               <input type="button" id="insert" value="입력" class="btn btn-sm btn-primary"/>
+				               <input type="submit" id="insert" value="입력" class="btn btn-sm btn-primary"/>
 				            
 				                           <a id="list" class="btn btn-sm btn-primary" >뒤로</a>
 				            </td>

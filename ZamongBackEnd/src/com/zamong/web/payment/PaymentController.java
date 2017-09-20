@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.zamong.bp.service.BuyproductDTO;
 import com.zamong.bp.service.impl.BuyproductDAO;
+import com.zamong.ch.service.CashDTO;
+import com.zamong.ch.service.impl.CashDAO;
 
 public class PaymentController extends HttpServlet {
 	String getStringValue(String value){
@@ -37,21 +39,32 @@ public class PaymentController extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");	
 	String no = req.getParameter("bp_no");
 		String price;
+		String price1;
+		 price1= req.getParameter("price1");
+		 price  = getStringValue(req.getParameter("price"));
+		 price = price1;
+		 String bp_no = req.getParameter("bp_no");
+
 		//String buyway = req.getParameter("buyway");
-		price  = getStringValue(req.getParameter("price"));
+		
 	String me_no = req.getParameter("me_no");
 		//price = req.getParameter("price");
-
+	CashDAO dao1 = new CashDAO(req.getServletContext());
+	CashDTO dto1 = new CashDTO();
 		BuyproductDAO dao = new BuyproductDAO(req.getServletContext());
 		BuyproductDTO dto = new BuyproductDTO();
-		//dao.selectOne(no);
 		dto.setBp_price(price);
 		dto.setMe_no(me_no);
-		dao.insert(dto);
+		
+		dto1.setMe_no(me_no);
+		dto1.setCh_havecash(price);
+		dao.insert(dto,dto1);
+		
+		
 		req.setAttribute("dto",dto);
 		dao.close();
 		req.getRequestDispatcher("/ZAMONG/Cash/Write.do").forward(req, resp);
-	/*	req.getRequestDispatcher("/ZAMONG/MemberList.do").forward(req, resp);*/
+	/*req.getRequestDispatcher("/ZAMONG/MemberList.do").forward(req, resp);*/
 	}
 	
 

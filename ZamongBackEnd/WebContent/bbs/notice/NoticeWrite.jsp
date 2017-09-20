@@ -65,7 +65,7 @@ $(function(){
  
  
 </script>
-<script>
+<!-- <script>
 	function isValidate(formObject) {
 		if(formObject.Notice_category.value == ""){
 			alert("분류를 선택하세요");
@@ -85,7 +85,7 @@ $(function(){
 
 		
 	}//isValidate()
-</script>
+</script> -->
 
 
 </head>
@@ -124,9 +124,8 @@ $(function(){
 					
 					<table class="table table-striped" style="">
 						<tr>
-							<!-- <input type="hidden" name="ad_no" /> -->
 							<td>분류</td>
-							<td><select name="Notice_category">					
+							<td><select name="Notice_category" required="required" required="required">					
 									<option value="">분류</option>
 									<option value="서비스소식">서비스소식</option>
 									<option value="서비스오픈">서비스오픈</option>
@@ -138,15 +137,15 @@ $(function(){
 						<tr>
 							<td>제목</td>
 							<td><input type="text" id="title" name="title"
-								style="width: 650px" /></td>
+								style="width: 650px" required="required" /></td>
 						</tr>
 						<tr>
 							<td>내용</td>
 							<td><textarea rows="10" cols="30" id="ir1" name="contents"
-									style="width: 650px; height: 350px;"></textarea></td>
+									style="width: 650px; height: 350px;" required="required"></textarea></td>
 						</tr>
 						<tr>
-							<td colspan="2"><input type="button" id="insert" value="입력"
+							<td colspan="2"><input type="submit" id="insert" value="입력"
 								class="btn btn-sm btn-primary" />
 								 <a id="list"
 								class="btn btn-sm btn-primary">뒤로</a>

@@ -42,6 +42,12 @@ public class UserQuestionListController extends HttpServlet {
 			map.put("searchColumn",searchColumn);
 			map.put("searchWord",searchWord);
 		}
+		if(qu_largedivide != null){
+			map.put("qu_largedivide",qu_largedivide);
+		}
+		if(qu_mediumdivide != null){
+			map.put("qu_mediumdivide",qu_mediumdivide);
+		}
 		int totalRecordCount=dao.getTotalRecordCount(map);
 		//페이지 사이즈
 		int pageSize  =Integer.valueOf(req.getServletContext().getInitParameter("PAGE_SIZE"));
@@ -72,7 +78,7 @@ public class UserQuestionListController extends HttpServlet {
 		req.setAttribute("pageSize", pageSize);
 		req.setAttribute("nowPage", nowPage);
 		dao.close();
-		req.setAttribute("list", list);
+		
 	
 		RequestDispatcher dispatcher=req.getRequestDispatcher("/bbs/notice/UserQuestionList.jsp");
 		

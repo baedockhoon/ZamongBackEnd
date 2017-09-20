@@ -76,7 +76,7 @@ $(function(){
 		});
 	});
 </script>
- <script>
+ <!-- <script>
 	function isValidate(formObject) {
 		if(formObject.qu_largedivide.value == ""){
 			alert("대분류를 선택하세요");
@@ -101,7 +101,7 @@ $(function(){
 
 		
 	}//isValidate()
-</script>
+</script> -->
   </head>
 
   <body role="document">
@@ -130,7 +130,7 @@ $(function(){
 						<td>대분류</td>
 						<td>
 			   
-						 <select name="qu_largedivide">
+						 <select name="qu_largedivide" required="required">
 						 	<option value="">대분류</option>
 							<option value="서비스문의/오류">서비스문의/오류</option>
 							<option value="결제/해지/환불">결제/해지/환불</option>
@@ -144,7 +144,7 @@ $(function(){
 						<td>
 						
 			    <input type="hidden" value="${dto.qu_mediumdivide }" /> 
-						 <select name="qu_mediumdivide">
+						 <select name="qu_mediumdivide" required="required">
 						  	<option value="">중분류</option>
 							<option value="Windows플레이어">Windows플레이어</option>
 							<option value="재생/다운로드">재생/다운로드</option>
@@ -159,7 +159,7 @@ $(function(){
 					<tr bgcolor="white" >
           			<td align="center">제목</td>
           			<td>		              
-						<input type="text" name="title" value="${dto.qu_title }"/>		
+						<input type="text" name="title" value="${dto.qu_title }" required="required"/>		
 		            </td>
           		</tr>
           		<tr bgcolor="white" >
@@ -173,7 +173,7 @@ $(function(){
           	
           		<tr bgcolor="white" align="center">
           			<td colspan="50">
-          			<input type="button" id="insert" value="수정" class="btn btn-sm btn-primary"/>
+          			<input type="submit" id="insert" value="수정" class="btn btn-sm btn-primary"/>
           			<a id="list" class="btn btn-sm btn-primary">취소</a>
           			</td>
           		</tr>

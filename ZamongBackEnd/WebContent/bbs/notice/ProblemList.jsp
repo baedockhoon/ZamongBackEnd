@@ -103,7 +103,7 @@
 
 	<script>
 function isDelete(mq_no){
-	if(confirm("정말로 삭제 할래?")){
+	if(confirm("정말로 삭제 하시겠습니까?")){
 		location.href="ProblemDelete.do?mq_no="+mq_no;
 	}//////////////////			
 	
