@@ -137,7 +137,7 @@
 	<script> 
 
 	function isDelete(nt_no){
-		if(confirm("정말로 삭제 할래?")){
+		if(confirm("정말로 삭제 하시겠습니까?")){
 			location.href="NoticeDelete.do?nt_no="+nt_no;
 		}//////////////////			
 		

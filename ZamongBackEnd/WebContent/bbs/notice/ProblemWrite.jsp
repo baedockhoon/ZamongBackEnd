@@ -70,7 +70,7 @@ $(function(){
  
  
 </script>
-<script>
+<!-- <script>
 	function isValidate(formObject) {
 		if(formObject.service_environment.value == ""){
 			alert("사용환경을 선택하세요");
@@ -131,7 +131,7 @@ $(function(){
 		
 		
 	}//isValidate()
-</script>
+</script> -->
   	
   	
   </head>
@@ -165,7 +165,7 @@ $(function(){
 			
 				<th>대분류</th>
 				<td>
-				<input type="hidden" name="1" value="${mq_largedivide == null ? '' :mq_largedivide}"/>
+				<input type="hidden" name="1" />
 				<input type="radio" name="1" value="서비스이용문의/오류">서비스이용 문의/오류
 						<input type="radio" name="1" value="결제/해지/환불">결제/해지/환불
 						<input type="radio" name="1" value="이벤트">이벤트
@@ -180,7 +180,7 @@ $(function(){
 				<tr>
 				<th>중분류</th>
 				<td>
-					<input type="hidden" name="2" value="${mq_mediumdivide == null ? '' :mq_mediumdivide }"/>
+					<input type="hidden" name="2" />
 				<input type="radio" name="2" value="멜론 메인 ">멜론 메인 
 						<input type="radio" name="2" value="멜론 차트">멜론 차트
 						<input type="radio" name="2" value="멜론 TV">멜론 TV
@@ -198,7 +198,7 @@ $(function(){
 				<th>사용환경</th>
 				<td>
 				<%--  	<input type="hidden" name="service_environment" value="${service_environment == null ? '' :service_environment }"/> --%>
-				 <select name="service_environment" >
+				 <select name="service_environment" required="required">
 				<option value="">사용환경 선택</option>
 							<option value="웹/웹플레이어">웹/웹플레이어</option>
 							<option value="Window플레이어">Window플레이어</option>
@@ -212,7 +212,7 @@ $(function(){
 					<th>운영 체계</th>
 					<td>
 					<%-- <input type="hidden" name="mq_os" value="${mq_os == null ? '' :mq_os  }"/> --%>
-					 <select name="mq_os">
+					 <select name="mq_os" required="required">
 					 			<option value="">OS 선택</option>
 							<option value="윈도우7">윈도우7</option>
 							<option value="윈도우8">윈도우8</option>
@@ -225,7 +225,7 @@ $(function(){
 				<th>브라우저</th>
 				<td>
 				<%-- 	<input type="hidden" name="mq_browser" value="${mq_browser == null ? '' :mq_browser  }"/> --%>
-				 <select name="mq_browser">
+				 <select name="mq_browser" required="required">
 				 	 			<option value="">브라우저 선택</option>
 							<option value="인터넷익스플로어">인터넷익스플로어</option>
 							<option value="크롬">크롬</option>
@@ -237,11 +237,11 @@ $(function(){
 											
 				</td>
 					<th>사용 모델/버전</th>
-					<td><input type="text" name="usemodel" title="제목 입력란" value="${mq_usemodel == null ? '' : mq_usemodel  }" /></td>
+					<td><input type="text" name="usemodel" title="제목 입력란"  required="required" required="required" /></td>
 				</tr>
 				<tr>
 				<th>아이디</th>
-				<td><input type="text" name="name"/></td>
+				<td><input type="text" name="name" required="required"/></td>
 				</tr>
 			  
 			  
@@ -251,7 +251,7 @@ $(function(){
 			<%--   	<input type="hidden" name="tel" value="${tel == null ? '' :tel  }"/> --%>
 					<div class="phoneBoxWrap">
 					  <span class="boxPhoneStart">
-						   <select id="tel1" name="tel1" title="지역번호 또는 무선사업자번호 선택">
+						   <select id="tel1" name="tel1" title="지역번호 또는 무선사업자번호 선택" required="required">
 								<option value="">선택</option>
 								<option value="02">02</option>
 								<option value="031">031</option>
@@ -279,11 +279,11 @@ $(function(){
 					  </span>
 					  <span class="phoneMool">-</span>
 					  <span class="boxPhoneCenter">
-						<input  name="tel2" title="핸드폰 중간자리" type="text" value=""/>
+						<input  name="tel2" title="핸드폰 중간자리" type="text" required="required" />
 					  </span>
 					  <span class="phoneMool">-</span>
 					  <span class="boxPhoneEnd">
-						  <input  name="tel3" title="핸드폰 끝자리" type="text" value=""/>
+						  <input  name="tel3" title="핸드폰 끝자리" type="text" required="required"/>
 					  </span>
 					</div>
 						</td>
@@ -292,14 +292,14 @@ $(function(){
 			    <th scope="row">*<span>이메일</span></th>
 			    <td class="end">
 			   <%--  	<input type="hidden" name="tel" value="${email == null ? '' :email  }"/> --%>
-					<div class="emailBoxWrap">
 	                    <span class="boxEmailStart">
-	                        <input id="email" name="email1" title="이메일 앞자리" type="text" value=""/>
+
+	                        <input id="email" name="email1" title="이메일 앞자리" type="text" required="required"/>
 	                    </span>
 	                    <span class="boxEmailMool">@</span>	                   
-	                   <span class="boxEmailEndInput"><input type="text" title="이메일 도메인 입력란" name="email2"  value="" /></span>
+	                   <span class="boxEmailEndInput"><input type="text" title="이메일 도메인 입력란" name="email2"  required="required" /></span>
                           <span class="boxEmailEnd">
-                             <select id="anwser" name="email" title="이메일" onchange="javascript:selChange(this.value);">
+                             <select id="anwser" name="email" title="이메일" onchange="javascript:selChange(this.value);" required="required">
                                  <option value="">이메일 선택</option>
 			                   <option value="sel">직접입력</option>
 			                   <option value="naver.com">naver.com</option>
@@ -324,21 +324,21 @@ $(function(){
 			                   <option value="link.com">link.com</option>
                               </select>
                      </span>
-	                </div>
+	         
 				</td>
 			  </tr>		  
 					  <tr>
 					    <th scope="row"><span>*</span>제목</th>
 					    <td class="end">
 						
-								<input type="text" name="title" title="제목 입력란" value="${title == null ? '' : title }" />
+								<input type="text" name="title" title="제목 입력란" required="required" />
 						</td>
 					  </tr>
 					  <tr>
 					    <th scope="row"><span>*</span>내용</th>
 					    <td class="end">
 							
-				  <textarea rows="10" cols="30" id="ir1" name="contents" style="width:650px; height:350px;">${contents == null ? '' : contents }</textarea>
+				  <textarea rows="10" cols="30" id="ir1" name="contents" required="required" style="width:650px; height:350px;"></textarea>
 						
 						</td>
 					  </tr>
@@ -347,7 +347,7 @@ $(function(){
 					    <th scope="row"><span class="pL25 m_pL0">첨부파일</span></th>
 					    <td class="end">
 							<div class="pL10 mt10">
-					            <input  type="file" name="file" title="첨부파일 선택" value="${file == null ? '' : file }"/>
+					            <input  type="file" name="file" title="첨부파일 선택" required="required"/>
 							</div>
 							<p >* 보안을 위해 업로드 하는 파일은 zip 압축파일로 제한이 됩니다.</p> 
 							<p >* 파일첨부가 필요한 경우 zip 파일로 압축하여 업로드 하시기 바랍니다.</p> 
@@ -356,7 +356,7 @@ $(function(){
 							<tr>
 						<td colspan="2">
 							 
-							  <input type="button" id="insert" value="입력" class="btn btn-sm btn-primary"/>
+							  <input type="submit" id="insert" value="입력" class="btn btn-sm btn-primary"/>
 				              
 							           <a id="list" class="btn btn-sm btn-primary" >뒤로</a>
 						</td>

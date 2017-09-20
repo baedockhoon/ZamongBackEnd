@@ -59,9 +59,19 @@ public List<UserQuestionDTO> selectList(Map<String,Object> map){
 		//페이징 적용-구간쿼리로 변경
 		String sql = "SELECT * FROM (SELECT T.*, ROWNUM R FROM (SELECT * FROM QU_QUESTION1 ";
 		//검색용 쿼리 추가
-		if(map.get("searchWord") !=null){
-			sql+=" WHERE "+map.get("searchColumn")+ " LIKE '%"+map.get("searchWord")+"%' ";
-		}		
+		if (!(map.get("qu_largedivide") == null && map.get("searchWord") == null && map.get("qu_mediumdivide") == null) 
+				&& !(map.get("qu_largedivide").equals("") && map.get("searchWord").equals("") && map.get("qu_mediumdivide").equals(""))) {
+			
+			sql += " WHERE ";
+			
+			String notice = map.get("qu_largedivide").equals("") ? " LIKE '%%' " : " = '" + map.get("qu_largedivide").toString() + "'";
+			String searchWord = map.get("searchWord") == null ? " '%%' " : "'%"+map.get("searchWord").toString()+"%'";
+	String mediumdivide = map.get("qu_mediumdivide").equals("") ? " LIKE '%%' " : " = '" + map.get("qu_mediumdivide").toString() + "'";
+			
+			sql += " QU_LARGEDIVIDE " + notice;
+			sql += " AND QU_MEDIUMDIVIDE " + mediumdivide;
+			sql+=" AND "+map.get("searchColumn")+ " LIKE " + searchWord;
+		}
 		sql+=" ORDER BY QU_NO DESC) T) WHERE R BETWEEN ? AND ?";
 		
 		try {

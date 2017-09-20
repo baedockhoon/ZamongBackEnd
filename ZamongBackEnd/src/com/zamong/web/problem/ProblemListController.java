@@ -33,6 +33,8 @@ public class ProblemListController extends HttpServlet {
 		String 	searchColumn = req.getParameter("searchColumn");
 		String 	searchWord = req.getParameter("searchWord");
 		String no = req.getParameter("mq_no");
+		String qu_largedivide = req.getParameter("qu_largedivide");
+		String qu_mediumdivide = req.getParameter("qu_mediumdivide");
 		//검색후 페이징과 관련된 파라미터를 전달할 값을 저장할 변수]
 		String addQuery ="";
 				
@@ -43,6 +45,12 @@ public class ProblemListController extends HttpServlet {
 			
 			map.put("searchColumn",searchColumn);
 			map.put("searchWord",searchWord);
+		}
+		if(qu_largedivide != null){
+			map.put("qu_largedivide",qu_largedivide);
+		}
+		if(qu_mediumdivide != null){
+			map.put("qu_mediumdivide",qu_mediumdivide);
 		}
 		int totalRecordCount=dao.getTotalRecordCount(map);
 		//페이지 사이즈

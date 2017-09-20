@@ -46,13 +46,7 @@ request.setCharacterEncoding("UTF-8");
 <link rel="stylesheet"
 	href="<c:url value='/bootstrap/css/bootstrap-theme.min.css'/>">
 </head>
-<script>
-	function iswrite() {
-		
-		location.href="<c:url value='/bbs/notice/NoticeWrite.jsp'/>";
-	}
-			
-</script>
+
 
 <body role="document">
 
@@ -70,8 +64,11 @@ request.setCharacterEncoding("UTF-8");
 		<div class="page-header">
 			<!-- 아래에 실제내용 표시 -->
 			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" ><a
+					href="<c:url value='/ZAMONG/MemberList.do'/>">회원관리</a></li>
 				<li role="presentation" class="active"><a
 					href="<c:url value='/ZAMONG/Cash/List.do'/>">결제내역</a></li>
+					
 				<li role="presentation"><a
 					href="<c:url value='/ZAMONG/UserQuestionList.do'/>">스트리밍</a></li>
 				<li role="presentation"><a

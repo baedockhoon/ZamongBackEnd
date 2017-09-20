@@ -76,7 +76,7 @@ $(function(){
  
  
 </script>
- <script>
+ <!-- <script>
 	function isValidate(formObject) {
 		if(formObject.Notice_category.value == ""){
 			alert("분류를 선택하세요");
@@ -96,7 +96,7 @@ $(function(){
 
 		
 	}//isValidate()
-</script>
+</script> -->
  
   </head>
 
@@ -126,7 +126,7 @@ $(function(){
 						<td>분류</td>
 						<td>
 			    <input type="hidden" value="${dto.nt_classification }" /> 
-						 <select name="Notice_category">
+						 <select name="Notice_category" required="required">
 						 <option value="">분류</option>
 							<option value="서비스소식">서비스소식</option>
 							<option value="서비스오픈">서비스오픈</option>
@@ -139,7 +139,7 @@ $(function(){
 					<tr bgcolor="white" >
           			<td align="center">제목</td>
           			<td>		              
-						<input type="text" name="title" value="${dto.nt_title }"/>		
+						<input type="text" name="title" value="${dto.nt_title }" required="required"/>		
 		            </td>
           		</tr>
           		<tr bgcolor="white" >
@@ -153,7 +153,7 @@ $(function(){
           	
           		<tr bgcolor="white" align="center">
           			<td colspan="50">
-          			<input type="button" id="insert" value="수정" class="btn btn-sm btn-primary"/>
+          			<input type="submit" id="insert" value="수정" class="btn btn-sm btn-primary"/>
           			<a id="list" class="btn btn-sm btn-primary">취소</a>
           			</td>
           		</tr>

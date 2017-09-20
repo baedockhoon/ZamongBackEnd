@@ -70,7 +70,7 @@ $(function(){
  
  
 </script>
-<script>
+<!-- <script>
 	function isValidate(formObject) {
 		if(formObject.service_environment.value == ""){
 			alert("사용환경을 선택하세요");
@@ -122,7 +122,7 @@ $(function(){
 		
 		
 	}//isValidate()
-</script>
+</script> -->
  <script>
 	$(function(){
 
@@ -177,7 +177,7 @@ $(function(){
 		<div>
 	      	<form id="frm"  onsubmit="return isValidate(this);"  action="${pageContext.request.contextPath}/ZAMONG/ProblemEdit.do" method="post">
 				<!-- 키값 -->
-		        <input type="hidden" name="mq_no" value="${dto.mq_no}"/>
+		        <input type="hidden" name="mq_no" value="${dto.mq_no}" />
 		    	 <input type="hidden" name="nowPage" value="${nowPage}"/>
 			<table class="table table-striped" style="">
 				<hr/>
@@ -220,7 +220,7 @@ $(function(){
 					<td>
 						<span class="boxEmailEndInput"><input  type="text" value="${dto.mq_useenv }" /></span>
                           <span class="boxEmailEnd">
-                             <select id="service_environment" name="service_environment" title="담당부서" onchange="javascript:selChange(this.value);">
+                             <select id="service_environment" name="service_environment" title="담당부서" onchange="javascript:selChange(this.value);"required="required">
                                  <option value="sel">사용환경 선택</option>
                                 <option value="웹/웹플레이어">웹/웹플레이어</option>
 							<option value="Window플레이어">Window플레이어</option>
@@ -236,7 +236,7 @@ $(function(){
 					<td>
 					<span class="boxEmailEndInput1"><input  type="text" value="${dto.mq_os }" /></span>
                           <span class="boxEmailEnd1">
-					   <select  name="mq_os"onchange="javascript:selChange1(this.value);">
+					   <select  name="mq_os"onchange="javascript:selChange1(this.value);" required="required">
 					    <option value="sel1">운영 체계 선택</option>
 							<option value="윈도우7">윈도우7</option>
 							<option value="윈도우8">윈도우8</option>
@@ -251,7 +251,7 @@ $(function(){
 				<td>
 				<span class="boxEmailEndInput2"><input  type="text" value="${dto.mq_browser }" /></span>
                           <span class="boxEmailEnd2">
-			   <select  name="mq_browser"onchange="javascript:selChange2(this.value);">
+			   <select  name="mq_browser"onchange="javascript:selChange2(this.value);" required="required">
 			  			  <option value="sel2">브라우저 선택</option>
 							<option value="인터넷익스플로어">인터넷익스플로어</option>
 							<option value="크롬">크롬</option>
@@ -264,7 +264,7 @@ $(function(){
 											
 				</td>
 					<th>사용 모델/버전</th>
-					<td><input type="text" name="usemodel" title="제목 입력란" value="${dto.mq_usemodel }" /></td>
+					<td><input type="text" name="usemodel" title="제목 입력란" value="${dto.mq_usemodel }" required="required"/></td>
 				</tr>
 				
 			  
@@ -272,13 +272,13 @@ $(function(){
 			  <tr>
 			   <td>전화번호</td>
 						<td ><input type="text" name="tel"
-							value="${dto.mq_tel }" />
+							value="${dto.mq_tel }" required="required"/>
 						<td>			   
 					  </tr>
 			  <tr>
 			    <td>E-mail</td>
 						<td ><input type="text" name="email"
-							value="${dto.mq_email }" />
+							value="${dto.mq_email }" required="required"/>
 						<td>
 				
 			  </tr>		  
@@ -286,7 +286,7 @@ $(function(){
 					    <th scope="row"><span>*</span>제목</th>
 					    <td class="end">
 						
-								<input type="text" name="title" value="${dto.mq_title }" />
+								<input type="text" name="title" value="${dto.mq_title }"required="required" />
 						</td>
 					  </tr>
 					  <tr>
@@ -302,7 +302,7 @@ $(function(){
 					    <th scope="row"><span class="pL25 m_pL0">첨부파일</span></th>
 					    <td class="end">
 							<div class="pL10 mt10">
-					            <input  type="file" name="file" title="첨부파일 선택" value="${dto.mq_uploadfile }"/>
+					            <input  type="file" name="file" title="첨부파일 선택" value="${dto.mq_uploadfile }" required="required"/>
 							</div>
 							<p >* 보안을 위해 업로드 하는 파일은 zip 압축파일로 제한이 됩니다.</p> 
 							<p >* 파일첨부가 필요한 경우 zip 파일로 압축하여 업로드 하시기 바랍니다.</p> 
@@ -311,7 +311,7 @@ $(function(){
 							<tr>
 						<td colspan="2">
 							 
-							  <input type="button" id="insert" value="입력" class="btn btn-sm btn-primary"/>
+							  <input type="submit" id="insert" value="입력" class="btn btn-sm btn-primary"/>
 				              
 							           <a id="list" class="btn btn-sm btn-primary" >뒤로</a>
 						</td>

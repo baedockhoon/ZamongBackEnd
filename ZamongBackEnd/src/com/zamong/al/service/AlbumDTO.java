@@ -13,6 +13,8 @@ public class AlbumDTO{
 	private String al_albuminfo; //엘범정보
 	private String al_divide; //아티스트 구별
 	private String al_artistno; //가수고유번호
+	private String al_soundcount; //앨범 보유 음원수
+	private String al_likecount;//좋아요
 	
 	public AlbumDTO() {}
 	
@@ -99,6 +101,22 @@ public class AlbumDTO{
 	}
 	public void setAl_artistno(String al_artistno) {
 		this.al_artistno = al_artistno;
+	}
+
+	public String getAl_soundcount() {
+		return al_soundcount;
+	}
+
+	public void setAl_soundcount(String al_soundcount) {
+		this.al_soundcount = al_soundcount;
+	}
+
+	public String getAl_likecount() {
+		return al_likecount;
+	}
+
+	public void setAl_likecount(String al_likecount) {
+		this.al_likecount = al_likecount;
 	}
 	
 

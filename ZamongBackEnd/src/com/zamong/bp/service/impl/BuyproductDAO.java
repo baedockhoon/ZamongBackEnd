@@ -16,6 +16,7 @@ import javax.servlet.ServletContext;
 import javax.sql.DataSource;
 
 import com.zamong.bp.service.BuyproductDTO;
+import com.zamong.ch.service.CashDTO;
 import com.zamong.nt.service.NotiDataDTO;
 
 
@@ -118,17 +119,30 @@ public List<BuyproductDTO> selectList(){
 
 	
 		//입력용]
-		public int insert(BuyproductDTO dto) {
+		public int insert(BuyproductDTO dto,CashDTO Cash) {
 			int affected=0;
-			String sql="INSERT INTO BP_BUYPRODUCT VALUES(BP_SEQ.NEXTVAL,SYSDATE,2,?,?,1)";
 			try {
+				conn.setAutoCommit(false);
+			String sql="INSERT INTO BP_BUYPRODUCT VALUES(BP_SEQ.NEXTVAL,SYSDATE,2,?,?,1)";
+			
+			/*String sql= "INSERT INTO CH_PAYMENT(CH_NO,CH_REGIDATE,ME_NO,BP_NO,CH_HAVECASH)" + 
+			"SELECT BP_SEQ.NEXTVAL,SYSDATE,2,?,?,1" + 
+			"FROM BP_BUYPRODUCT";*/
+			
 				psmt = conn.prepareStatement(sql);
 			    psmt.setString(1, dto.getMe_no());
 				psmt.setString(2,dto.getBp_price());
 				//psmt.setString(2,dto.getBp_buyway());
 				affected = psmt.executeUpdate();
-				
-			} catch (SQLException e) {e.printStackTrace();}
+			if(affected == 1) {
+				sql ="INSERT INTO CH_PAYMENT VALUES(CH_SEQ.NEXTVAL,SYSDATE,?,?)";
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1,Cash.getMe_no());
+				psmt.setString(2, Cash.getCh_havecash());
+				affected = psmt.executeUpdate();
+				conn.commit();
+			} 
+			}catch (SQLException e) {e.printStackTrace();}
 			
 			return affected;
 		}/////////////////insert
