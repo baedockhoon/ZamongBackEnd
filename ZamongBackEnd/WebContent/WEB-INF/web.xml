@@ -84,50 +84,51 @@
     <url-pattern>/ZAMONG/ZamongTVMain.do</url-pattern>
   </servlet-mapping>
 
-<!-- 자몽TV -->
+<!-- 방송 -->
   <servlet>
-    <servlet-name>ZamongTVList</servlet-name>
-    <servlet-class>com.zamong.web.zamongtv.ZamongTVListController</servlet-class>
+    <servlet-name>ZamongBroadCastList</servlet-name>
+    <servlet-class>com.zamong.web.broadcast.BroadCastListController</servlet-class>
+    			   
   </servlet>
   <servlet-mapping>
-    <servlet-name>ZamongTVList</servlet-name>
-    <url-pattern>/ZAMONG/ZamongTVList.do</url-pattern>
+    <servlet-name>ZamongBroadCastList</servlet-name>
+    <url-pattern>/ZAMONG/BroadCastList.do</url-pattern>
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>ZamongZamongTVWrite</servlet-name>
-    <servlet-class>com.zamong.web.zamongtv.ZamongTVWriteController</servlet-class>
+    <servlet-name>ZamongBroadCastWrite</servlet-name>
+    <servlet-class>com.zamong.web.broadcast.BroadCastWriteController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ZamongZamongTVWrite</servlet-name>
-    <url-pattern>/ZAMONG/ZamongTVWrite.do</url-pattern>
+    <servlet-name>ZamongBroadCastWrite</servlet-name>
+    <url-pattern>/ZAMONG/BroadCastWrite.do</url-pattern>
   </servlet-mapping>
   
   <servlet>
-    <servlet-name>ZamongZamongTVDelete</servlet-name>
-    <servlet-class>com.zamong.web.zamongtv.ZamongTVDeleteController</servlet-class>
+    <servlet-name>ZamongBroadCastDelete</servlet-name>
+    <servlet-class>com.zamong.web.broadcast.BroadCastDeleteController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ZamongZamongTVDelete</servlet-name>
-    <url-pattern>/ZAMONG/ZamongTVDelete.do</url-pattern>
+    <servlet-name>ZamongBroadCastDelete</servlet-name>
+    <url-pattern>/ZAMONG/BroadCastDelete.do</url-pattern>
   </servlet-mapping>
   
   <servlet>
-    <servlet-name>ZamongZamongTVView</servlet-name>
-    <servlet-class>com.zamong.web.zamongtv.ZamongTVViewController</servlet-class>
+    <servlet-name>ZamongBroadCastView</servlet-name>
+    <servlet-class>com.zamong.web.broadcast.BroadCastViewController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ZamongZamongTVView</servlet-name>
-    <url-pattern>/ZAMONG/ZamongTVView.do</url-pattern>
+    <servlet-name>ZamongBroadCastView</servlet-name>
+    <url-pattern>/ZAMONG/BroadCastView.do</url-pattern>
   </servlet-mapping>
   
   <servlet>
-    <servlet-name>ZamongZamongTVEdit</servlet-name>
-    <servlet-class>com.zamong.web.zamongtv.ZamongTVEditController</servlet-class>
+    <servlet-name>ZamongBroadCastEdit</servlet-name>
+    <servlet-class>com.zamong.web.broadcast.BroadCastEditController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ZamongZamongTVEdit</servlet-name>
-    <url-pattern>/ZAMONG/ZamongTVEdit.do</url-pattern>
+    <servlet-name>ZamongBroadCastEdit</servlet-name>
+    <url-pattern>/ZAMONG/BroadCastEdit.do</url-pattern>
   </servlet-mapping>
   
 
@@ -141,20 +142,41 @@
     <url-pattern>/ZAMONG/MusicVideoList.do</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>ZamongMusicVideoWrite</servlet-name>
+    <servlet-class>com.zamong.web.musicvideo.MusicVideoWriteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ZamongMusicVideoWrite</servlet-name>
+    <url-pattern>/ZAMONG/MusicVideoWrite.do</url-pattern>
+  </servlet-mapping>
   
+  <servlet>
+    <servlet-name>ZamongMusicVideoDelete</servlet-name>
+    <servlet-class>com.zamong.web.musicvideo.MusicVideoDeleteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ZamongMusicVideoDelete</servlet-name>
+    <url-pattern>/ZAMONG/MusicVideoDelete.do</url-pattern>
+  </servlet-mapping>
   
- <!-- 아티스트검색용 --> 
- <servlet>
-   <servlet-name>ZamongStatistics</servlet-name>
-   <servlet-class>com.zamong.web.statistics.StatisticsController</servlet-class>
- </servlet>
- <servlet-mapping>
-   <servlet-name>ZamongStatistics</servlet-name>
-   <url-pattern>/ZAMONG/Statistics.do</url-pattern>
- </servlet-mapping>
+  <servlet>
+    <servlet-name>ZamongMusicVideoView</servlet-name>
+    <servlet-class>com.zamong.web.musicvideo.MusicVideoViewController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ZamongMusicVideoView</servlet-name>
+    <url-pattern>/ZAMONG/MusicVideoView.do</url-pattern>
+  </servlet-mapping>
   
-  
-
+  <servlet>
+    <servlet-name>ZamongMusicVideoEdit</servlet-name>
+    <servlet-class>com.zamong.web.musicvideo.MusicVideoEditController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ZamongMusicVideoEdit</servlet-name>
+    <url-pattern>/ZAMONG/MusicVideoEdit.do</url-pattern>
+  </servlet-mapping>
 
 <!-- 방송 -->
   <servlet>
@@ -165,17 +187,66 @@
     <servlet-name>ZamongTV</servlet-name>
     <url-pattern>/ZAMONG/Broadcast.do</url-pattern>
   </servlet-mapping>
+  
+  
+  
+ <!-- 통계 --> 
+ <servlet>
+   <servlet-name>ZamongStatistics</servlet-name>
+   <servlet-class>com.zamong.web.statistics.StatisticsController</servlet-class>
+ </servlet>
+ <servlet-mapping>
+   <servlet-name>ZamongStatistics</servlet-name>
+   <url-pattern>/ZAMONG/Statistics.do</url-pattern>
+ </servlet-mapping>
+
 
 <!-- 뮤직어워드 -->
-    <servlet>
-    <servlet-name>ZamongMusicAward</servlet-name>
-    <servlet-class>com.zamong.web.MusicAwardController</servlet-class>
+  <servlet>
+    <servlet-name>ZamongMusicAwardList</servlet-name>
+    <servlet-class>com.zamong.web.musicaward.MusicAwardListController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ZamongMusicAward</servlet-name>
-    <url-pattern>/ZAMONG/MusicAward.do</url-pattern>
+    <servlet-name>ZamongMusicAwardList</servlet-name>
+    <url-pattern>/ZAMONG/MusicAwardList.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ZamongMusicAwardView</servlet-name>
+    <servlet-class>com.zamong.web.musicaward.MusicAwardViewController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ZamongMusicAwardView</servlet-name>
+    <url-pattern>/ZAMONG/MusicAwardView.do</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>ZamongMusicAwardWrite</servlet-name>
+    <servlet-class>com.zamong.web.musicaward.MusicAwardWriteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ZamongMusicAwardWrite</servlet-name>
+    <url-pattern>/ZAMONG/MusicAwardWrite.do</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ZamongMusicAwardEdit</servlet-name>
+    <servlet-class>com.zamong.web.musicaward.MusicAwardEditController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ZamongMusicAwardEdit</servlet-name>
+    <url-pattern>/ZAMONG/MusicAwardEdit.do</url-pattern>
+  </servlet-mapping>
+    
+  <servlet>
+    <servlet-name>ZamongMusicAwardDelete</servlet-name>
+    <servlet-class>com.zamong.web.musicaward.MusicAwardDeleteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ZamongMusicAwardDelete</servlet-name>
+    <url-pattern>/ZAMONG/MusicAwardDelete.do</url-pattern>
+  </servlet-mapping>
+  
 
 <!-- 일반 회원 -->
   <servlet>
