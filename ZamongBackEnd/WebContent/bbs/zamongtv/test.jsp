@@ -21,6 +21,6 @@
 <br/>
 <br/>
 <br/>
-<center><a href="http://localhost:8080/ZamongProject/ZAMONG/ZamongTVList.do"><font size="20">ÀÚ¸ùTV</font></a></center>
+<center><a href="http://localhost:8080/ZamongProject/ZAMONG/BroadCastList.do"><font size="20">ÀÚ¸ùTV</font></a></center>
 </body>
 </html>

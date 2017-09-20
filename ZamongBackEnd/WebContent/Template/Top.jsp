@@ -33,11 +33,11 @@
 					data-toggle="dropdown" role="button" aria-expanded="false">자몽TV<span
 						class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="<c:url value='/ZAMONG/ZamongTVList.do'/>">뮤직비디오</a></li>
-						<li><a href="<c:url value='/ZAMONG/ZamongTVList.do'/>">방송</a></li>
+						<li><a href="<c:url value='/ZAMONG/MusicVideoList.do'/>">뮤직비디오</a></li>
+						<li><a href="<c:url value='/ZAMONG/BroadCastList.do'/>">방송</a></li>
 					</ul></li>
 				<li><a class="active"
-					href="<c:url value='/ZAMONG/MusicAward.do'/>">뮤직어워드</a></li>
+					href="<c:url value='/ZAMONG/MusicAwardList.do'/>">뮤직어워드</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-expanded="false">매거진
 						<span class="caret"></span>

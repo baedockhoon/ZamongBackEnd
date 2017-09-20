@@ -799,7 +799,7 @@
  <!-- 페이징 -->
  <context-param>
   	<param-name>PAGE_SIZE</param-name>
-  	<param-value>2</param-value>
+  	<param-value>10</param-value>
   </context-param>
   <context-param>
   	<param-name>BLOCK_PAGE</param-name>

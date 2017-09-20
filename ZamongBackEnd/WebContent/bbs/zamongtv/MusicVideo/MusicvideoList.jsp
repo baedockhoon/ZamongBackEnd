@@ -1,22 +1,42 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@page import="com.zamong.mv.service.MusicVideoDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="com.zamong.mv.service.impl.MusicVideoDAO"%>
+<%@page import="java.util.Map"%>
+<%@page import="model.PagingUtil"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- <%@ include file="../../Common/IsMember.jsp" %> --%>
+
+
 <!DOCTYPE html>
 <html>
   <head>
+
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	<link rel="icon" href="<c:url value='/Images/zamonglogo.gif'/>"/>
 	
-    <title>방송</title>
+    <title>뮤직비디오</title>
     <!-- Bootstrap core CSS -->
     <!-- 합쳐지고 최소화된 최신 CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<!-- 부가적인 테마(Bootstrap theme) -->
 	<link rel="stylesheet" href="<c:url value='/bootstrap/css/bootstrap-theme.min.css'/>">
+	
+	  <script> 
+	function isDelete(mv_no){
+		if(confirm("정말로 삭제 하시겠습니까?")){
+			location.href="MusicVideoDelete.do?mv_no="+mv_no;
+		}//////////////////			
+		
+	}/////////////////////	
+</script>
+
   </head>
 
   <body role="document">
@@ -27,18 +47,18 @@
 
 		<!-- Main jumbotron for a primary marketing message or call to action -->
 		<div class="jumbotron">
-			<h1>방송 목록</h1>
+			<h1>뮤직비디오 목록</h1>
 		</div>
 
 		<!-- 실제내용의 제목표시 -->
 		<div class="page-header">
-			<h1>방송 보기</h1>
+			<h1>뮤직비디오 목록</h1>
 		</div>
 		<!-- 아래에 실제내용 표시 -->
 		<div>
-		<table width="100%">
+		<table style="width:100%">
 	        <tr align="right">		                          
-	         <td><a href="<c:url value='/ZamongTV/zamongWrite.do'/>"><button type="button" class="btn btn-sm btn-info">글작성</button></a></td>
+	         <td><a href="<c:url value='/ZAMONG/MusicVideoWrite.do'/>"><button type="button" class="btn btn-sm btn-info">글작성</button></a></td>
 	        </tr>
 	      </table>
 		                        
@@ -47,9 +67,10 @@
 					<tr>
 						<th>번호</th>
                         <th>아티스트번호</th>
-                        <th>뮤비 제목 </th>
-                        <th>링크 </th>
-                        <th>뮤비 설명</th>
+                        <th>음원번호</th>
+                        <th>뮤직비디오 제목 </th>
+                        <!-- <th>링크 </th> -->
+                        <!-- <th>뮤비 설명</th> -->
                         <th>조회수</th>
                         <th>게시일</th>
                         <th>관리</th>
@@ -59,20 +80,22 @@
 				<c:choose>
                   	<c:when test="${empty list }">		                        
                       	<tr bgcolor="white" align="center">
-                       	<td colspan="8">등록된 자료가 없어요</td>
+                       	<td colspan="8">등록된 자료가 없습니다</td>
                       	</tr>
            			</c:when>       
                     	<c:otherwise>               	
-                          <c:forEach var="item" items="${list }">   
+                          <c:forEach var="item" items="${list }">
                        	<tr bgcolor="white" align="center">
-                          <td>${item.tv_no}</td>					                             
+                          <td>${item.mv_no}</td>					                             
                           <td>${item.at_no}</td>
-                          <td align="left">${item.tv_title}</td>
-                          <td>${item.tv_link}</td>
-                          <td>${item.tv_content}</td>
-                          <td>${item.tv_hitcount}</td>
-                          <td>${item.tv_postdate}</td>
-                          <td><a href='<c:url value="/ZamongTV/zamongView.do?no=${item.tv_no}"/>'>수정</a> | <a href="#">삭제</a></td>
+                          <td>${item.ss_no}</td>
+                          <td align="left"><a href='<c:url value="/ZAMONG/MusicVideoView.do?mv_no=${item.mv_no}"/>'>${item.mv_title}</a></td>
+                          <%-- <td>${item.mv_link}</td> --%>
+                          <%-- <td>${item.mv_contents}</td> --%>
+                          <td>${item.mv_hitcount}</td>
+                          <td>${item.mv_regidate}</td>
+                          <td><a href='<c:url value="/ZAMONG/MusicVideoEdit.do?mv_no=${item.mv_no}"/>'>수정</a> | 
+                          <a href='javascript:isDelete(${item.mv_no})'>삭제</a></td>
                        	</tr>
                       	</c:forEach>
                      	</c:otherwise>                           
@@ -80,11 +103,24 @@
 				</tbody>
 			</table>
 			<!-- 페이징 -->
-            <table width="100%">
-              <tr align="center">
-                <td>1 2 3 4 5 6 7 8 9</td>
-              </tr>
-            </table>
+            <!-- 페이징 -->
+			<table style="width:100%">
+				<tr align="center">
+					<td>${pagingString}</td>
+				</tr>
+			</table>
+			<!-- 검색UI -->
+			<form method="post" action="<c:url value='/ZAMONG/MusicAwardList.do'/>">
+				<div align="center">
+				<select name="searchColumn">
+					<option value="mv_title">제목</option>
+					<option value="at_no">아티스트</option>
+					<option value="ss_no">음원</option>
+					<option value="mv_contents">내용</option>
+				</select>
+				<input type="text" name="searchWord" /><input type="submit" class="btn btn-default" value="검색">
+				</div>
+			</form>
 		</div>
 	</div>
 	<!-- /container(내용 끝) -->
