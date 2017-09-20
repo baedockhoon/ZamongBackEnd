@@ -128,7 +128,8 @@ public class MusicVideoDAO {
 				e.printStackTrace();
 			}
 			
-			sql="SELECT * FROM MV_MUSICVIDEO WHERE MV_NO=?";
+			sql="select m.mv_no,m.mv_regidate,a.at_name,s.ss_title,m.mv_title,m.mv_contents,m.mv_link,m.mv_hitcount "
+					+ "from mv_musicvideo m join at_artist a on m.at_no=a.at_no join ss_soundsource s on m.ss_no=s.ss_no where m.mv_no=?";
 			try {
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1, no);
