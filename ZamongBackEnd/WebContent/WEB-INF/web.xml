@@ -74,6 +74,17 @@
     <url-pattern>/ZAMONG/SearchArtist.do</url-pattern>
   </servlet-mapping>
   
+  
+<!-- 음원검색용 --> 
+  <servlet>
+    <servlet-name>ZamongSearchSoundSource</servlet-name>
+    <servlet-class>com.zamong.web.SearchSoundSourceController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ZamongSearchSoundSource</servlet-name>
+    <url-pattern>/ZAMONG/SearchSoundSource.do</url-pattern>
+  </servlet-mapping>
+  
 <!-- 자몽TV 메인페이지 -->
   <servlet>
     <servlet-name>ZamongTVMain</servlet-name>
