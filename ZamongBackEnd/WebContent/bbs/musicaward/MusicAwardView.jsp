@@ -53,12 +53,10 @@ dao.close();
 	function addcandidatespopup(ma_no){
 		window.open("${pageContext.request.contextPath}/ZAMONG/MusicAwardCandidatesAddPopup.do?ma_no="+ma_no, "_blank"
 				, "toolbar=yes,scrollbars=yes,resizable=no,location=no,top=200,left=700,width=600,height=300");			
-		openWin.document.getElementById("cInput").value = document.getElementById("pInput").value;	
 	}/////////////////////	
 	
 </script>
 
-</script>
 
 <style>
 table#t01 {
@@ -163,7 +161,7 @@ table#t01 th {
 				</table>
 
 			<!-- PREV & NEXT -->
-			<table width="75%">
+			<table style="width:75%">
 				<tr>
 					<td width="15%">이전:</td>
 					<td><%=map.get("PREV") == null ? "이전글이 없습니다"

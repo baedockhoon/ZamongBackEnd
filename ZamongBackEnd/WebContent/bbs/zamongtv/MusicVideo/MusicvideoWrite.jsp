@@ -24,7 +24,12 @@
 	<script language="javascript">
  		function FindArtistPopup() {
     	    window.open("${pageContext.request.contextPath}/bbs/zamongtv/FindArtistPopup.jsp", "_blank", "toolbar=yes,scrollbars=yes,resizable=no,location=no,top=500,left=500,width=400,height=400");
-    }
+    	}
+ 		
+ 		function FindSoundSourcePopup() {
+    	    window.open("${pageContext.request.contextPath}/bbs/zamongtv/FindSoundSourcePopup.jsp", "_blank", "toolbar=yes,scrollbars=yes,resizable=no,location=no,top=500,left=500,width=400,height=400");
+    	}
+ 		
  		function cancel(){
  			if(confirm("취소시 내용을 모두 잃을 수 있습니다. 정말로 취소 하시겠습니까?")){
 				history.back();
@@ -32,6 +37,9 @@
  		}
 </script>
   </head>
+  
+  
+  
 
   <body role="document">
 
@@ -61,7 +69,7 @@
 		            <tr>
               			<td>음원</td>
               			<td>
-              			<input id="p2_txt" type="text"  name="soundSource" style="width:10%" required="required"/><a href="javascript:FindArtistPopup();"><button type="button" class="btn btn-default" id="assign">아티스트 찾기</button></a> ${artistnull }
+              			<input id="ss_txt" type="text"  name="soundSource" style="width:10%" required="required"/><a href="javascript:FindSoundSourcePopup();"><button type="button" class="btn btn-default" id="assign">아티스트 찾기</button></a> ${artistnull }
               			</td>
 		            </tr>
 					<tr bgcolor="white">

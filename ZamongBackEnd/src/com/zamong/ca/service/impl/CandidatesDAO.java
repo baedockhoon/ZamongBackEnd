@@ -146,15 +146,26 @@ public class CandidatesDAO {
 	private String at_no;
 	private String ma_no;*/
 	
-	public List<CandidatesDTO> selectList(Map<String, Object> map) {
+	public List<CandidatesDTO> selectList(Map<String, Object> map,String ma_no) {
 
 		List<CandidatesDTO> records = new Vector<CandidatesDTO>();
 
 		//String sql="SELECT * FROM CA_CANDIDATES ORDER BY CA_NO DESC";
-		String sql = "select c.ca_no,c.ca_regidate,s.ss_title,at_name,ma_title "
+		/*String sql = "select c.ca_no,c.ca_regidate,s.ss_title,at_name,ma_title "
 				+ "from ca_candidates c join SS_SOUNDSOURCE s on c.ss_no=s.ss_no join AT_artist a on c.at_no=a.at_no join MA_musicaward m on c.ma_no=m.ma_no "
-				+ "order by c.ca_no desc";
-
+				+ "order by c.ca_no desc";*/
+		
+		String sql="";
+		if(ma_no!=null) {
+			sql="select c.ca_no,c.ca_regidate,s.ss_title,at_name,ma_title from ca_candidates c join SS_SOUNDSOURCE s on c.ss_no=s.ss_no join AT_artist a on c.at_no=a.at_no join MA_musicaward m on c.ma_no=m.ma_no where m.ma_no="
+				+ ma_no+" order by c.ca_no desc";
+		}
+		else {
+			sql = "select c.ca_no,c.ca_regidate,s.ss_title,at_name,ma_title "
+					+ "from ca_candidates c join SS_SOUNDSOURCE s on c.ss_no=s.ss_no join AT_artist a on c.at_no=a.at_no join MA_musicaward m on c.ma_no=m.ma_no "
+					+ "order by c.ca_no desc";
+		}
+		
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();

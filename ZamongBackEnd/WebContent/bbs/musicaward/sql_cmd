@@ -30,3 +30,11 @@ join AT_artist a
 on c.at_no=a.at_no
 join MA_musicaward m
 on c.ma_no=m.ma_no;
+
+
+
+select ss_no,ss_title,al_albumname 
+from ss_soundsource s
+join al_album a
+on s.al_no=a.al_no
+order by ss_title;
