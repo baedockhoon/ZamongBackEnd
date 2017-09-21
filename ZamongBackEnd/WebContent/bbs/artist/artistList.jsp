@@ -1,7 +1,10 @@
+<%@page import="java.util.List"%>
 <%@page import="com.zamong.nt.service.impl.NotiDataDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,6 +69,7 @@
 							<th>그룹명</th>
 							<th>데뷔곡</th>
 							<th>등록일</th>
+							<th>좋아요</th>
 						</tr>
 
 					</thead>
@@ -74,7 +78,7 @@
 							<tr bgcolor="white" align="center">
 								<td colspan="6">등록된 자료가 없어요</td>
 							</tr>
-						</c:when>
+						</c:when>		
 						<c:otherwise>
 							<c:forEach var="item" items="${list}" varStatus="loop">
 								<tr bgcolor="white" align="center">
@@ -93,7 +97,7 @@
 									</td>
 									<td>${item.at_debutsong }</td>
 									<td>${item.at_regidate }</td>
-
+									<td><a href="<c:url value='/ZAMONG/Like.do?me_no=2&lk_flag=at0000&lk_targetno=${item.at_no}'/>"  >좋아요 ${total}</a></td>
 								</tr>
 							</c:forEach>
 						</c:otherwise>

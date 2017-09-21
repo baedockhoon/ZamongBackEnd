@@ -15,7 +15,7 @@ public class LikeController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int affected;
-		
+		int total;
 		LikeDAO dao = new LikeDAO(req.getServletContext());
 		LikeDTO dto = new LikeDTO();
 		
@@ -28,10 +28,16 @@ public class LikeController extends HttpServlet{
 		dto.setLk_targetno(lk_targetno);
 		
 		affected = dao.insert(dto);
+		
+		total = dao.getTotalLikeCount(lk_targetno);
+		System.out.println("total="+total);
+		System.out.println("lk_targetno="+lk_targetno);
 		dao.close();
 		
 		req.setAttribute("dto", dto);
+		req.setAttribute("total", total);
 		
+		req.getRequestDispatcher("/ZAMONG/Artist/List.do").forward(req, resp);
 		
 	}
 	

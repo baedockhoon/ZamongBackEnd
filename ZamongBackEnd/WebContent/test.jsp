@@ -22,9 +22,9 @@
 		<th><a href="<c:url value='/ZAMONG/Like.do?me_no=2&lk_flag=at_12&lk_targetno=2'/>">좋아요</a></th>
 		<br/><br/>
 		<br/><br/>
-		<h2></h2><th><a href="<c:url value='/ZAMONG/Like.do?me_no=2&lk_flag=ss0000&lk_targetno=2'/>">음원 좋아요</a></th><h2/><br/><br/><br/>
-		<h2></h2><th><a href="<c:url value='/ZAMONG/Like.do?me_no=2&lk_flag=al0000&lk_targetno=2'/>">앨범 좋아요</a></th><h2/><br/><br/><br/>
-		<h2></h2><th><a href="<c:url value='/ZAMONG/Like.do?me_no=2&lk_flag=mv0000&lk_targetno=2'/>">뮤직비디오 좋아요</a></th><h2/>
+		<h2></h2><th><a href="<c:url value='/ZAMONG/Like.do?me_no=2&lk_flag=ss0000&lk_targetno=12'/>">음원 좋아요</a></th><h2/><br/><br/><br/>
+		<h2></h2><th><a href="<c:url value='/ZAMONG/Like.do?me_no=2&lk_flag=al0000&lk_targetno=13'/>">앨범 좋아요</a></th><h2/><br/><br/><br/>
+		<h2></h2><th><a href="<c:url value='/ZAMONG/Like.do?me_no=2&lk_flag=mv0000&lk_targetno=14'/>">뮤직비디오 좋아요</a></th><h2/>
 		
 		
 		

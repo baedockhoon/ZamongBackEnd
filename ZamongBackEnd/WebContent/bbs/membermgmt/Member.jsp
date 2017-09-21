@@ -89,9 +89,10 @@ function isList() {
 			<a class="btn btn-sm btn-info"
 				href=<c:url value='/bbs/membermgmt/MemberRegister.jsp'/>>회원가입</a>
 		</div>
+		
 	</form>
 		<!-- 아래의 실제 내용 표시 -->
-			<div class="col-md-6">
+			<div>
 			<input type="hidden" name="me_no"/>
 				<table class="table table-striped">
 				

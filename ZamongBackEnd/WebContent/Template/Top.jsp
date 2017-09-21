@@ -18,13 +18,14 @@
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li><a href="<c:url value='/ZAMONG/Main.do'/>">홈</a></li>
-					<li class="dropdown"><a
-					href="<c:url value='/ZAMONG/MemberList.do'/>" class="dropdown-toggle"
+					<li class="dropdown"><a href="<c:url value='/ZAMONG/MemberList.do'/>" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-expanded="false">회원관리<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu" role="menu">
+				<li><a href="<c:url value='/ZAMONG/MemberList.do'/>">회원</a></li>
 				<li><a href="<c:url value='/ZAMONG/Cash/List.do'/>">결제내역</a></li>
-				</ul></li>
+				</ul>
+				</li>
 				<li class="dropdown"><a
 					href="<c:url value='/ZAMONG/Daily.do'/>" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-expanded="false">음원관리<span class="caret"></span>

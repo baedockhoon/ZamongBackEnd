@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -59,8 +60,23 @@ public class LikeDAO {
 				}		
 				return affected;
 			}
-	
 			
+			public int getTotalLikeCount(String lk_targetno){
+				int total = 0;
+				String sql = "SELECT COUNT(*) FROM lk_like where lk_targetno=?";
+				try{
+					psmt = conn.prepareStatement(sql);
+					psmt.setString(1, lk_targetno);
+					rs = psmt.executeQuery();
+					rs.next();
+					total = rs.getInt(1);
+					
+				}//try
+				catch(Exception e){ e.printStackTrace(); };//catch
+				
+				return total;
+				
+			}//getTotalRecordCount
 			
 
 }

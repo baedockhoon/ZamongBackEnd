@@ -254,7 +254,6 @@
 						<td>이미지를 넣어주세요</td>
 						<td><input type="file" name="me_photo" 
 							maxlength="50" id="photo" title="이미지" required="required"/><td>
-					
 					</tr>
 				</table>
 			</div>
