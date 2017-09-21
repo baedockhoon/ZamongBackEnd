@@ -166,7 +166,7 @@ $(function(){
 				<th>대분류</th>
 				<td>
 				<input type="hidden" name="1" />
-				<input type="radio" name="1" value="서비스이용문의/오류">서비스이용 문의/오류
+				<input type="radio" name="1" value="서비스이용문의/오류" required>서비스이용 문의/오류
 						<input type="radio" name="1" value="결제/해지/환불">결제/해지/환불
 						<input type="radio" name="1" value="이벤트">이벤트
 						<input type="radio" name="1" value="이용권 사용문의">이용권 사용문의
@@ -181,7 +181,7 @@ $(function(){
 				<th>중분류</th>
 				<td>
 					<input type="hidden" name="2" />
-				<input type="radio" name="2" value="멜론 메인 ">멜론 메인 
+				<input type="radio" name="2" value="멜론 메인 " required>멜론 메인 
 						<input type="radio" name="2" value="멜론 차트">멜론 차트
 						<input type="radio" name="2" value="멜론 TV">멜론 TV
 						<input type="radio" name="2" value="피드">피드

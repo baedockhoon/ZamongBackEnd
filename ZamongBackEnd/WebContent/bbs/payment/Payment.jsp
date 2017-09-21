@@ -5,7 +5,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-String no = request.getParameter("me_no"); 
+String no = request.getParameter("me_no");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -58,10 +59,11 @@ String no = request.getParameter("me_no");
 	  <%--   <form action="${pageContext.request.contextPath}/ZAMONG/Payment/Write.do" method="post">     --%>
 <form name="myForm" method="post">    
 	 <input type="hidden" name="me_no" value="<%=no%>"/>
+
 		<div class="tbl_style">
 		
 			<table border="1" style="width: 100%" class="board_style03">
-				<caption>이 표는 자몽캐쉬 충전 결제 리스트로 최종 결제금액, 결제방법 내용을 포함하고 있습니다.</caption>
+				<caption>이 표는 자몽캐쉬 이벤트성 포인트 충전 결제 리스트로 관리자에서  최종 포인트금액, 결제방법 내용을 포함하고 있습니다.</caption>
 				<colgroup>
 					<col style="width: 119px; *width: 103px;">
 					<col style="width: 160px; *width: 144px;">
@@ -74,7 +76,8 @@ String no = request.getParameter("me_no");
 						<!--141021 수정 lyr-->
 				 <td style="vertical-align: middle"> <input type="radio"
 							name="chargeRates" class="input_radio" value="selectRate"
-							checked="checked">              
+							checked="checked">
+							<input type="hidden" value="3" name="pd_no"/>
                              <select id="anwser" name="price" title="결제금액" onchange="javascript:selChange(this.value);">
                                 <option value="">결제금액 선택</option>
                                  

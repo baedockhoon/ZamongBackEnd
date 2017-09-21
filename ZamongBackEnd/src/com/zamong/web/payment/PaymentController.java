@@ -43,10 +43,10 @@ public class PaymentController extends HttpServlet {
 		 price1= req.getParameter("price1");
 		 price  = getStringValue(req.getParameter("price"));
 		 price = price1;
-		 String bp_no = req.getParameter("bp_no");
+		 String pd_no = req.getParameter("pd_no");
 
 		//String buyway = req.getParameter("buyway");
-		
+
 	String me_no = req.getParameter("me_no");
 		//price = req.getParameter("price");
 	CashDAO dao1 = new CashDAO(req.getServletContext());
@@ -55,7 +55,7 @@ public class PaymentController extends HttpServlet {
 		BuyproductDTO dto = new BuyproductDTO();
 		dto.setBp_price(price);
 		dto.setMe_no(me_no);
-		
+		dto.setPd_no(pd_no);
 		dto1.setMe_no(me_no);
 		dto1.setCh_havecash(price);
 		dao.insert(dto,dto1);

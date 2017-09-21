@@ -720,6 +720,23 @@
 		<url-pattern>/ZAMONG/Cash/View.do</url-pattern>
 	</servlet-mapping>
 
+<servlet>
+		<servlet-name>ZamongProductList</servlet-name>
+		<servlet-class>com.zamong.web.product.ProductListController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ZamongProductList</servlet-name>
+		<url-pattern>/ZAMONG/Product/List.do</url-pattern>
+	</servlet-mapping>
+
+<servlet>
+		<servlet-name>ZamongProductWrite</servlet-name>
+		<servlet-class>com.zamong.web.product.ProductWriteController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ZamongProductWrite</servlet-name>
+		<url-pattern>/ZAMONG/Product/Write.do</url-pattern>
+	</servlet-mapping>
 
 <jsp-config>
 							<taglib>

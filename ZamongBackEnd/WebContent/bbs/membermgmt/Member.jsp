@@ -70,7 +70,7 @@ function isList() {
 				<li role="presentation"><a
 					href="<c:url value='/ZAMONG/UserQuestionList.do'/>">스트리밍</a></li>
 				<li role="presentation"><a
-					href="<c:url value='/ZAMONG/ProblemList.do'/>">상품</a></li>
+					href="<c:url value='/ZAMONG/Product/List.do'/>">상품</a></li>
 			</ul>
 		</div>
 	<form method="post">
@@ -89,10 +89,9 @@ function isList() {
 			<a class="btn btn-sm btn-info"
 				href=<c:url value='/bbs/membermgmt/MemberRegister.jsp'/>>회원가입</a>
 		</div>
-		
 	</form>
 		<!-- 아래의 실제 내용 표시 -->
-			<div>
+			<div class="col-md-6">
 			<input type="hidden" name="me_no"/>
 				<table class="table table-striped">
 				
@@ -126,7 +125,7 @@ function isList() {
 										<td>${item.me_email}</td>
 										<td>${item.me_regidate}</td>
 										<!-- <td><a class="btn btn-sm btn-primary" href="javascript:iswrite()">충전</a><td> -->
-									  <td><input type="button" value="충전" onclick="goPopup(${item.me_no});"/>  
+									  <td><input type="button" value="당첨포인트충전" class="btn btn-sm btn-primary" onclick="goPopup(${item.me_no});"/></td>  
 									<%--  <td><a class="btn btn-sm btn-primary" href='<c:url value="/bbs/payment/Payment.jsp?me_no=${item.me_no }"/>'>충전</a></td> --%>   
 										<td><a class="btn btn-sm btn-primary" href="javascript:isList()">포인트전환</a><td>
 									</tr>

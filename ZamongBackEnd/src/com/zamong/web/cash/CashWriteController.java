@@ -25,7 +25,7 @@ public class CashWriteController extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");	
 	String bp_no = req.getParameter("bp_no");
 		
-
+	String pd_no = req.getParameter("pd_no");
 	String ch_havecash = req.getParameter("price");
 	String me_no = req.getParameter("me_no");
 	BuyproductDAO dao1 = new BuyproductDAO(req.getServletContext());

@@ -73,7 +73,7 @@ request.setCharacterEncoding("UTF-8");
 				<li role="presentation"><a
 					href="<c:url value='/ZAMONG/UserQuestionList.do'/>">스트리밍</a></li>
 				<li role="presentation"><a
-					href="<c:url value='/ZAMONG/ProblemList.do'/>">상품</a></li>
+					href="<c:url value='/ZAMONG/Product/List.do'/>">상품</a></li>
 			</ul>
 		</div>
 

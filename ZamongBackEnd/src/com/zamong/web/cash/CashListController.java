@@ -36,7 +36,7 @@ public class CashListController extends HttpServlet {
 		String 	searchWord = req.getParameter("searchWord");
 		String Notice_category = req.getParameter("Notice_category");		
 		String no = req.getParameter("me_no");
-	
+		String pd_no = req.getParameter("pd_no");
 	
 		//검색후 페이징과 관련된 파라미터를 전달할 값을 저장할 변수]
 		String addQuery ="";
