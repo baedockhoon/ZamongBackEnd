@@ -331,6 +331,15 @@
     <servlet-name>ZamongDelete</servlet-name>
     <url-pattern>/ZAMONG/MemberDelete.do</url-pattern>
   </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>ZamongLike</servlet-name>
+    <servlet-class>com.zamong.web.member.LikeController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ZamongLike</servlet-name>
+    <url-pattern>/ZAMONG/Like.do</url-pattern>
+  </servlet-mapping>
 
 
 <!-- 장르 -->
