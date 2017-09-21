@@ -40,11 +40,42 @@ dao.close();
 	function isDelete(ma_no){
 		if(confirm("정말로 삭제 하시겠습니까?")){
 			location.href="MusicAwardDelete.do?ma_no="+ma_no;
-		}//////////////////			
+		}//////////////////
+	}/////////////////////
 		
-	}/////////////////////	
-</script>
+	function isCandidateDelete(ca_no){
+		if(confirm("정말로 삭제 하시겠습니까?")){
+			location.href="MusicAwardCandidatesDelete.do?ca_no="+ca_no;
+		}//////////////////
+	}/////////////////////
 	
+	
+	function addcandidatespopup(ma_no){
+		window.open("${pageContext.request.contextPath}/ZAMONG/MusicAwardCandidatesAddPopup.do?ma_no="+ma_no, "_blank"
+				, "toolbar=yes,scrollbars=yes,resizable=no,location=no,top=200,left=700,width=600,height=300");			
+		openWin.document.getElementById("cInput").value = document.getElementById("pInput").value;	
+	}/////////////////////	
+	
+</script>
+
+</script>
+
+<style>
+table#t01 {
+    width:100%;
+}
+table#t01 tr:nth-child(even) {
+    background-color: #eee;
+}
+table#t01 tr:nth-child(odd) {
+   background-color:#fff;
+}
+table#t01 th {
+    background-color: #6495ED;
+    color: white;
+}
+</style>
+
   </head>
   <body role="document">
     <jsp:include page="/Template/Top.jsp" />
@@ -59,6 +90,7 @@ dao.close();
 		</div>
 		<!-- 아래에 실제내용 표시 -->
 		<div>
+				<input type="text" id="pInput">
 				<input type="hidden" name="ma_no" value="${dto.ma_no}"/>번호 : ${dto.ma_no}
 				<table class="table table-striped" style="">
 					<tr>
@@ -77,8 +109,50 @@ dao.close();
 						<td>어워드 종료일</td>
 						<td>
 						 ${dto.ma_endofday }&nbsp;
-						</td>					
+						</td>
 					</tr>
+					
+					<tr>
+						<td colspan="2" align="right"><a href="javascript:addcandidatespopup(${dto.ma_no})"><button type="button" class="btn btn-sm btn-info">후보등록</button></a></td>
+					</tr>
+					<tr> <!-- 여기 TR칸 -->
+						
+						<!-- 후보등록 결과 -->
+							<c:choose>
+			                  	<c:when test="${empty canlist }">		                        
+			                       	<td colspan="8">등록된 후보가 없습니다<br/>등록버튼을 클릭하여 후보를 등록해주세요</td>
+			           			</c:when>  
+			           			
+			                    	<c:otherwise>
+			                    	<table id="t01">
+									 	<tr>
+									 		<th width="5%">&nbsp;</th>
+									 		<th width="15%">후보관리번호</th>
+									 		<th width="20%">음원명</th>
+									 		<th width="25%">아티스트이름</th>
+									 		<th width="20%">등록일</th>
+									 		<th width="15%">관리</th>
+									 	</tr>
+			                          <c:forEach var="canitem" items="${canlist }" begin="0" end="10" varStatus="loop">
+			                          <tr>
+				                          <td>후보${loop.count}</td>
+				                          <td>${canitem.ca_no}</td>					                             
+				                          <td>${canitem.ss_no}</td>
+				                          <td>${canitem.at_no}</td>
+				                          <td>${canitem.ca_regidate}</td>
+				                          <td><a href="javascript:isCandidateDelete(${canitem.ca_no})">삭제</a></td>
+				                          <td>
+			                          </tr>
+			                      	</c:forEach>
+			                      	</table>
+			                     	</c:otherwise>                           
+			                 </c:choose>
+						<!-- 후보 끝 -->
+		
+					</tr><!-- 여기 TR칸 끝 -->
+
+					<hr/>
+
 					
 					<tr align="center">
 					<td colspan="50">

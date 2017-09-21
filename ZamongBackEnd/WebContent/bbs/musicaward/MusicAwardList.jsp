@@ -60,7 +60,7 @@
 		<div>
 		<table style="width:100%">
 	        <tr align="right">		                          
-	         <td><a href="<c:url value='/ZAMONG/MusicAwardWrite.do'/>"><button type="button" class="btn btn-sm btn-info">글작성</button></a></td>
+	         <td><a href="<c:url value='/ZAMONG/MusicAwardWrite.do'/>"><button type="button" class="btn btn-sm btn-info">뮤직어워드 추가</button></a></td>
 	        </tr>
 	      </table>
 		                        

@@ -275,6 +275,27 @@
     <servlet-name>ZamongMusicAwardCandidatesDelete</servlet-name>
     <url-pattern>/ZAMONG/MusicAwardCandidatesDelete.do</url-pattern>
   </servlet-mapping> 
+  
+<!-- 뮤직어워드 팝업창띄우기 -->
+  <servlet>
+    <servlet-name>ZamongMusicAwardCandidatesAddPopup</servlet-name>
+    <servlet-class>com.zamong.web.musicaward.CandidatesAddPopupController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ZamongMusicAwardCandidatesAddPopup</servlet-name>
+    <url-pattern>/ZAMONG/MusicAwardCandidatesAddPopup.do</url-pattern>
+  </servlet-mapping>
+  
+<!-- 뮤직어워드 팝업창 후보등록하기 -->
+  <servlet>
+    <servlet-name>ZamongMusicAwardCandidatesPopupWrite</servlet-name>
+    <servlet-class>com.zamong.web.musicaward.CandidatesPopupWriteController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ZamongMusicAwardCandidatesPopupWrite</servlet-name>
+    <url-pattern>/ZAMONG/MusicAwardCandidatesPopupWrite.do</url-pattern>
+  </servlet-mapping>
+  
 
 <!-- 일반 회원 -->
   <servlet>

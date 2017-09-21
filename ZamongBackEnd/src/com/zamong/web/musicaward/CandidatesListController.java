@@ -43,7 +43,7 @@ public class CandidatesListController extends HttpServlet {
 		
 		Map<String,Object> map = new HashMap<String,Object>();
 		
-		List<CandidatesDTO> list= dao.selectList(map);
+		List<CandidatesDTO> list= dao.selectList(map,null);
 		
 		//페이징용 문자열 생성
 		
