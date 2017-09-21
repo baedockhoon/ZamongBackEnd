@@ -84,7 +84,7 @@ request.setCharacterEncoding("UTF-8");
 		
 		<div>
 					
-			<form>
+			<form method="post">
 			<table class="table table-striped">
 			<caption>이 표는 자몽캐쉬 충전 결제 리스트로 최종 결제금액, 결제방법 내용을 포함하고 있습니다.<hr/>
 			

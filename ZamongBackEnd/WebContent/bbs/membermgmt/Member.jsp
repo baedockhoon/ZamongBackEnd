@@ -59,7 +59,20 @@ function isList() {
 			<h1>회원 목록</h1>
 		</div>
 		<!-- 아래에 실제내용 표시 -->
-
+<div class="page-header">
+			<!-- 아래에 실제내용 표시 -->
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a
+					href="<c:url value='/ZAMONG/MemberList.do'/>">회원관리</a></li>
+				<li role="presentation" ><a
+					href="<c:url value='/ZAMONG/Cash/List.do'/>">결제내역</a></li>
+					
+				<li role="presentation"><a
+					href="<c:url value='/ZAMONG/UserQuestionList.do'/>">스트리밍</a></li>
+				<li role="presentation"><a
+					href="<c:url value='/ZAMONG/ProblemList.do'/>">상품</a></li>
+			</ul>
+		</div>
 	<form method="post">
 	
 		<div class="search">
