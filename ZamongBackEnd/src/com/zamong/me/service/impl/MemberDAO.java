@@ -95,7 +95,7 @@ public class MemberDAO {
 			}		
 			sql += "ORDER BY me_NO DESC) T) " + "WHERE R BETWEEN ? AND ?";
 				psmt = conn.prepareStatement(sql);
-
+				
 				// 페이징을 위한 시작 및 종료 rownum설정]
 				psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
 				psmt.setInt(2, Integer.parseInt(map.get("end").toString()));

@@ -5,19 +5,19 @@
 <!-- 어느 컨트롤러에서 왔는지에 따라 분기 -->
 <c:choose>
 	<c:when test="${WHERE eq 'INS' }">
-		<c:set var="SUC_MSG" value="입력 성공"/>
-		<c:set var="FAIL_MSG" value="입력 실패"/>
-		<c:set var="SUC_URL" value="/ZAMONG/MemberList.do"/>
+		<c:set var="SUC_MSG" value="회원가입이 성공적으로 완료되었습니다"/>
+		<c:set var="FAIL_MSG" value="회원 가입 실패"/>
+		<c:set var="SUC_URL" value="/ZAMONG/MemberList.do?me_no=${requestScope.me_no}"/>
 	</c:when>
 	<c:when test="${WHERE eq 'EDT' }">
-		<c:set var="SUC_MSG" value="수정 성공"/>
-		<c:set var="FAIL_MSG" value="수정 실패"/>
+		<c:set var="SUC_MSG" value="회원수정이 성공적으로 완료되었습니다"/>
+		<c:set var="FAIL_MSG" value="회원 수정 실패"/>
 		<c:set var="SUC_URL" value="/ZAMONG/MemberView.do?me_no=${requestScope.me_no}&nowPage=${nowPage}"/>
 	</c:when>
 	<c:otherwise>
-		<c:set var="SUC_MSG" value="삭제 성공"/>
+		<c:set var="SUC_MSG" value="삭제가 성공적으로 완료되었습니다."/>
 		<c:set var="FAIL_MSG" value="삭제 실패"/>
-		<c:set var="SUC_URL" value="/ZAMONG/NoticeList.do"/>
+		<c:set var="SUC_URL" value="/ZAMONG/MemberList.do?"/>
 	</c:otherwise>
 </c:choose>
 

@@ -18,6 +18,8 @@ public class MemberRegisterController extends HttpServlet {
 			
 		
 			
+		
+		
 			req.setCharacterEncoding("UTF-8");
 			
 			String me_id = req.getParameter("me_id");
@@ -57,7 +59,14 @@ public class MemberRegisterController extends HttpServlet {
 			dao.close();
 			
 			
-			req.getRequestDispatcher("/ZAMONG/MemberList.do").forward(req, resp);
+			req.setAttribute("SUC_FAIL", affected);
+			
+			// 5-2]어느 컨트롤러에서 포워드 됬는지 판단용
+			req.setAttribute("WHERE", "INS");
+			// 6]포워드
+			req.getRequestDispatcher("/bbs/membermgmt/MemberMessage.jsp").forward(req, resp);
+			
+			//req.getRequestDispatcher("/ZAMONG/MemberList.do").forward(req, resp);
 		
 	}
 	

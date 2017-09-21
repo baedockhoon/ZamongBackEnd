@@ -9,6 +9,9 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <script type="text/javascript">
 	// opener관련 오류가 발생하는 경우 아래 주석을 해지하고, 사용자의 도메인정보를 입력합니다. ("주소입력화면 소스"도 동일하게 적용시켜야 합니다.)
 	//document.domain = "abc.go.kr";
@@ -28,6 +31,24 @@
 		document.form.addrDetail.value = addrDetail;
 		document.form.zipNo.value = zipNo;
 	}
+	
+	
+	 $(function() {
+		    $( "#testDatepicker" ).datepicker({
+		    	numberOfMonths: [1,1],
+		         changeyear: true, 
+		         changeMonth: true, 
+		         dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+		         dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
+		         monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+		         monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		         showButtonPanel: true, 
+		         currentText: '오늘 날짜', 
+		         closeText: '닫기', 
+		         dateFormat: "yy-mm-dd",
+		         
+		  });
+		});
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -122,44 +143,7 @@
 					<tr>
 						<th scope="row"><span class="star">*</span><span
 							class="txt dB lh30 alignLeft pL10 fl">생년월일</span></th>
-						<td class="end"><select name="me_year" title="연도" id="year"
-							class="m_width100">
-								<option value="${me_year }">${me_year }</option>
-								<%
-									for (int i = cal.get(Calendar.YEAR); i >= 1900; i--) {
-								%>
-
-								<option value="<%=i%>"><%=i%></option>
-								<%
-									}
-								%>
-						</select> 년 &nbsp;&nbsp;&nbsp;&nbsp; <select name="me_month" title="월"
-							id="month" class="m_width100">
-								<option value="${me_month }">${me_month }</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-								<option value="10">10</option>
-								<option value="11">11</option>
-								<option value="12">12</option>
-						</select> 월 &nbsp;&nbsp;&nbsp;&nbsp; <select name="me_day" title="일"
-							id="day" class="m_width100">
-								<option value="${me_day }">${me_day }</option>
-								<%
-									for (int i = 1; i <= 31; i++) {
-								%>
-
-								<option value='<%=i%>'><%=i%></option>
-								<%
-									}
-								%>
-						</select> 일
+							<td><input type="text" name="me_birth" id="testDatepicker" value="${dto.me_birth }"></td>
 					</tr>
 					<tr>
 						<th scope="row"><span class="star">*</span><span

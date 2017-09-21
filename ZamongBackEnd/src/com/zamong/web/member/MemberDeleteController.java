@@ -15,17 +15,28 @@ import com.zamong.nt.service.impl.NotiDataDAO;
 public class MemberDeleteController extends HttpServlet{
 	@Override 
 	protected void service(HttpServletRequest req,HttpServletResponse resp)throws ServletException, IOException {
-		
+		int sucorfail;
 		//서비스 호출
 		String no = req.getParameter("me_no");
 		MemberDAO dao = new MemberDAO(req.getServletContext());
 		
 		MemberDTO dto= dao.selectOne(no);
 		
-		dao.delete(no);
+		sucorfail = dao.delete(no);
 		dao.close();
 		
-		req.getRequestDispatcher("/ZAMONG/MemberList.do").forward(req, resp);
+		 
+		
+		req.setAttribute("SUC_FAIL", sucorfail);
+		// 5-2]어느 컨트롤러에서 포워드 됬는지 판단용
+		
+		req.setAttribute("WHERE", "DEL");
+		
+		req.getRequestDispatcher("/bbs/membermgmt/MemberMessage.jsp").forward(req, resp);
+		
+		
+		
+		
 
 	/*
 		//리퀘스트 영역에 데이타 저장]

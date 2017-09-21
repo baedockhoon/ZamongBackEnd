@@ -68,8 +68,9 @@
 	 $(function() {
 		    $( "#testDatepicker" ).datepicker({
 		    	numberOfMonths: [1,1],
-		         changeyear: true, 
+		         changeYear: true, 
 		         changeMonth: true, 
+		         yearRange: "-100:+0",
 		         dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
 		         dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
 		         monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
@@ -252,7 +253,7 @@
 					<tr>
 						<td>이미지를 넣어주세요</td>
 						<td><input type="file" name="me_photo" 
-							maxlength="50" id="photo" title="이미지" /><td>
+							maxlength="50" id="photo" title="이미지" required="required"/><td>
 					
 					</tr>
 				</table>
