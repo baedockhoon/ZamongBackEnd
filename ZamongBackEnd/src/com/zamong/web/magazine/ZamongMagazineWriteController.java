@@ -76,6 +76,7 @@ public class ZamongMagazineWriteController extends HttpServlet {
 			//3]요청분석 -입력처리 요청
 			//4]모델호출 및 결과값 받기
 			
+			int sucorfail;
 			
 			//기타 파라미터 받아서 테이블에 입력처리
 			
@@ -89,9 +90,14 @@ public class ZamongMagazineWriteController extends HttpServlet {
 					dto.setMg_contents(contents);
 					dto.setMg_division(division);
 					
-					dao.insert(dto);
+					sucorfail = dao.insert(dto);
 					dao.close();
-			req.getRequestDispatcher("/ZAMONG/zamongMagazine.do").forward(req, resp);
+					
+					req.setAttribute("SUC_FAIL", sucorfail);
+					//5-2]컨트롤러 구분용-입력:INS,수정:EDT,삭제:DEL
+					req.setAttribute("WHERE", "INS");
+					
+			req.getRequestDispatcher("/bbs/magazine/Magazine_Message.jsp").forward(req, resp);
 			
 		}//doPost
 	

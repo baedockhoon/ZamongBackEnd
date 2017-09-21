@@ -20,6 +20,14 @@
 	<!-- 부가적인 테마(Bootstrap theme) -->
 	<link rel="stylesheet" href="<c:url value='/bootstrap/css/bootstrap-theme.min.css'/>">
  	
+ <script> 
+	function isDelete(mg_no){
+		if(confirm("정말로 삭제 할래?")){
+			location.href="<c:url value='/ZAMONG/zamongMagazineDelete.do'/>?mg_no="+mg_no;
+		}//////////////////
+		
+	}/////////////////////	
+	</script> 
  
   </head>
 
@@ -75,7 +83,8 @@
           		<tr bgcolor="white" align="center">
           			<td colspan="2">
           			<a href="<c:url value='/ZAMONG/zamongMagazineEdit.do?mg_no=${dto.mg_no}&nowPage=${nowPage}'/>">수정</a> | 
-          			<a href="<c:url value='/ZAMONG/zamongMagazine.do?mg_no=${dto.mg_no}'/>">목록</a>
+          			<a href="<c:url value='/ZAMONG/zamongMagazine.do?mg_no=${dto.mg_no}'/>">목록</a> |
+          			<a href="javascript:isDelete(${dto.mg_no})">삭제</a>
           			</td>
           		</tr>
           	</table>
