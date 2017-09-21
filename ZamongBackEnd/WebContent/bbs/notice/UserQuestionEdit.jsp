@@ -129,7 +129,8 @@ $(function(){
 					<tr>
 						<td>대분류</td>
 						<td>
-			   
+			   			
+			   			
 						 <select name="qu_largedivide" required="required">
 						 	<option value="">대분류</option>
 							<option value="서비스문의/오류">서비스문의/오류</option>
@@ -145,6 +146,9 @@ $(function(){
 						
 			    <input type="hidden" value="${dto.qu_mediumdivide }" /> 
 						 <select name="qu_mediumdivide" required="required">
+						 <c:forEach var="item" items="${dto.qu_mediumdivide }">
+					 		<option value="${item}">${item}</option>
+						 </c:forEach>
 						  	<option value="">중분류</option>
 							<option value="Windows플레이어">Windows플레이어</option>
 							<option value="재생/다운로드">재생/다운로드</option>

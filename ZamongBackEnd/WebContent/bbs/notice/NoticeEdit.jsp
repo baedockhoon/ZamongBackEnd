@@ -127,6 +127,9 @@ $(function(){
 						<td>
 			    <input type="hidden" value="${dto.nt_classification }" /> 
 						 <select name="Notice_category" required="required">
+						 <c:forEach var="item" items="${dto.nt_classification }">
+					 		<option value="${item}">${item}</option>
+						 </c:forEach>
 						 <option value="">분류</option>
 							<option value="서비스소식">서비스소식</option>
 							<option value="서비스오픈">서비스오픈</option>

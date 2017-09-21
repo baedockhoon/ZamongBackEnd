@@ -103,25 +103,28 @@ function pasteHTML(filepath){
           		<tr>
 					<td align="center">구분</td>
 					<td>
-		    		<input type="hidden" value="${dto.mg_division }" /> 
-					 <select name="Magazine_category" required>
-								<option value="금주의 신보">금주의 신보</option>
-								<option value="금주의 차트">금주의 차트</option>
-								<option value="아티스트 갤러리">아티스트 갤러리</option>
-								<option value="이슈 포커스">이슈 포커스</option>
-								<option value="멜론 스테이지">멜론 스테이지</option>
-								<option value="HIPHOPLE">HIPHOPLE</option>
-								<option value="원더풀 재즈">원더풀 재즈</option>
-								<option value="스쿨 오브 록">스쿨 오브 록</option>
-								<option value="클래식 AtoZ">클래식 AtoZ</option>
-								<option value="EDM Floor">EDM Floor</option>
-								<option value="인디 스트리트">인디 스트리트</option>
-								<option value="TV별책부록">TV별책부록</option>
-								<option value="아이돌 탐구생활">아이돌 탐구생활</option>
-								<option value="STATION H">STATION H</option>
-								<option value="SM STATION">SM STATION</option>
-								<option value="Hi-Fi 가이드">Hi-Fi 가이드</option>
-								<option value="뮤직툰">뮤직툰</option>
+		    		<input type="hidden" value="${dto.mg_division }" />
+					 <select name="Magazine_category"  required="required">
+						 <c:forEach var="item" items="${dto.mg_division }">
+					 		<option value="${item}">${item}</option>
+						</c:forEach>
+							<option value="금주의 신보">금주의 신보</option>
+							<option value="금주의 차트">금주의 차트</option>
+							<option value="아티스트 갤러리">아티스트 갤러리</option>
+							<option value="이슈 포커스">이슈 포커스</option>
+							<option value="멜론 스테이지">멜론 스테이지</option>
+							<option value="HIPHOPLE">HIPHOPLE</option>
+							<option value="원더풀 재즈">원더풀 재즈</option>
+							<option value="스쿨 오브 록">스쿨 오브 록</option>
+							<option value="클래식 AtoZ">클래식 AtoZ</option>
+							<option value="EDM Floor">EDM Floor</option>
+							<option value="인디 스트리트">인디 스트리트</option>
+							<option value="TV별책부록">TV별책부록</option>
+							<option value="아이돌 탐구생활">아이돌 탐구생활</option>
+							<option value="STATION H">STATION H</option>
+							<option value="SM STATION">SM STATION</option>
+							<option value="Hi-Fi 가이드">Hi-Fi 가이드</option>
+							<option value="뮤직툰">뮤직툰</option>
 					</select> 
 				</td>					
 				</tr>
