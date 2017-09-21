@@ -55,31 +55,31 @@
 					<tr>
               			<td>아티스트</td>
               			<td>
-              			<input id="p_txt" type="text"  name="artist" style="width:10%"/><a href="javascript:FindArtistPopup();"><button type="button" class="btn btn-default" id="assign">아티스트 찾기</button></a> ${artistnull }
+              			<input id="p_txt" type="text"  name="artist" style="width:10%" required="required"/><a href="javascript:FindArtistPopup();"><button type="button" class="btn btn-default" id="assign">아티스트 찾기</button></a> ${artistnull }
               			</td>
 		            </tr>
 		            <tr>
               			<td>음원</td>
               			<td>
-              			<input id="p2_txt" type="text"  name="soundSource" style="width:10%"/><a href="javascript:FindArtistPopup();"><button type="button" class="btn btn-default" id="assign">아티스트 찾기</button></a> ${artistnull }
+              			<input id="p2_txt" type="text"  name="soundSource" style="width:10%" required="required"/><a href="javascript:FindArtistPopup();"><button type="button" class="btn btn-default" id="assign">아티스트 찾기</button></a> ${artistnull }
               			</td>
 		            </tr>
 					<tr bgcolor="white">
               			<td>제목</td>
               			<td >
-              			<input type="text"  name="title" style="width:80%"/>
+              			<input type="text"  name="title" style="width:100%" required="required"/>
               			</td>
 		            </tr>
 					<tr>
 						<td>내용</td>
-						<td><textarea cols="120" rows="20" name="contents"></textarea>
+						<td><textarea cols="150" rows="10" name="contents" required="required"></textarea>
 						</td>
 					</tr>
 					<tr>
 					<!-- <input type="hidden" name="ad_no" /> -->
 						<td>링크</td>
 						<td>
-						 <input type="text"  name="link" style="width:80%"/>
+						 <input type="text"  name="link" style="width:100%" required="required"/>
 						</td>					
 					</tr>
 					<tr align="center">
