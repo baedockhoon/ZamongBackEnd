@@ -13,7 +13,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	<link rel="icon" href="<c:url value='/Image/자몽.jpg'/>"/>
 	
-    <title>공지사항</title>
+    <title>자몽매거진</title>
     <!-- Bootstrap core CSS -->
     <!-- 합쳐지고 최소화된 최신 CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">

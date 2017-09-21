@@ -16,15 +16,19 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	<link rel="icon" href="<c:url value='/Image/자몽.jpg'/>"/>
 	
-    <title>공지사항</title>
+    <title>자몽매거진 수정</title>
+    <!-- jQuery를 사용하기위해 jQuery라이브러리 추가 -->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+	<script type="text/javascript" src="<c:url value='/Editor/js/HuskyEZCreator.js' />" charset="utf-8"></script>
+	
+	
     <!-- Bootstrap core CSS -->
     <!-- 합쳐지고 최소화된 최신 CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<!-- 부가적인 테마(Bootstrap theme) -->
 	<link rel="stylesheet" href="<c:url value='/bootstrap/css/bootstrap-theme.min.css'/>">
- 	<script type="text/javascript" src="<c:url value='/Editor/js/service/HuskyEZCreator.js' />" charset="utf-8"></script>
- 
- <!-- SmartEditor를 사용하기 위해서 다음 js파일을 추가 (경로 확인) -->
+  	
+  	<!-- SmartEditor를 사용하기 위해서 다음 js파일을 추가 (경로 확인) -->
 <script type="text/javascript" src="<%=ctx %>/SE2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <!-- jQuery를 사용하기위해 jQuery라이브러리 추가 -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
@@ -62,9 +66,10 @@ $(function(){
       });     
 });
  
-
- 
- 
+function pasteHTML(filepath){
+    var sHTML = '<img src="<%=request.getContextPath()%>/upload/'+filepath+'">';
+    oEditors.getById["ir1"].exec("PASTE_HTML", [sHTML]);
+}
 </script>
  
  
@@ -93,13 +98,13 @@ $(function(){
 			<table width="75%" bgcolor="gray" cellspacing="1" class="table table-striped">                  	
           		<tr bgcolor="white" >
           			<td width="30%" align="center">제목</td>
-          			<td><input type="text" id="title" name="title" style="width:650px" value="${dto.mg_title }"/></td>
+          			<td><input type="text" id="title" name="title" style="width:650px" value="${dto.mg_title }" required/></td>
           		</tr>
           		<tr>
 					<td align="center">구분</td>
 					<td>
 		    		<input type="hidden" value="${dto.mg_division }" /> 
-					 <select name="Magazine_category">
+					 <select name="Magazine_category" required>
 								<option value="금주의 신보">금주의 신보</option>
 								<option value="금주의 차트">금주의 차트</option>
 								<option value="아티스트 갤러리">아티스트 갤러리</option>
@@ -123,7 +128,7 @@ $(function(){
           		<tr bgcolor="white" >
           			<td align="center">내용</td>
           			<td>
-		                <textarea rows="10" cols="30" id="ir1" name="content" style="width:650px; height:350px;">
+		                <textarea rows="10" cols="30" id="ir1" name="content" style="width:650px; height:350px;" required>
 						${dto.mg_contents}
 						</textarea>
 		            </td>
@@ -136,7 +141,7 @@ $(function(){
           		</tr>
           		<tr bgcolor="white" align="center">
           			<td colspan="50">
-          			<input type="button" id="insert" value="수정"/>
+          			<input type="submit" id="insert" value="수정"/>
           			</td>
           		</tr>
           	</table>

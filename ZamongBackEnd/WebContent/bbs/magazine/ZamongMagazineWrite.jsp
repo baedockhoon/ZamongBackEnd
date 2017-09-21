@@ -15,7 +15,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	<link rel="icon" href="<c:url value='/Image/자몽.jpg'/>"/>
 	
-    <title>공지사항</title>
+    <title>자몽매거진 작성</title>
 	<!-- jQuery를 사용하기위해 jQuery라이브러리 추가 -->
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 	<script type="text/javascript" src="<c:url value='/Editor/js/HuskyEZCreator.js' />" charset="utf-8"></script>
@@ -32,27 +32,6 @@
 <!-- jQuery를 사용하기위해 jQuery라이브러리 추가 -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 
-<script>
-	function isValidate(formObject) {
-		if(formObject.Magazine_category.value == ""){
-			alert("분류를 선택하세요");
-			formObject.Magazine_category.focus();
-			return false;
-		}//if
-		else if(formObject.title.value.length == 0){
-			alert("제목을 입력하세요");
-			formObject.title.focus();
-			return false;
-		}//if
-		else if(formObject.content.value.length == 0){
-			alert("내용 입력하세요");
-			formObject.content.focus();
-			return false;
-		}//if
-
-		
-	}//isValidate()
-</script>
 
 <script type="text/javascript">
 var oEditors = [];
@@ -115,13 +94,13 @@ function pasteHTML(filepath){
 		<!-- 아래에 실제내용 표시 -->
 		<div>
 			<div>
-				<form id="frm" onsubmit="return isValidate(this);" action="${pageContext.request.contextPath}/ZAMONG/zamongMagazineWrite.do" method="post" enctype="multipart/form-data">
+				<form id="frm" action="${pageContext.request.contextPath}/ZAMONG/zamongMagazineWrite.do">
 				<table width="100%">
 					<tr>
 						<!-- <input type="hidden" name="ad_no" /> -->
 							<td>분류</td>
 							<td>
-							 <select name="Magazine_category">
+							 <select name="Magazine_category" required >
 								<option value="">분류</option>
 								<option value="1">금주의 신보</option>
 								<option value="2">금주의 차트</option>
@@ -145,17 +124,17 @@ function pasteHTML(filepath){
 						</tr>
 				        <tr>
 				            <td>제목</td>
-				            <td><input type="text" id="title" name="title" style="width:650px"/></td>
+				            <td><input type="text" id="title" name="title" style="width:650px" required/></td>
 				        </tr>
 				        <tr>
 				            <td>내용</td>
 				            <td>
-				                <textarea rows="10" cols="30" id="ir1" name="content" style="width:650px; height:350px;"></textarea>
+				                <textarea rows="10" cols="30" id="ir1" name="content" style="width:650px; height:350px;" required></textarea>
 				            </td>
 				        </tr>
 				        <tr>
 				            <td colspan="2">
-				               <input type="button" id="insert" value="입력"/>
+				               <input type="submit" id="insert" value="입력"/>
 				               <!-- <button class="btn btn-sm btn-info" type="submit">입력</button> -->
 				                <a href="<c:url value='/ZAMONG/zamongMagazine.do'/>"><input type="button" value="목록"/></a>
 				            </td>
