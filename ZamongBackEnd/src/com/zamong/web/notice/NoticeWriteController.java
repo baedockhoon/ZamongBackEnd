@@ -28,8 +28,8 @@ public class NoticeWriteController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		req.getRequestDispatcher("/ZAMONG/NoticeList.do").forward(req, resp);
-		
+		//req.getRequestDispatcher("/ZAMONG/NoticeList.do").forward(req, resp);
+		doPost(req, resp);
 		
 	}
 	
@@ -66,7 +66,7 @@ public class NoticeWriteController extends HttpServlet {
 					dao.insert(dto);
 					dao.close();
 					
-					req.getRequestDispatcher("/ZAMONG/NoticeList.do").forward(req, resp);
+					req.getRequestDispatcher("/bbs/notice/NoticeList.jsp").forward(req, resp);
 	}
 }
 

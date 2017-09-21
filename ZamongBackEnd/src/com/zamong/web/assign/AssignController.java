@@ -13,7 +13,6 @@ import com.zamong.nt.service.NotiDataDTO;
 import com.zamong.nt.service.impl.NotiDataDAO;
 
 public class AssignController extends HttpServlet {
-	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -26,6 +25,8 @@ public class AssignController extends HttpServlet {
 		String date;
 		String me_no;
 		String al_no;
+		
+		int sucorfail;
 		
 		//3]요청분석- 입력처리 요청
 		//4]모델호출 및 결과값 받기
@@ -46,10 +47,14 @@ public class AssignController extends HttpServlet {
 			dto.setAs_getpoint(starinput);
 			
 			
-			dao.insert(dto);
+			sucorfail = dao.insert(dto);
 			dao.close();
 			
-			req.getRequestDispatcher("/Assigntest.jsp").forward(req, resp);
+			req.setAttribute("SUC_FAIL", sucorfail);
+			//5-2]컨트롤러 구분용-입력:INS,수정:EDT,삭제:DEL
+			req.setAttribute("WHERE", "INS");
+			
+			req.getRequestDispatcher("/bbs/assign/Assign_Message.jsp").forward(req, resp);
 	}
 	
 	
