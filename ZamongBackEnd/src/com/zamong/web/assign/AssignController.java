@@ -39,17 +39,17 @@ public class AssignController extends HttpServlet {
 			date = req.getParameter("date");
 			AssignDAO dao = new AssignDAO(req.getServletContext());
 			AssignDTO dto = new AssignDTO();
-			dto.setAs_no(Integer.parseInt(no));
-			dto.setAs_regidate(date);
-			dto.setMe_no(Integer.parseInt(me_no));
-			dto.setAl_no(Integer.parseInt(al_no));
+			//dto.setAs_no(Integer.parseInt(no));
+			//dto.setAs_regidate(date);
+			//dto.setMe_no(me_no);
+			//dto.setAl_no(al_no);
 			dto.setAs_getpoint(starinput);
 			
 			
 			dao.insert(dto);
 			dao.close();
 			
-			req.getRequestDispatcher("/ZAMONG/Assign.do").forward(req, resp);
+			req.getRequestDispatcher("/Assigntest.jsp").forward(req, resp);
 	}
 	
 	

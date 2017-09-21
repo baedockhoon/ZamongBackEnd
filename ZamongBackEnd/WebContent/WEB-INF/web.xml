@@ -433,6 +433,15 @@
     <servlet-name>ZamongAssign</servlet-name>
     <url-pattern>/ZAMONG/zamongAssign.do</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ZamongAssignList</servlet-name>
+    <servlet-class>com.zamong.web.assign.AssignListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ZamongAssignList</servlet-name>
+    <url-pattern>/ZAMONG/zamongAssignList.do</url-pattern>
+  </servlet-mapping>
  
  <!-- MAGAZINE,COMMENT -->
  

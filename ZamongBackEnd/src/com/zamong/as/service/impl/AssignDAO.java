@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Vector;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -12,9 +14,9 @@ import javax.servlet.ServletContext;
 import javax.sql.DataSource;
 
 import com.zamong.as.service.AssignDTO;
-import com.zamong.mg.service.MagazineDTO;
 
 public class AssignDAO {
+	
 	private Connection conn;
 	private PreparedStatement psmt;
 	private ResultSet rs;
@@ -49,17 +51,58 @@ public class AssignDAO {
 		}
 	}///////////////// close()
 	
+	public List selectList(int start, int end) {
+		List list = new Vector();
+		String sql="SELECT * FROM (SELECT T.*,ROWNUM R FROM(SELECT * FROM AS_ASSIGN ORDER BY AS_NO DESC) T) WHERE R BETWEEN ? AND ?";
+		//String sql="SELECT * FROM MG_MAGAZINE ORDER BY MG_NO DESC";
+		try{
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, start);
+			psmt.setInt(2, end);
+			
+			rs = psmt.executeQuery();
+			while(rs.next()){
+				AssignDTO dto = new AssignDTO();
+				dto.setAs_no(rs.getInt(1));
+				dto.setAs_regidate(rs.getString(2));
+				dto.setMe_no(rs.getInt(3));
+				dto.setAl_no(rs.getInt(4));
+				dto.setAs_getpoint(rs.getString(5));
+				list.add(dto);
+			}
+		}
+		catch(SQLException e){e.printStackTrace();}
+		return list;
+	}/////////////selectList()
+	
+	//총 레코드 수 얻기용
+		public int getTotalRecordCount(){
+			int total = 0;
+			String sql = "SELECT COUNT(*) FROM AS_ASSIGN";
+			try{
+				psmt = conn.prepareStatement(sql);
+				 rs = psmt.executeQuery();
+				rs.next();
+				total = rs.getInt(1);
+				
+			}//try
+			catch(Exception e){ e.printStackTrace(); };//catch
+			
+			return total;
+			
+		}//getTotalRecordCount
+	
+	
 	//입력용
 	public int insert(AssignDTO dto) {
 		int affected = 0;
-		String sql = "INSERT INTO AS_ASSIGN VALUES(AS_SEQ.NEXTVAL,SYSDATE,?,?,?)";
+		String sql = "INSERT INTO AS_ASSIGN VALUES(AS_SEQ.NEXTVAL,SYSDATE,2,2,?)";
 		try{
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, dto.getAs_no());
-			psmt.setString(2, dto.getAs_regidate());
-			psmt.setInt(3, dto.getMe_no());
-			psmt.setInt(4, dto.getAl_no());
-			psmt.setString(5, dto.getAs_getpoint());
+			//psmt.setInt(1, dto.getMe_no());
+			//psmt.setInt(2, dto.getAl_no());
+			psmt.setString(1, dto.getAs_getpoint());
 			
 			affected = psmt.executeUpdate();
 			

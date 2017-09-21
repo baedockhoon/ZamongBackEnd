@@ -66,6 +66,8 @@
 				<li><a class="active"
 					href="<c:url value='/ZAMONG/Statistics.do'/>">통계</a></li>
 					
+					<li><a class="active"
+					href="<c:url value='/ZAMONG/zamongAssignList.do'/>">평점</a></li>
 					<!-- BackEnd 로그인처리 -->					
 
 			       <c:if test="${empty sessionScope.ADMIN_ID }" var="isNotMember">
