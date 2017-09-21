@@ -145,6 +145,7 @@ function pasteHTML(filepath){
           		<tr bgcolor="white" align="center">
           			<td colspan="50">
           			<input type="submit" id="insert" value="수정"/>
+          			<a href="javascript:history.back()"><input type="button" value="뒤로"/></a>
           			</td>
           		</tr>
           	</table>
