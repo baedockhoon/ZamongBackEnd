@@ -55,6 +55,7 @@ dao.close();
 				, "toolbar=yes,scrollbars=yes,resizable=no,location=no,top=200,left=700,width=600,height=300");			
 	}/////////////////////	
 	
+	setTimeout("location.reload()",1000);
 </script>
 
 
@@ -88,7 +89,6 @@ table#t01 th {
 		</div>
 		<!-- 아래에 실제내용 표시 -->
 		<div>
-				<input type="text" id="pInput">
 				<input type="hidden" name="ma_no" value="${dto.ma_no}"/>번호 : ${dto.ma_no}
 				<table class="table table-striped" style="">
 					<tr>

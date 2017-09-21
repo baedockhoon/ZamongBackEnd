@@ -25,6 +25,9 @@
  		function FindArtistPopup() {
     	    window.open("${pageContext.request.contextPath}/bbs/zamongtv/FindArtistPopup.jsp", "_blank", "toolbar=yes,scrollbars=yes,resizable=no,location=no,top=500,left=500,width=400,height=400");
     }
+ 		function FindSoundSourcePopup() {
+    	    window.open("${pageContext.request.contextPath}/bbs/zamongtv/FindSoundSourcePopup.jsp", "_blank", "toolbar=yes,scrollbars=yes,resizable=no,location=no,top=500,left=500,width=400,height=400");
+    	}
 </script>
   </head>
 
@@ -49,7 +52,7 @@
 		            <tr>
               			<td>음원</td>
               			<td>
-              			<input id="p2_txt" type="text"  name="soundSource" style="width:10%" required="required"/><a href="javascript:FindArtistPopup();"><button type="button" class="btn btn-default" id="assign">음원 찾기</button></a> ${artistnull }
+              			<input id="ss_txt" type="text"  name="soundSource" style="width:10%" required="required"/><a href="javascript:FindSoundSourcePopup();"><button type="button" class="btn btn-default" id="assign">음원 찾기</button></a> ${artistnull }
               			</td>
 		            </tr>
 		            
@@ -63,7 +66,7 @@
 					<td colspan="50">
 					<button class="btn btn-sm btn-default" onclick="window.close()">취소</button>
 <!-- 					<button class="btn btn-sm btn-info" type="submit" onclick="window.close()">입력</button> -->
-					<button class="btn btn-sm btn-info" type="submit">입력</button>
+					<a href="javascript:opener.location.reload();"><button class="btn btn-sm btn-info" type="submit">입력</button></a>
 					
 					</tr>				
 				</table>

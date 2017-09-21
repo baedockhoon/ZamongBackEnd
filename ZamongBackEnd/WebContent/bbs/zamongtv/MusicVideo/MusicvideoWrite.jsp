@@ -69,7 +69,7 @@
 		            <tr>
               			<td>음원</td>
               			<td>
-              			<input id="ss_txt" type="text"  name="soundSource" style="width:10%" required="required"/><a href="javascript:FindSoundSourcePopup();"><button type="button" class="btn btn-default" id="assign">아티스트 찾기</button></a> ${artistnull }
+              			<input id="ss_txt" type="text"  name="soundSource" style="width:10%" required="required"/><a href="javascript:FindSoundSourcePopup();"><button type="button" class="btn btn-default" id="assign">음원 찾기</button></a> ${artistnull }
               			</td>
 		            </tr>
 					<tr bgcolor="white">
