@@ -53,7 +53,7 @@ public class AssignDAO {
 	
 	public List selectList(int start, int end) {
 		List list = new Vector();
-		String sql="SELECT * FROM (SELECT T.*,ROWNUM R FROM(SELECT * FROM AS_ASSIGN ORDER BY AS_NO DESC) T) WHERE R BETWEEN ? AND ?";
+		String sql="SELECT * FROM (SELECT T.*,ROWNUM R FROM(SELECT A.*,M.ME_ID FROM AS_ASSIGN A JOIN ME_MEMBER M ON A.ME_NO = M.ME_NO ORDER BY AS_NO DESC) T) WHERE R BETWEEN ? AND ?";
 		//String sql="SELECT * FROM MG_MAGAZINE ORDER BY MG_NO DESC";
 		try{
 			
@@ -69,6 +69,7 @@ public class AssignDAO {
 				dto.setMe_no(rs.getInt(3));
 				dto.setAl_no(rs.getInt(4));
 				dto.setAs_getpoint(rs.getString(5));
+				dto.setMe_id(rs.getString(6));
 				list.add(dto);
 			}
 		}

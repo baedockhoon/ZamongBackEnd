@@ -43,6 +43,7 @@
 				<thead>
 					<tr>
 						<th>글번호</th>
+						<th>아이디</th>
 						<th>등록일</th>
 						<th>점수</th>
 					</tr>
@@ -58,6 +59,7 @@
                  		<c:forEach var="item" items="${list}" varStatus="loop">
 						<tr>
 							<td>${item.as_no }</td>
+							<td>${item.me_id }</td>
 							<td>${item.as_regidate }</td>
 							<td>${item.as_getpoint}</td>
 							<td>
