@@ -102,6 +102,7 @@
 		</div>
 	</div>
 	<!-- /container(내용 끝) -->
+	<jsp:include page="/Template/Foot.jsp" />
 
 
 	<!-- Bootstrap core JavaScript

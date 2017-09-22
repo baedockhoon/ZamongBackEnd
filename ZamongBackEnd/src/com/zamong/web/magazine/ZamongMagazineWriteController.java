@@ -38,8 +38,6 @@ public class ZamongMagazineWriteController extends HttpServlet {
 	      }
 	   }
 	
-	
-
 		@Override
 		protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			//한글처리

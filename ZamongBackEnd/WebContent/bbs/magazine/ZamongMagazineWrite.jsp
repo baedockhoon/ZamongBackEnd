@@ -73,7 +73,6 @@ function pasteHTML(filepath){
 </script>
 
   	
-  	
   </head>
 
   <body role="document">
