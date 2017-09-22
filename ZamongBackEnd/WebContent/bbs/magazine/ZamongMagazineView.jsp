@@ -90,7 +90,7 @@
           	</table>
           	</form>
           	
-          	<form id="frm" action="<c:url value='/ZAMONG/comment.do'/>"
+          	<%-- <form id="frm" action="<c:url value='/ZAMONG/comment.do'/>"
 		    method="post">
 		    <input type="hidden" name="no" value="${item.mg_cm_no}" />
 		    <!-- 수정 및 삭제용 파라미터 -->
@@ -134,7 +134,7 @@
     </c:forEach>
    </c:if>
 
-  </table>
+  </table> --%>
   
 		</div>
 	</div>
