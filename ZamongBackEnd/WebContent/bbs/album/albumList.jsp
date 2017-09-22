@@ -98,8 +98,8 @@
 									<td>${alItem.al_no}</td>
 									<td>
 										<a href='<c:url value="/ZAMONG/Sound/View.do?ss_no=${alItem.ss_no}&nowPage=${nowPage }"/>'>
-										<c:if test="${alItem.ss_albumtitle == 1}" var="result">
-											타이틀 
+										<c:if test="${alItem.ss_albumtitle eq 1 }" var="result">
+											타이틀
 										</c:if>
 										${alItem.ss_title }
 										</a>
@@ -187,7 +187,7 @@
 					<option value="nt_title">제목</option>
 					<option value="nt_contents">내용</option>
 				</select> &nbsp; 
-				<input type="text" size="30" name="searchWord" id="tags" />
+				<input type="text" size="30" name="searchWord" />
 				<input type="submit" value="검색" />
 			</form>
 		</div>
@@ -223,6 +223,5 @@
 		});
 	</script>
 	<script src="<c:url value='/bootstrap/js/bootstrap.min.js'/>"></script>
-		      <jsp:include page="/Template/autocomplete.jsp" />
 </body>
 </html>

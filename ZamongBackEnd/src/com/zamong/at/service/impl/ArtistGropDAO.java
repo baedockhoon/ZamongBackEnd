@@ -145,13 +145,15 @@ public class ArtistGropDAO {
 	// 입력용]
 	public int insert(ArtistDTO dto) {
 		int affected = 0;
-		String sql = "INSERT INTO GP_ATGROUP VALUES(GP_SEQ.NEXTVAL, SYSDATE, ?,?,?)";
+		String sql = "INSERT INTO GP_ATGROUP VALUES(GP_SEQ.NEXTVAL, SYSDATE, ?, ?, ?, ?, ?)";
 		try {
 
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getGp_name());
 			psmt.setString(2, dto.getGp_gender());
 			psmt.setString(3, dto.getGp_image());
+			psmt.setString(4, dto.getGp_image());
+			psmt.setString(5, dto.getAt_debutdate());
 			affected = psmt.executeUpdate();
 
 		} catch (SQLException e) {

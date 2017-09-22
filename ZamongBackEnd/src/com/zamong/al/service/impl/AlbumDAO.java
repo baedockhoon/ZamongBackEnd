@@ -198,7 +198,7 @@ public class AlbumDAO extends SoundDAO {
 		String sql = "INSERT INTO AL_ALBUM(AL_NO, AL_REGIDATE, AL_ALBUMNAME, AL_ARTIST, AL_RELEASEDATE, AL_PUBLISHCORP, AL_ENTERTAINCORP, AL_ALBUMIMAGE, AL_ALBUMINFO, AL_DIVIDE, AL_ARTISTNO)"
 				+ " VALUES(AL_ALBUM_SEQ.NEXTVAL, SYSDATE, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
-			conn.setAutoCommit(false);
+			//conn.setAutoCommit(false);
 			if (i == 0) {
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1, dto.getAl_albumname());
@@ -213,8 +213,8 @@ public class AlbumDAO extends SoundDAO {
 				psmt.executeUpdate();
 			}
 			affected = super.insert(dto);
-			if (affected == 1)
-				conn.commit();
+			//if (affected == 1)
+				//conn.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

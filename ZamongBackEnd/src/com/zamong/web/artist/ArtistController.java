@@ -27,10 +27,7 @@ public class ArtistController extends HttpServlet{
 		String url = req.getRequestURL().toString();
 		String mode = req.getMethod();
 
-		System.out.println(url);
-		System.out.println(mode);
 		if (url.toUpperCase().contains("WRITE.DO")) {
-			System.out.println("4444");
 			if (mode.equalsIgnoreCase("get"))
 				req.getRequestDispatcher("/bbs/artist/artistWrite.jsp").forward(req, resp);
 			else {
@@ -61,7 +58,7 @@ public class ArtistController extends HttpServlet{
 					ArtistDAO dao = new ArtistDAO(req.getServletContext());
 					
 					//그룹정보
-					grop = mr.getParameter("grop");
+					grop = mr.getParameter("group");
 					gp_name = mr.getParameter("gp_name");
 					gp_gender = mr.getParameter("gp_gender");
 					gp_image = mr.getFilesystemName("gp_image");
@@ -128,7 +125,6 @@ public class ArtistController extends HttpServlet{
 			}
 		}
 		else if (url.toUpperCase().contains("LIST.DO")) {
-			System.out.println("3333");
 			req.setCharacterEncoding("UTF-8");
 			ArtistDAO dao = new ArtistDAO(req.getServletContext());
 			String 	searchColumn = req.getParameter("searchColumn");
@@ -143,7 +139,6 @@ public class ArtistController extends HttpServlet{
 			if(searchWord != null){
 				map.put("searchColumn",searchColumn);
 				map.put("searchWord",searchWord);
-				map.put("Notice_category",Notice_category);
 			}
 			int totalRecordCount=dao.getTotalRecordCount(map);
 			//페이지 사이즈
@@ -160,7 +155,7 @@ public class ArtistController extends HttpServlet{
 			map.put("start",start);
 			map.put("end",end);
 			//페이징을 위한 로직 끝]	
-			List<ArtistDTO> list= dao.selectList(map);
+			List<ArtistDTO> list= dao.searchArtist(map);
 			
 			//페이징용 문자열 생성
 			String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, req.getServletContext().getContextPath()+"/ZAMONG/Artist/List.do?");
@@ -185,7 +180,7 @@ public class ArtistController extends HttpServlet{
 			ArtistDAO dao = new ArtistDAO(req.getServletContext());
 			String 	searchWord = req.getParameter("searchWord");
 			String 	searchColumn = req.getParameter("searchColumn");
-			Map<String, String> map = new HashMap<String, String>();
+			Map<String, Object> map = new HashMap<String, Object>();
 			if(searchWord != null){
 				map.put("searchColumn",searchColumn);
 				map.put("searchWord",searchWord);

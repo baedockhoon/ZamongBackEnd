@@ -160,7 +160,7 @@ public class ArtistDAO extends ArtistGropDAO {
 			affected = psmt.executeUpdate();
 
 			affected = super.insert(dto);
-			if (affected == 1)
+			//if (affected == 1)
 				conn.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -168,10 +168,10 @@ public class ArtistDAO extends ArtistGropDAO {
 		return affected;
 	}///////////////// insert
 
-	public List<ArtistDTO> searchArtist(Map<String, String> map) {
+	public List<ArtistDTO> searchArtist(Map<String, Object> map) {
 		List<ArtistDTO> records = new Vector<ArtistDTO>();
-		String searchWord = map.get("searchWord");
-		String searchColumn = map.get("searchColumn");
+		String searchWord = map.get("searchWord") != null ? map.get("searchWord").toString() : "" ;
+		String searchColumn = map.get("searchColumn") != null ? map.get("searchColumn").toString() : "";
 		try {
 			/*String sql = "SELECT A.*, G.* FROM "  
 					+" (SELECT AT.*, GM.GP_NO FROM AT_ARTIST AT FULL OUTER JOIN GM_GROUPMEMBER GM ON AT.AT_NO = GM.AT_NO) "

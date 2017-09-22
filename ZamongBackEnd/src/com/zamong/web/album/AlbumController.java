@@ -28,8 +28,6 @@ public class AlbumController extends HttpServlet{
 		String url = req.getRequestURL().toString();
 		String mode = req.getMethod();
 
-		System.out.println(url);
-		System.out.println(mode);
 		if (url.toUpperCase().contains("WRITE.DO")) {
 			if (mode.equalsIgnoreCase("get"))
 				req.getRequestDispatcher("/bbs/album/albumWrite.jsp").forward(req, resp);
@@ -70,7 +68,6 @@ public class AlbumController extends HttpServlet{
 				dto.setAl_albumimage(al_albumimage);
 				dto.setAl_artist(al_artist);
 				dto.setAl_artistno(al_artistno);
-				System.out.println("1");
 				int index = Integer.parseInt(req.getParameter("index"));
 				
 				for (int i = 0; i < index; i++) {

@@ -58,8 +58,8 @@
 					<tr>
 						<td>그룹여부</td>
 						<td>
-							<input type="radio" name="grop" value="그룹" />그룹
-							<input type="radio" name="grop" value="솔로" />솔로
+							<input type="radio" name="group" value="G" />그룹
+							<input type="radio" name="group" value="A" />솔로
 						</td>
 					</tr>
 					<tr>
@@ -102,7 +102,7 @@
 					<tr>
 						<td>데뷔일</td>
 						<td>
-							<input type="text" name="at_debutdate" />
+							<input type="text" name="at_debutdate" id="datePicker"/>
 						</td>
 					</tr>
 					<tr>
@@ -114,7 +114,7 @@
 					<tr>
 						<td>생일</td>
 						<td>
-							<input type="text" name="at_birth" />
+							<input type="text" name="at_birth" id="datePicker"/>
 						</td>
 					</tr>
 					<tr>
@@ -154,7 +154,26 @@
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js" type="text/javascript"></script>
-	<script src="<c:url value='/bootstrap/js/bootstrap.min.js'/>"></script>
+<script>
+$(function (){
+	
+	$("#datePicker").datepicker({
+				numberOfMonths : [ 1, 1 ],
+				changeYear : true,
+				changeMonth : true,
+				dayNames : [ '월요일', '화요일', '수요일', '목요일', '금요일', '토요일',
+						'일요일' ],
+				dayNamesMin : [ '월', '화', '수', '목', '금', '토', '일' ],
+				monthNamesShort : [ '1', '2', '3', '4', '5', '6', '7',
+						'8', '9', '10', '11', '12' ],
+				monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월',
+						'7월', '8월', '9월', '10월', '11월', '12월' ],
+				showButtonPanel : true,
+				currentText : '오늘 날짜',
+				closeText : '닫기',
+				dateFormat : "yy-mm-dd"
+	});
+})
+</script>	
 </body>
 </html>
