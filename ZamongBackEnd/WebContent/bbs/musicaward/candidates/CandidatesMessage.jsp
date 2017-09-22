@@ -21,7 +21,7 @@
 	<c:choose>
 		<c:when test="${SUC_FAIL ==1}">
 			alert("${SUC_MSG}");
-			location.href='<c:url value="${SUC_URL}"/>';
+			history.back();
 		</c:when>
 		<c:when test="${SUC_FAIL ==0}">
 			alert("${FAIL_MSG}");

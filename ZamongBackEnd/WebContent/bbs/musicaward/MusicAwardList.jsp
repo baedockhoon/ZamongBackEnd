@@ -51,8 +51,8 @@
 			<div class="page-header">
 		<!-- 아래에 실제내용 표시 -->
 			<ul class="nav nav-tabs" role="tablist">
-        		<li role="presentation" class="active"><a href="<c:url value='/ZAMONG/MusicAwardList.do'/>">뮤직어워드</a></li>
-        		<li role="presentation"><a href="<c:url value='/ZAMONG/MusicAwardCandidates.do'/>">어워드 후보등록</a></li>
+        		<li role="presentation" class="active"><a href="<c:url value='/ZAMONG/MusicAwardList.do'/>">뮤직어워드 등록/관리</a></li>
+        		<li role="presentation"><a href="<c:url value='/ZAMONG/MusicAwardCandidates.do'/>">뮤직어워드 후보목록</a></li>
       		</ul>
       	</div>
 	<hr/>
