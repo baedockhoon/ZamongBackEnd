@@ -261,7 +261,7 @@
 								<span class="boxEmailStart"> <input id="email"
 									name="me_email1" title="이메일 앞자리" type="text" value=""
 									required="required" /> <span class="boxEmailMool">@</span> <select
-									name="email_select" class="box" id="email_select"
+									name="me_email2" class="box" id="email_select"
 									onChange="checkemailaddy();" required="required">
 										<option value="" selected>선택하세요</option>
 										<option value="empal.com">empal.com</option>
