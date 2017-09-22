@@ -30,7 +30,7 @@
 	<script type="text/javascript" src="<c:url value='/Editor/js/HuskyEZCreator.js' />" charset="utf-8"></script>
 
 <!-- jQuery를 사용하기위해 jQuery라이브러리 추가 -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+
 <script>
 	$(function(){
 

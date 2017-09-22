@@ -175,9 +175,8 @@ public List<ProductDTO> selectList(){
 			String sql="INSERT INTO PD_PRODUCT(PD_NO,PD_NAME,PD_PRICE) VALUES(PD_SEQ.NEXTVAL,?,?)";
 			try {
 				psmt = conn.prepareStatement(sql);
-				psmt.setString(1, dto.getPd_no());
-				psmt.setString(2, dto.getPd_name());
-				psmt.setString(3, dto.getPd_price());
+				psmt.setString(1, dto.getPd_name());
+				psmt.setString(2, dto.getPd_price());
 				affected = psmt.executeUpdate();
 				
 			} catch (SQLException e) {e.printStackTrace();}

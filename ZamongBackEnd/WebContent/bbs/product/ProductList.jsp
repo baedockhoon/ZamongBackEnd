@@ -24,7 +24,7 @@
 <script>
 	function iswrite() {
 		
-		location.href="<c:url value='/bbs/notice/ProblemWrite.jsp'/>";
+		location.href="<c:url value='/bbs/product/ProductWrite.jsp'/>";
 	}
 	
 	/* function goPopup(pd_no) {
@@ -74,7 +74,7 @@
 		<!-- 아래에 실제내용 표시 -->
 		<div>
 		<div style="text-align: right">
-				<a class="btn btn-sm btn-primary" href="javascript:iswrite()">글쓰기</a>
+				<a class="btn btn-sm btn-primary" href="javascript:iswrite()">상품 등록</a>
 							</div>
 					
 						

@@ -120,7 +120,7 @@
 					<option value="ss_no">음원</option>
 					<option value="br_contents">내용</option>
 				</select>
-				<input type="text" name="searchWord" /><input type="submit" class="btn btn-default" value="검색">
+				<input type="text" id="tags" name="searchWord" /><input type="submit" class="btn btn-default" value="검색">
 				</div>
 			</form>
 		</div>
@@ -131,7 +131,8 @@
 	<!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js" type="text/javascript"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js" type="text/javascript"></script> 
+ <jsp:include page="/Template/autocomplete.jsp" />
     <script src="<c:url value='/bootstrap/js/bootstrap.min.js'/>"></script>
   </body>
 </html>
