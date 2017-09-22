@@ -77,6 +77,7 @@
 				<a class="btn btn-sm btn-primary" href="javascript:iswrite()">상품 등록</a>
 							</div>
 					
+					
 						
 				 <table style="border-spacing:2px; width:600px;"border="1">
 				 <c:choose>
@@ -88,9 +89,10 @@
 					<c:otherwise>
 						<c:forEach var="item" items="${list}" varStatus="loop">
 							    <tr style="text-align:left; height:90px">
-							    <td align="center">&nbsp;${item.pd_no }&nbsp;</td>
-                		<th colspan="4">${item.pd_name } : 정기 결제   &nbsp;&nbsp;&nbsp; ${item.pd_price }원  
-                		
+								   <th style="text-align: center;">&nbsp;${item.pd_no }&nbsp;</th>
+								    <th style="text-align: center;">등록일:  &nbsp;&nbsp;${item.pd_regidate }</th>
+                		<th colspan="4" style="text-align: center;"> ${item.pd_name } : 정기 결제   &nbsp;&nbsp;&nbsp; ${item.pd_price }원 
+                	
                 		</th>
                 		 <td align="center"><input type="button" value="구매" class="btn btn-sm btn-primary" onclick="goPopup(${item.pd_no});"/></td>  
 								
