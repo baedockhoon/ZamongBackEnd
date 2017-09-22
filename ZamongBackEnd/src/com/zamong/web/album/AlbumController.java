@@ -76,7 +76,7 @@ public class AlbumController extends HttpServlet{
 				for (int i = 0; i < index; i++) {
 					System.out.println(i);
 					String ss_title = req.getParameter("ss_title"+i);
-					String ss_albumtitle = req.getParameter("ss_albumtitle") == null ? "0" : req.getParameter("ss_albumtitle"+i);
+					String ss_albumtitle = req.getParameter("ss_albumtitle"+i) == null ? "0" : req.getParameter("ss_albumtitle"+i);
 					String ss_genre = req.getParameter("ss_genre"+i);
 					String ly_contents = req.getParameter("ly_contents"+i);
 					String ss_duration = req.getParameter("ss_duration"+i);

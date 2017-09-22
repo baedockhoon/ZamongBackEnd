@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="<c:url value='/bootstrap/css/bootstrap-theme.min.css'/>">
 <table class="table table-striped">
 	<tr>
-		<td colspan="2"><input type="checkbox" value="1" name="ss_albumtitle${index }" id="ss_albumtitle${index }" required>노래 대표곡</td>
+		<td colspan="2"><input type="checkbox" value="1" name="ss_albumtitle${index }" id="ss_albumtitle${index }">노래 대표곡</td>
 	</tr>
 	<tr>
 		<td>노래 제목</td>

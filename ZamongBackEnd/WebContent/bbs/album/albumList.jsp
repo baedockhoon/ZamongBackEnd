@@ -98,7 +98,7 @@
 									<td>${alItem.al_no}</td>
 									<td>
 										<a href='<c:url value="/ZAMONG/Sound/View.do?ss_no=${alItem.ss_no}&nowPage=${nowPage }"/>'>
-										<c:if test="${not empty alItem.ss_albumtitle }" var="result">
+										<c:if test="${alItem.ss_albumtitle == 1}" var="result">
 											타이틀 
 										</c:if>
 										${alItem.ss_title }
@@ -154,7 +154,7 @@
 									<td>${ssItem.al_no}</td>
 									<td>
 										<a href='<c:url value="/ZAMONG/Sound/View.do?ss_no=${ssItem.ss_no}&nowPage=${nowPage }"/>'>
-										<c:if test="${not empty ssItem.ss_albumtitle }" var="result">
+										<c:if test="${ssItem.ss_albumtitle == 1 }" var="result">
 											타이틀 
 										</c:if>
 										${ssItem.ss_title }
