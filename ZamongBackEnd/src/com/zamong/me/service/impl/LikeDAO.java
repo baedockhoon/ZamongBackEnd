@@ -76,7 +76,38 @@ public class LikeDAO {
 				
 				return total;
 				
-			}//getTotalRecordCount
+			}//getTotalLikeCount
 			
+			public int delete(String me_no) {
+				int affected=0;
+				String sql="DELETE lk_like WHERE me_no=?";		
+				try {
+					psmt = conn.prepareStatement(sql);
+					psmt.setString(1, me_no);	
+					affected = psmt.executeUpdate();			
+				} catch (SQLException e) {e.printStackTrace();}		
+				return affected;
+			}
+			
+			public LikeDTO selectOne(String me_no,String lk_flag,String lk_targetno) {
+				LikeDTO dto=null;
+				String sql="SELECT * FROM lk_like WHERE me_no=? , lk_flag=?, lk_targetno=?";
+				try {
+					psmt = conn.prepareStatement(sql);
+					psmt.setString(1, me_no);
+					psmt.setString(2, lk_flag);
+					psmt.setString(3, lk_targetno);
+					rs = psmt.executeQuery();
+					if(rs.next()){
+						dto = new LikeDTO();
+						dto.setLk_no(rs.getString(1));
+						dto.setLk_regidate(rs.getDate(2));
+						dto.setMe_no(rs.getString(3));
+						dto.setLk_flag(rs.getString(4));
+						dto.setLk_targetno(rs.getString(5));
+					}			
+				} catch (SQLException e) {e.printStackTrace();}		
+				return dto;
+			}/////////////////////selectOne()
 
 }

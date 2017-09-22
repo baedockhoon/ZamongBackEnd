@@ -2,14 +2,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"
+	type="text/javascript"></script>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
+	type="text/css" />
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <script type="text/javascript">
 	// opener관련 오류가 발생하는 경우 아래 주석을 해지하고, 사용자의 도메인정보를 입력합니다. ("주소입력화면 소스"도 동일하게 적용시켜야 합니다.)
@@ -64,66 +68,68 @@
 	<!-- 고정된 네비바 -->
 	<jsp:include page="/Template/Top.jsp" />
 	<!-- 고정 네비바 끝 -->
-	 <script type="text/javascript">
-	 $(function() {
-		    $( "#testDatepicker" ).datepicker({
-		    	numberOfMonths: [1,1],
-		         changeYear: true, 
-		         changeMonth: true, 
-		         yearRange: "-100:+0",
-		         dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-		         dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
-		         monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-		         monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-		         showButtonPanel: true, 
-		         currentText: '오늘 날짜', 
-		         closeText: '닫기', 
-		         dateFormat: "yy-mm-dd",
-		         
-		  });
+	<script type="text/javascript">
+		$(function() {
+			$("#testDatepicker").datepicker(
+					{
+						numberOfMonths : [ 1, 1 ],
+						changeYear : true,
+						changeMonth : true,
+						yearRange : "-100:+0",
+						dayNames : [ '월요일', '화요일', '수요일', '목요일', '금요일', '토요일',
+								'일요일' ],
+						dayNamesMin : [ '월', '화', '수', '목', '금', '토', '일' ],
+						monthNamesShort : [ '1', '2', '3', '4', '5', '6', '7',
+								'8', '9', '10', '11', '12' ],
+						monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월',
+								'7월', '8월', '9월', '10월', '11월', '12월' ],
+						showButtonPanel : true,
+						currentText : '오늘 날짜',
+						closeText : '닫기',
+						dateFormat : "yy-mm-dd",
+
+					});
 		});
-	/* function check(){
-		//alert($(":input").length);
-		for (var i=0; i<$("#form :input").length;i++){
-			//alert($("#form :input").get(i).type);
-			//alert($(":input[type='radio']:checked").length);
-			var type = $("#form :input").get(i).type;
-			if (type == "text"){
-				if ($("#form :input").get(i).value == ""){
-					alert($("#form :input").get(i).title+"를(을) 입력해주세요");
-					$("#form :input").get(i).focus();
-					return false;
+		/* function check(){
+			//alert($(":input").length);
+			for (var i=0; i<$("#form :input").length;i++){
+				//alert($("#form :input").get(i).type);
+				//alert($(":input[type='radio']:checked").length);
+				var type = $("#form :input").get(i).type;
+				if (type == "text"){
+					if ($("#form :input").get(i).value == ""){
+						alert($("#form :input").get(i).title+"를(을) 입력해주세요");
+						$("#form :input").get(i).focus();
+						return false;
+					}
+				}  else if(type == "radio") {
+					if (($(":input[type='radio']:checked").length < 1)){
+						alert($("#form :input").get(i).title+"를(을) 입력해주세요");
+						$("#form :input").get(i).focus();
+						return false;
+					}
+				}  else if(type == "file"){
+					if ($("#form :input").get(i).value == ""){
+						alert($("#form :input").get(i).title+"를(을) 등록해주세요");
+						$("#form :input").get(i).focus();
+						return false;
+					}
+				} else if (type == "password"){
+					if ($("#form :input").get(i).value == ""){
+						alert($("#form :input").get(i).title+"를(을) 해주세요");
+						$("#form :input").get(i).focus();
+						return false;
+					}
 				}
-			}  else if(type == "radio") {
-				if (($(":input[type='radio']:checked").length < 1)){
-					alert($("#form :input").get(i).title+"를(을) 입력해주세요");
-					$("#form :input").get(i).focus();
-					return false;
-				}
-					
-			}  else if(type == "file"){
-				if ($("#form :input").get(i).value == ""){
-					alert($("#form :input").get(i).title+"를(을) 등록해주세요");
-					$("#form :input").get(i).focus();
-					return false;
-				}
-			} else if (type == "password"){
-				if ($("#form :input").get(i).value == ""){
-					alert($("#form :input").get(i).title+"를(을) 해주세요");
-					$("#form :input").get(i).focus();
-					return false;
+				else if (type == "select-one"){
+					if ($("#form :input").get(i).value == ""){
+						alert($("#form :input").get(i).title+"를(을) 입력해주세요");
+						$("#form :input").get(i).focus();
+						return false;
+					}
 				}
 			}
-			else if (type == "select-one"){
-				if ($("#form :input").get(i).value == ""){
-					alert($("#form :input").get(i).title+"를(을) 입력해주세요");
-					$("#form :input").get(i).focus();
-					return false;
-				}
-			}
-				
-		}
-	}  */
+		}  */
 		function pwdOK() {
 			var pwd = $("#password").val();
 			var enPassword = $("#enPassword").val();
@@ -133,6 +139,25 @@
 				return false;
 			} else {
 				$("#pwdOk").html("");
+				return true;
+			}
+		}
+
+		function telOk() {
+			if (isNaN($("#tel2").val())) {
+				$("#telOk").html("번호를 입력해주세요");
+				return false;
+			} else {
+				$("#telOk").html("");
+				return true;
+			}
+		}
+		function telOk1() {
+			if (isNaN($("#tel3").val())) {
+				$("#telOk").html("번호를 입력해주세요");
+				return false;
+			} else {
+				$("#telOk").html("");
 				return true;
 			}
 		}
@@ -163,8 +188,9 @@
 						<td class="end">
 							<div class="divDefine fl inputBoxDefine formRelateive">
 								<span class="idInputBoxWrap"><input id="id" name="me_id"
-									type="text" title="아이디" required="required"/></span> <span class="fl pL10 dB btnInputBoxWrap" id=""></span>
-								<span class="fl pL10dBbtnInputBoxWrap"> </span>
+									type="text" title="아이디" required="required" /></span> <span
+									class="fl pL10 dB btnInputBoxWrap" id=""></span> <span
+									class="fl pL10dBbtnInputBoxWrap"> </span>
 							</div>
 						</td>
 					</tr>
@@ -173,22 +199,25 @@
 							class="txt dB lh30 alignLeft pL10 fl">이름</span></th>
 						<td class="end">
 							<div class="divDefine fl inputBoxDefine idInputBoxWrap1">
-								<input id="name" name="me_name" type="text" title="이름" required="required"/>
+								<input id="name" name="me_name" type="text" title="이름"
+									required="required" />
 							</div>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row"><span class="star">*</span><span
 							class="txt dB lh30 alignLeft pL10 fl">생년월일</span></th>
-							<td><input type="text" name="me_birth" id="testDatepicker"></td>
+						<td><input type="text" name="me_birth" id="testDatepicker"></td>
 					</tr>
 					<tr>
 						<th scope="row"><span class="star">*</span><span
 							class="txt dB lh30 alignLeft pL10 fl">성별확인</span></th>
 						<td>
 							<div>
-								<span><input type="radio" name="me_gender" value="M" id="gender" title="성별" required="required"/>남</span>&nbsp;&nbsp;&nbsp;&nbsp;
-								<span><input type="radio" name="me_gender" value="F" id="gender" title="성별" />여</span>
+								<span><input type="radio" name="me_gender" value="M"
+									id="gender" title="성별" required="required" />남</span>&nbsp;&nbsp;&nbsp;&nbsp;
+								<span><input type="radio" name="me_gender" value="F"
+									id="gender" title="성별" />여</span>
 							</div>
 						</td>
 					</tr>
@@ -198,7 +227,7 @@
 						<td class="end">
 							<div class="divDefine fl inputBoxDefine idInputBoxWrap1">
 								<input id="password" name="me_pass" title="비밀번호입력"
-									type="password" required="required"/>
+									type="password" required="required" />
 							</div>
 						</td>
 					</tr>
@@ -208,8 +237,9 @@
 						<td class="end">
 							<div class="divDefine fl inputBoxDefine idInputBoxWrap1">
 								<input id="enPassword" name="me_check_pass" title="비밀번호확인"
-									type="password" onkeyup="javascript:pwdOK()" required="required"/> <span
-									id="pwdOk" style="color: red; font-weight: 600;"></span>
+									type="password" onkeyup="javascript:pwdOK()"
+									required="required" /> <span id="pwdOk"
+									style="color: red; font-weight: 600;"></span>
 							</div>
 						</td>
 					</tr>
@@ -218,7 +248,8 @@
 							class="txt dB lh30 alignLeft pL10 fl">닉네임</span></th>
 						<td class="end">
 							<div class="soloSelectBoxTd soloSelectBoxTd03">
-								<input id="nickname" type="text" name="me_nickname" title="닉네임" required="required"/>
+								<input id="nickname" type="text" name="me_nickname" title="닉네임"
+									required="required" />
 							</div>
 						</td>
 					</tr>
@@ -227,11 +258,29 @@
 							class="txt dB lh30 alignLeft pL10 fl">이메일</span></th>
 						<td class="end">
 							<div class="emailBoxWrap">
-								<span class="boxEmailStart"><input id="email"
-									name="me_email1" title="이메일 앞자리" type="text" value="" required="required"/></span> <span
-									class="boxEmailMool">@</span> <span class="boxEmailEndInput"><input
-									id="emailNm" name="me_email2" title="이메일 뒷자리" type="text"
-									value="" required="required" /></span>
+								<span class="boxEmailStart"> <input id="email"
+									name="me_email1" title="이메일 앞자리" type="text" value=""
+									required="required" /> <span class="boxEmailMool">@</span> <select
+									name="email_select" class="box" id="email_select"
+									onChange="checkemailaddy();" required="required">
+										<option value="" selected>선택하세요</option>
+										<option value="empal.com">empal.com</option>
+										<option value="dreamwiz.com">dreamwiz.com</option>
+										<option value="naver.com">naver.com</option>
+										<option value="hotmail.com">hotmail.com</option>
+										<option value="chollian.net">chollian.net</option>
+										<option value="freechal.com">freechal.com</option>
+										<option value="hanafos.com">hanafos.com</option>
+										<option value="kebi.com">kebi.com</option>
+										<option value="korea.com">korea.com</option>
+										<option value="lycos.co.kr">lycos.co.kr</option>
+										<option value="netian.com">netian.com</option>
+										<option value="netsgo.com">netsgo.com</option>
+										<option value="unitel.co.kr">unitel.co.kr</option>
+										<option value="yahoo.co.kr">yahoo.co.kr</option>
+										<option value="1">직접입력</option>
+								</select>
+								</span> <span class="boxEmailEndInput"> </span>
 							</div>
 						</td>
 					</tr>
@@ -239,26 +288,33 @@
 						<th scope="row"><span class="txt dB lh30 alignLeft pL10 fl">연락처</span></th>
 						<td class="end">
 							<div class="phoneBoxWrap">
-								<input id="tel1" name="me_tel1" type="text" value=""
-									maxlength="3" title="휴대폰 번호" required="required"/> -<span class="boxPhoneCenter"> <input
-									id="tel2" name="me_tel2" type="text" value="" maxlength="4" title="휴대폰 번호" required="required"/>
+								<select value="" id="tel1" name="me_tel1">
+									<option value="010">010</option>
+									<option value="010">02</option>
+									<option value="010">041</option>
+								</select> -<span class="boxPhoneCenter"> <input id="tel2"
+									name="me_tel2" type="text" value="" maxlength="4"
+									title="휴대폰 번호" required="required" onkeyup="javascript:telOk()" />
 								</span> <span class="phoneMool">-</span> <span class="boxPhoneEnd">
 									<input id="tel3" name="me_tel3" type="text" value=""
-									maxlength="4" title="휴대폰 번호" required="required" /><span
-									id="telOk" style="color: red; font-weight: 600;"></span>
+									maxlength="4" title="휴대폰 번호" required="required"
+									onkeyup="javascript:telOk1()" /><span id="telOk"
+									style="color: red; font-weight: 600;"></span>
 								</span>
 							</div>
 						</td>
 					</tr>
 					<tr>
 						<td>이미지를 넣어주세요</td>
-						<td><input type="file" name="me_photo" 
-							maxlength="50" id="photo" title="이미지" required="required"/><td>
+						<td><input type="file" name="me_photo" maxlength="50"
+							id="photo" title="이미지" required="required" />
+						<td>
 					</tr>
 				</table>
 			</div>
 			<div align="right">
-				<input type="submit" class="btn btn-sm btn-info" value="회원가입완료" onclick="return check()" />
+				<input type="submit" class="btn btn-sm btn-info" value="회원가입완료"
+					onclick="return check()" />
 			</div>
 		</form>
 	</div>
