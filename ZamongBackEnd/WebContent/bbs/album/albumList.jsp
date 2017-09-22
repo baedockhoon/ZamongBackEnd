@@ -69,7 +69,7 @@
 					<thead>
 						<tr>
 							<td colspan="5">
-								<a href="<c:url value='/ZAMONG/Album/Write.do'/>" class="btn btn-sm btn-info">등록</a>
+								<a href="<c:url value='/ZAMONG/Album/Write.do'/>" class="btn btn-sm btn-info">음원 등록</a>
 							</td>
 						</tr>
 						<tr>
@@ -222,6 +222,5 @@
 			});
 		});
 	</script>
-	<script src="<c:url value='/bootstrap/js/bootstrap.min.js'/>"></script>
 </body>
 </html>

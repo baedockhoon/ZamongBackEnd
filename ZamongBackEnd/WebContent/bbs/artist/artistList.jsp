@@ -41,7 +41,7 @@
 
 		<!-- 실제내용의 제목표시 -->
 		<div class="page-header">
-			<h1>가수 보기</h1>
+			<h1>아티스트 보기</h1>
 		</div>
 		<!-- 아래에 실제내용 표시 -->
 		<div>
@@ -59,8 +59,8 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<td colsapn="6">
-								<a href="<c:url value='/ZAMONG/Artist/Write.do'/>" class="btn btn-sm btn-info">등록</a>
+							<td colspan="6">
+								<a href="<c:url value='/ZAMONG/Artist/Write.do'/>" class="btn btn-sm btn-info">아티스트 등록</a>
 							</td>
 						</tr>
 						<tr>

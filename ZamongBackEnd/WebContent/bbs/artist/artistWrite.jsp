@@ -102,7 +102,7 @@
 					<tr>
 						<td>데뷔일</td>
 						<td>
-							<input type="text" name="at_debutdate" id="datePicker"/>
+							<input type="text" name="at_debutdate" class="datePicker"/>
 						</td>
 					</tr>
 					<tr>
@@ -114,7 +114,7 @@
 					<tr>
 						<td>생일</td>
 						<td>
-							<input type="text" name="at_birth" id="datePicker"/>
+							<input type="text" name="at_birth" class="datePicker"/>
 						</td>
 					</tr>
 					<tr>
@@ -157,7 +157,7 @@
 <script>
 $(function (){
 	
-	$("#datePicker").datepicker({
+	$(".datePicker").datepicker({
 				numberOfMonths : [ 1, 1 ],
 				changeYear : true,
 				changeMonth : true,
