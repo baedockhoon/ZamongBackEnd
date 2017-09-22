@@ -207,7 +207,7 @@
 					<tr>
 						<th scope="row"><span class="star">*</span><span
 							class="txt dB lh30 alignLeft pL10 fl">생년월일</span></th>
-						<td><input type="text" name="me_birth" id="testDatepicker"></td>
+						<td><input type="text" name="me_birth" id="testDatepicker" required="required"></td>
 					</tr>
 					<tr>
 						<th scope="row"><span class="star">*</span><span
