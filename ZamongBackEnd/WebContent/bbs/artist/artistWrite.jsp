@@ -54,7 +54,7 @@
 		<!-- 아래에 실제내용 표시 -->
 		<div>
 			<form id="frm" action="<c:url value='/ZAMONG/Artist/Write.do'/>" method="post" enctype="multipart/form-data">
-				<table class="table table-striped" id="grop_info">
+				<table class="table table-striped" >
 					<tr>
 						<td>그룹여부</td>
 						<td>
@@ -62,6 +62,8 @@
 							<input type="radio" name="group" value="A" />솔로
 						</td>
 					</tr>
+				</table>
+				<table class="table table-striped" id="grop_info" style="display: none;">
 					<tr>
 						<td>그룹명</td>
 						<td>
@@ -74,6 +76,18 @@
 							<input type="radio" name="gp_gender" value="혼성" />혼성 
 							<input type="radio" name="gp_gender" value="여성" />여성 
 							<input type="radio" name="gp_gender" value="님성" />남성
+						</td>
+					</tr>
+					<tr>
+						<td>소속사</td>
+						<td>
+							<input type="text" name="gp_belong" id="gp_belong" />
+						</td>
+					</tr>
+					<tr>
+						<td>데뷔일</td>
+						<td>
+							<input type="text" name="gp_debutdate" id="gp_debutdate" class="datePicker"/>
 						</td>
 					</tr>
 					<tr>
@@ -96,13 +110,15 @@
 					<tr>
 						<td>소속사</td>
 						<td>
-							<input type="text" name="at_belong" />
+							<input type="text" name="at_belong" id="at_belong" /> 
+							<span class="belong"><input type="checkbox" id="belong" value="1">그룹과 동일</span>
 						</td>
 					</tr>
 					<tr>
 						<td>데뷔일</td>
 						<td>
-							<input type="text" name="at_debutdate" class="datePicker"/>
+							<input type="text" name="at_debutdate" id="at_debutdate" class="datePicker"/> 
+							<span class="debut"><input type="checkbox" id="debut" value="1">그룹과 동일</span>
 						</td>
 					</tr>
 					<tr>
@@ -143,11 +159,12 @@
 						</td>
 					</tr>
 				</table>
-				<a id="artist_next" class="btn btn-sm btn-info" align="center">다음</a>
+				<a id="artist_next" class="btn btn-sm btn-info">다음</a>
 				<input type="submit" id="artist_submit" class="btn btn-sm btn-info" value="등록">
 			</form>
 		</div>
 	</div>
+	<jsp:include page="/Template/Foot.jsp" />
 	<!-- /container(내용 끝) -->
 
 
@@ -172,6 +189,39 @@ $(function (){
 				currentText : '오늘 날짜',
 				closeText : '닫기',
 				dateFormat : "yy-mm-dd"
+	});
+	
+	$("input[name='group']").click(function(){
+		if ($(this).val() == "G"){
+			$("#grop_info").css("display", "block");
+			$("#artist_info").css("display", "none");
+			$("#artist_next").css("display", "block");
+			$("#artist_submit").css("display", "none");
+			$(".belong").css("display", "block");
+			$(".debut").css("display", "block");
+		} else {
+			$("#grop_info").css("display", "none");
+			$("#artist_info").css("display", "block");
+			$("#artist_next").css("display", "none");
+			$("#artist_submit").css("display", "block");
+			$(".belong").css("display", "none");
+			$(".debut").css("display", "none");
+		}
+	});
+
+	$("#belong").click(function (){
+		if ($(this).prop("checked") == true){
+			$("#at_belong").val($("#gp_belong").val());
+		} else {
+			$("#at_belong").val("");
+		}
+	});
+	$("#debut").click(function (){
+		if ($(this).prop("checked") == true){
+			$("#at_debutdate").val($("#gp_debutdate").val());
+		} else {
+			$("#at_debutdate").val("");
+		}
 	});
 })
 </script>	

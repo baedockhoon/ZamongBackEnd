@@ -46,6 +46,8 @@ public class ArtistController extends HttpServlet{
 				String at_gender;
 				String at_artistinfo;
 				String at_image;
+				String gp_belong;
+				String gp_debutdate;
 				ArtistDTO dto = new ArtistDTO();
 				
 				MultipartRequest mr = FileUtils.upload(req, req.getServletContext().getRealPath("/Images/Artist"));
@@ -61,6 +63,8 @@ public class ArtistController extends HttpServlet{
 					grop = mr.getParameter("group");
 					gp_name = mr.getParameter("gp_name");
 					gp_gender = mr.getParameter("gp_gender");
+					gp_belong = mr.getParameter("gp_belong");
+					gp_debutdate = mr.getParameter("gp_debutdate");
 					gp_image = mr.getFilesystemName("gp_image");
 					
 					//아티스트 정보
@@ -78,6 +82,8 @@ public class ArtistController extends HttpServlet{
 					dto.setGp_name(gp_name);
 					dto.setGp_gender(gp_gender);
 					dto.setGp_image(gp_image);
+					dto.setGp_debutdate(gp_debutdate);
+					dto.setGp_belong(gp_belong);
 
 					// 아티스트 데이터베이스 CRUD작업과 관련된 모델 호출
 					dto.setAt_name(at_name);
@@ -91,7 +97,7 @@ public class ArtistController extends HttpServlet{
 					dto.setAt_image(at_image);
 
 					req.setAttribute("dto", dto);
-					sucorfail = dao.insert(dto);
+					sucorfail = dao.insert(dto, grop);
 					dao.close();
 					
 					

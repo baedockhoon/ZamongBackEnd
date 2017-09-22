@@ -152,8 +152,8 @@ public class ArtistGropDAO {
 			psmt.setString(1, dto.getGp_name());
 			psmt.setString(2, dto.getGp_gender());
 			psmt.setString(3, dto.getGp_image());
-			psmt.setString(4, dto.getGp_image());
-			psmt.setString(5, dto.getAt_debutdate());
+			psmt.setString(4, dto.getGp_belong());
+			psmt.setString(5, dto.getGp_debutdate());
 			affected = psmt.executeUpdate();
 
 		} catch (SQLException e) {

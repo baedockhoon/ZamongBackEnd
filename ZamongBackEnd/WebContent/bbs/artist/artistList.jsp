@@ -33,11 +33,12 @@
 	<div class="container theme-showcase" role="main">
 
 		<!-- Main jumbotron for a primary marketing message or call to action -->
-		<div class="jumbotron">
+		<%-- <div class="jumbotron">
 			<h1>
 				<a href="<c:url value='/ZAMONG/Artist/List.do'/>">가수 목록</a>
 			</h1>
-		</div>
+		</div> --%>
+		<hr />
 
 		<!-- 실제내용의 제목표시 -->
 		<div class="page-header">
@@ -120,6 +121,8 @@
 			</form>
 		</div>
 	</div>
+	
+	<jsp:include page="/Template/Foot.jsp" />
 	<!-- /container(내용 끝) -->
 
 

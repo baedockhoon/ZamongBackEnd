@@ -141,27 +141,30 @@ public class ArtistDAO extends ArtistGropDAO {
 	}//////////////////// updateVisitCount
 
 	// 입력용]
-	public int insert(ArtistDTO dto) {
+	public int insert(ArtistDTO dto, String grop) {
 		int affected = 0;
 		String sql = "INSERT INTO AT_ARTIST(AT_NO, AT_REGIDATE, AT_NAME, AT_BELONG, AT_DEBUTDATE, AT_DEBUTSONG, AT_BIRTH, AT_CONTRY, AT_GENDER, AT_ARTISTINFO, AT_IMAGE)"
 				+ " VALUES(AT_SEQ.NEXTVAL, SYSDATE, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			conn.setAutoCommit(false);
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, dto.getAt_name());
-			psmt.setString(2, dto.getAt_belong());
-			psmt.setString(3, dto.getAt_debutdate());
-			psmt.setString(4, dto.getAt_debutsong());
-			psmt.setString(5, dto.getAt_birth());
-			psmt.setString(6, dto.getAt_contry());
-			psmt.setString(7, dto.getAt_gender());
-			psmt.setString(8, dto.getAt_artistinfo());
-			psmt.setString(9, dto.getAt_image());
-			affected = psmt.executeUpdate();
+				psmt.setString(1, dto.getAt_name());
+				psmt.setString(2, dto.getAt_belong());
+				psmt.setString(3, dto.getAt_debutdate());
+				psmt.setString(4, dto.getAt_debutsong());
+				psmt.setString(5, dto.getAt_birth());
+				psmt.setString(6, dto.getAt_contry());
+				psmt.setString(7, dto.getAt_gender());
+				psmt.setString(8, dto.getAt_artistinfo());
+				psmt.setString(9, dto.getAt_image());
+				affected = psmt.executeUpdate();
 
-			affected = super.insert(dto);
+			if (grop.equalsIgnoreCase("G")) {
+				affected = super.insert(dto);
+				super.groupInsert();
+			}
 			//if (affected == 1)
-				conn.commit();
+			conn.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
