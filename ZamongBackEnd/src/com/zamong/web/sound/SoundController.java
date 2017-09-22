@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.RandomAccessFile;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -45,14 +46,14 @@ public class SoundController extends HttpServlet {
 			SoundDTO dto = new SoundDTO();
 			String saveDirectory = req.getServletContext().getRealPath("/Images/Sound");
 			MultipartRequest mr = FileUtils.upload(req, req.getServletContext().getRealPath("/Mp3"));
-
 			int sucorfail = 0;// DB입력 성공시에는 1, 실패시0, 파일용량 초과시에는 -1
 
 			if (mr != null) {// 파일 업로드 성공시 데이터 입력처리
 				// 기타 파라미터 받아서 테이블에 입력처리
+				String index = mr.getParameter("index");
 				Mp3File mp3file;
 				try {
-					mp3file = new Mp3File(req.getServletContext().getRealPath("/Mp3") + File.separator + mr.getFilesystemName("ss_name"));
+					mp3file = new Mp3File(req.getServletContext().getRealPath("/Mp3") + File.separator + mr.getFilesystemName("ss_name"+index));
 					if (mp3file.hasId3v2Tag()) {
 						ID3v2 id3v2Tag = mp3file.getId3v2Tag();
 						
@@ -78,32 +79,43 @@ public class SoundController extends HttpServlet {
 						System.out.println("Encoder: " + id3v2Tag.getEncoder());*/
 						
 						
-						
-						byte[] albumImageData = id3v2Tag.getAlbumImage();
-						/*if (albumImageData != null) {
-							System.out.println("Have album image data, length: " + albumImageData.length + " bytes");
-							System.out.println("Album image mime type: " + id3v2Tag.getAlbumImageMimeType());
-						}*/
-						if (mp3file.hasId3v2Tag()) {
-							  //ID3v2 id3v2Tag = mp3file.getId3v2Tag();
-							  byte[] imageData = id3v2Tag.getAlbumImage();
-							  
-							  ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData);
-							  BufferedImage bufferedImage = ImageIO.read(inputStream);
-
-							  ImageIO.write(bufferedImage, "png", new File(saveDirectory+File.separator+id3v2Tag.getTitle()+".png")); //저장하고자 하는 파일 경로를 입력합니다.
-
-							  sucorfail=1;
+						if (index.equals("0")) {
+							//byte[] albumImageData = id3v2Tag.getAlbumImage();
+							/*if (albumImageData != null) {
+								System.out.println("Have album image data, length: " + albumImageData.length + " bytes");
+								System.out.println("Album image mime type: " + id3v2Tag.getAlbumImageMimeType());
+							}*/
+							if (mp3file.hasId3v2Tag()) {
+								  //ID3v2 id3v2Tag = mp3file.getId3v2Tag();
+								  byte[] imageData = id3v2Tag.getAlbumImage();
+								  
+								  ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData);
+								  BufferedImage bufferedImage = ImageIO.read(inputStream);
+	
+								  ImageIO.write(bufferedImage, "png", new File(saveDirectory+File.separator+id3v2Tag.getTitle()+".png")); //저장하고자 하는 파일 경로를 입력합니다.
+	
+								  sucorfail=1;
+							}
 						}
 						String ss_title = id3v2Tag.getTitle();
 						String ly_contents = id3v2Tag.getLyrics();
-						String ss_path = mr.getFilesystemName("ss_name");
+						String al_releasedate = id3v2Tag.getYear();
+						if(al_releasedate.length() == 8) {
+							al_releasedate = al_releasedate.substring(0, 4)+"-"+al_releasedate.substring(4, 6)+"-"+al_releasedate.substring(6);
+						}
+						System.out.println(al_releasedate);
+						String al_albumname = id3v2Tag.getAlbum();
+						String ss_path = mr.getFilesystemName("ss_name"+index);
 
-						if(ss_path == null){//파일 미교체
+						/*if(ss_path == null){//파일 미교체
 							ss_path = mr.getParameter("ss_path");
 						}//if
-						dto.setSs_title(ss_title);
+*/						dto.setSs_title(ss_title);
 						dto.setLy_contents(ly_contents);
+						if (index.equals("0")) {
+							dto.setAl_releasedate(al_releasedate);
+							dto.setAl_albumname(al_albumname);
+						}
 						dto.setSs_path(ss_path);
 						dto.setAl_albumimage(id3v2Tag.getTitle()+".png");
 
@@ -112,6 +124,7 @@ public class SoundController extends HttpServlet {
 							//기존 업로드된 파일 삭제
 							FileUtils.deleteFile(req, "/Upload/Mp3", mr.getParameter("ss_path"));*/
 					}
+					req.setAttribute("index", index);
 					req.setAttribute("dto", dto);
 					req.getRequestDispatcher("/bbs/album/soungWrite.jsp").forward(req, resp);
 					

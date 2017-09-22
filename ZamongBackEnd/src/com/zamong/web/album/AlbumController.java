@@ -46,13 +46,20 @@ public class AlbumController extends HttpServlet{
 				String al_publishcorp = req.getParameter("al_publishcorp");
 				String al_entertaincorp = req.getParameter("al_entertaincorp");
 				String al_albuminfo = req.getParameter("al_albuminfo");
-				String ss_title = req.getParameter("ss_title");
-				String ss_albumtitle = req.getParameter("ss_albumtitle") == null ? "0" : req.getParameter("ss_albumtitle");
-				String ss_genre = req.getParameter("ss_genre");
-				String ly_contents = req.getParameter("ly_contents");
-				String ss_duration = req.getParameter("ss_duration");
-				String ss_path = req.getParameter("ss_path");
 				String al_albumimage = req.getParameter("al_albumimage");
+				String al_artist = req.getParameter("al_artist");
+				String al_artistno = req.getParameter("al_artistno");
+				
+
+				/*psmt.setString(1, dto.getAl_albumname());
+				psmt.setString(2, dto.getAl_artist());
+				psmt.setString(3, dto.getAl_releasedate());
+				psmt.setString(4, dto.getAl_publishcorp());
+				psmt.setString(5, dto.getAl_entertaincorp());
+				psmt.setString(6, dto.getAl_albumimage());
+				psmt.setString(7, dto.getAl_albuminfo());
+				psmt.setString(8, dto.getAl_divide());
+				psmt.setString(9, dto.getAl_artistno());*/
 				
 				dto.setAl_divide(al_divide);
 				dto.setAl_albumname(al_albumname);
@@ -60,18 +67,34 @@ public class AlbumController extends HttpServlet{
 				dto.setAl_publishcorp(al_publishcorp);
 				dto.setAl_entertaincorp(al_entertaincorp);
 				dto.setAl_albuminfo(al_albuminfo);
-				dto.setSs_title(ss_title);
-				dto.setSs_albumtitle(ss_albumtitle);
-				dto.setSs_genre(ss_genre);
-				dto.setLy_contents(ly_contents);
-				dto.setSs_duration(ss_duration);
-				dto.setSs_path(ss_path);
 				dto.setAl_albumimage(al_albumimage);
+				dto.setAl_artist(al_artist);
+				dto.setAl_artistno(al_artistno);
+				System.out.println("1");
+				int index = Integer.parseInt(req.getParameter("index"));
 				
-				//System.out.println(ss_albumtitle);
-				dao.insert(dto);
+				for (int i = 0; i < index; i++) {
+					System.out.println(i);
+					String ss_title = req.getParameter("ss_title"+i);
+					String ss_albumtitle = req.getParameter("ss_albumtitle") == null ? "0" : req.getParameter("ss_albumtitle"+i);
+					String ss_genre = req.getParameter("ss_genre"+i);
+					String ly_contents = req.getParameter("ly_contents"+i);
+					String ss_duration = req.getParameter("ss_duration"+i);
+					String ss_path = req.getParameter("ss_path"+i);
+					
+					dto.setSs_title(ss_title);
+					dto.setSs_albumtitle(ss_albumtitle);
+					dto.setSs_genre(ss_genre);
+					dto.setLy_contents(ly_contents);
+					dto.setSs_duration(ss_duration);
+					dto.setSs_path(ss_path);
+					
+					dao.insert(dto, i);
+				}
 				
-				req.getRequestDispatcher("/Album/List.do").forward(req, resp);
+				
+				
+				req.getRequestDispatcher("/ZAMONG/Album/List.do").forward(req, resp);
 				
 				/*MultipartRequest mr = FileUtils.upload(req, req.getServletContext().getRealPath("/Images/Sound"));
 

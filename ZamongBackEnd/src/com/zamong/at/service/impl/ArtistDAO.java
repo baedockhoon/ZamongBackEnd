@@ -173,7 +173,7 @@ public class ArtistDAO extends ArtistGropDAO {
 		String searchWord = map.get("searchWord");
 		String searchColumn = map.get("searchColumn");
 		try {
-			String sql = "SELECT A.*, G.* FROM "  
+			/*String sql = "SELECT A.*, G.* FROM "  
 					+" (SELECT AT.*, GM.GP_NO FROM AT_ARTIST AT FULL OUTER JOIN GM_GROUPMEMBER GM ON AT.AT_NO = GM.AT_NO) "
 					+" A FULL OUTER JOIN GP_ATGROUP G ON A.GP_NO = G.GP_NO "
 					+" WHERE G.GP_NAME LIKE '%"+searchWord+"%' OR A.AT_NAME LIKE '%"+searchWord+"%'";sql = "SELECT * FROM AT_ARTIST WHERE AT_NAME LIKE '%" + searchWord + "%'";
@@ -195,8 +195,9 @@ public class ArtistDAO extends ArtistGropDAO {
 							dto.setAt_debutdate(rs.getDate(19).toString());
 							records.add(dto);
 						}
-					}
-			/*if (searchColumn.equals("") || searchColumn.equalsIgnoreCase("S")) {
+					}*/
+			String sql;
+			if (searchColumn.equals("") || searchColumn.equalsIgnoreCase("S")) {
 				sql = "SELECT * FROM AT_ARTIST WHERE AT_NAME LIKE '%" + searchWord + "%'";
 				psmt = conn.prepareStatement(sql);
 				// psmt.setString(1, searchWord);
@@ -266,7 +267,7 @@ public class ArtistDAO extends ArtistGropDAO {
 						records.add(dto);
 					}
 				}
-			}*/
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();

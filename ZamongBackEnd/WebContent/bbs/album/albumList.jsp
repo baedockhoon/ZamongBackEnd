@@ -97,7 +97,7 @@
 								<tr bgcolor="white" align="center">
 									<td>${alItem.al_no}</td>
 									<td>
-										<a href='<c:url value="/ZAMONG/Album/View.do?at_no=${alItem.ss_no}&nowPage=${nowPage }"/>'>
+										<a href='<c:url value="/ZAMONG/Sound/View.do?ss_no=${alItem.ss_no}&nowPage=${nowPage }"/>'>
 										<c:if test="${not empty alItem.ss_albumtitle }" var="result">
 											타이틀 
 										</c:if>
@@ -108,7 +108,7 @@
 										${alItem.al_artist } 
 									</td>
 									<td>
-										<a href='<c:url value="/ZAMONG/Album/View.do?at_no=${alItem.al_no}&nowPage=${nowPage }"/>'>
+										<a href='<c:url value="/ZAMONG/Album/View.do?al_no=${alItem.al_no}&nowPage=${nowPage }"/>'>
 											${alItem.al_albumname }
 										</a>
 									</td>
@@ -120,11 +120,11 @@
 					</c:choose>
 
 				</table>
-				<table width="100%">
+				<%-- <table width="100%">
 					<tr align="center">
 						<td>${alPageing }</td>
 					</tr>
-				</table>
+				</table> --%>
 				
 				<table class="table table-striped">
 					<thead>
@@ -153,7 +153,7 @@
 								<tr bgcolor="white" align="center">
 									<td>${ssItem.al_no}</td>
 									<td>
-										<a href='<c:url value="/ZAMONG/Album/View.do?at_no=${ssItem.ss_no}&nowPage=${nowPage }"/>'>
+										<a href='<c:url value="/ZAMONG/Sound/View.do?ss_no=${ssItem.ss_no}&nowPage=${nowPage }"/>'>
 										<c:if test="${not empty ssItem.ss_albumtitle }" var="result">
 											타이틀 
 										</c:if>
@@ -164,7 +164,7 @@
 										${ssItem.al_artist } 
 									</td>
 									<td>
-										<a href='<c:url value="/ZAMONG/Album/View.do?at_no=${ssItem.al_no}&nowPage=${nowPage }"/>'>
+										<a href='<c:url value="/ZAMONG/Album/View.do?al_no=${ssItem.al_no}&nowPage=${nowPage }"/>'>
 											${ssItem.al_albumname }
 										</a>
 									</td>
@@ -176,11 +176,11 @@
 					</c:choose>
 
 				</table>
-				<table width="100%">
+				<%-- <table width="100%">
 					<tr align="center">
 						<td>${ssPageing }</td>
 					</tr>
-				</table>
+				</table> --%>
 				<hr />
 				<select name="searchColumn">
 					<option value="">검색</option>

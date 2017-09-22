@@ -193,24 +193,25 @@ public class AlbumDAO extends SoundDAO {
 	}//////////////////// updateVisitCount
 
 	// 입력용]
-	public int insert(SoundDTO dto) {
+	public int insert(SoundDTO dto, int i) {
 		int affected = 0;
 		String sql = "INSERT INTO AL_ALBUM(AL_NO, AL_REGIDATE, AL_ALBUMNAME, AL_ARTIST, AL_RELEASEDATE, AL_PUBLISHCORP, AL_ENTERTAINCORP, AL_ALBUMIMAGE, AL_ALBUMINFO, AL_DIVIDE, AL_ARTISTNO)"
 				+ " VALUES(AL_ALBUM_SEQ.NEXTVAL, SYSDATE, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			conn.setAutoCommit(false);
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, dto.getAl_albumname());
-			psmt.setString(2, dto.getAl_artist());
-			psmt.setString(3, dto.getAl_releasedate());
-			psmt.setString(4, dto.getAl_publishcorp());
-			psmt.setString(5, dto.getAl_entertaincorp());
-			psmt.setString(6, dto.getAl_albumimage());
-			psmt.setString(7, dto.getAl_albuminfo());
-			psmt.setString(8, dto.getAl_divide());
-			psmt.setString(9, dto.getAl_artistno());
-			affected = psmt.executeUpdate();
-
+			if (i == 0) {
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, dto.getAl_albumname());
+				psmt.setString(2, dto.getAl_artist());
+				psmt.setString(3, dto.getAl_releasedate());
+				psmt.setString(4, dto.getAl_publishcorp());
+				psmt.setString(5, dto.getAl_entertaincorp());
+				psmt.setString(6, dto.getAl_albumimage());
+				psmt.setString(7, dto.getAl_albuminfo());
+				psmt.setString(8, dto.getAl_divide());
+				psmt.setString(9, dto.getAl_artistno());
+				psmt.executeUpdate();
+			}
 			affected = super.insert(dto);
 			if (affected == 1)
 				conn.commit();
