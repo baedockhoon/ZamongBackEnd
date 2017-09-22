@@ -138,7 +138,7 @@ request.setCharacterEncoding("UTF-8");
 					<option value="me_id">아이디</option>
 				
 
-				</select> &nbsp; <input type="text" size="30" name="searchWord" /><input
+				</select> &nbsp; <input type="text" id="tags" size="30" name="searchWord" /><input
 					type="submit" value="검색" />
 			</form>
 			<table width="100%">
@@ -175,5 +175,6 @@ request.setCharacterEncoding("UTF-8");
 	
 </script>
 	<script src="<c:url value='/bootstrap/js/bootstrap.min.js'/>"></script>
+	      <jsp:include page="/Template/autocomplete.jsp" />
 </body>
 </html>

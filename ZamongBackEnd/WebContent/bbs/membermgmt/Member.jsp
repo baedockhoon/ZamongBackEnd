@@ -82,9 +82,9 @@ function isList() {
 				<option value="me_name">이름</option>
 				<option value="me_id">아이디</option>
 			</select> &nbsp; 
-			<input type="text" size="55" name="searchWord" />
+			<input type="text" size="55" name="searchWord" id="tags" />
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="submit" class="btn btn-sm btn-info" value="검색"/>
+			<input type="submit"  class="btn btn-sm btn-info" value="검색"/>
 			<a href="<c:url value='/ZAMONG/MemberList.do'/> " class="btn btn-sm btn-info">전체보기</a>
 			<a class="btn btn-sm btn-info"
 				href=<c:url value='/bbs/membermgmt/MemberRegister.jsp'/>>회원가입</a>
@@ -159,5 +159,6 @@ function isList() {
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js" type="text/javascript"></script>
     <script src="<c:url value='/bootstrap/js/bootstrap.min.js'/>"></script>
+      <jsp:include page="/Template/autocomplete.jsp" />
 </body>
 </html>

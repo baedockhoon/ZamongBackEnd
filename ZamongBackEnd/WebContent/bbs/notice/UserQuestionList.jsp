@@ -143,7 +143,7 @@
 					<option value="qu_title">제목</option>
 					<option value="qu_contents">내용</option>
 
-				</select> &nbsp; <input type="text" size="30" name="searchWord" /><input
+				</select> &nbsp; <input type="text"  id="tags" size="30" name="searchWord" /><input
 					type="submit" value="검색" />
 
 			</form>
@@ -162,7 +162,7 @@ function isDelete(qu_no){
 
 
 	<script src="<c:url value='/bootstrap/js/bootstrap.min.js'/>"></script>
-
+  <jsp:include page="/Template/autocomplete.jsp" />
 </body>
 
 </html>

@@ -187,7 +187,7 @@
 					<option value="nt_title">제목</option>
 					<option value="nt_contents">내용</option>
 				</select> &nbsp; 
-				<input type="text" size="30" name="searchWord" />
+				<input type="text" size="30" name="searchWord" id="tags" />
 				<input type="submit" value="검색" />
 			</form>
 		</div>
@@ -223,5 +223,6 @@
 		});
 	</script>
 	<script src="<c:url value='/bootstrap/js/bootstrap.min.js'/>"></script>
+		      <jsp:include page="/Template/autocomplete.jsp" />
 </body>
 </html>
