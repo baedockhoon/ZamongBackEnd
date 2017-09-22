@@ -5,17 +5,19 @@ public class AssignDTO {
 	private String as_regidate;
 	private int me_no;
 	private int al_no;
+	private int ss_no;
 	private String as_getpoint;
 	private String me_id;
 	
 	public AssignDTO() {}
 
-	public AssignDTO(int as_no, String as_regidate, int me_no, int al_no, String as_getpoint, String me_id) {
+	public AssignDTO(int as_no, String as_regidate, int me_no, int al_no, int ss_no, String as_getpoint, String me_id) {
 		super();
 		this.as_no = as_no;
 		this.as_regidate = as_regidate;
 		this.me_no = me_no;
 		this.al_no = al_no;
+		this.ss_no = ss_no;
 		this.as_getpoint = as_getpoint;
 		this.me_id = me_id;
 	}
@@ -52,6 +54,14 @@ public class AssignDTO {
 		this.al_no = al_no;
 	}
 
+	public int getSs_no() {
+		return ss_no;
+	}
+
+	public void setSs_no(int ss_no) {
+		this.ss_no = ss_no;
+	}
+
 	public String getAs_getpoint() {
 		return as_getpoint;
 	}
@@ -67,7 +77,7 @@ public class AssignDTO {
 	public void setMe_id(String me_id) {
 		this.me_id = me_id;
 	}
-	
+
 	
 	
 }
