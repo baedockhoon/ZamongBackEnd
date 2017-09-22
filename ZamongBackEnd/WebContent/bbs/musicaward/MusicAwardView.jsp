@@ -124,17 +124,17 @@ table#t01 th {
 			                    	<c:otherwise>
 			                    	<table id="t01">
 									 	<tr>
-									 		<th width="5%">&nbsp;</th>
-									 		<th width="15%">후보관리번호</th>
-									 		<th width="20%">음원명</th>
+									 		<th width="5%" height="30px">&nbsp;</th>
+									 		<th width="10%">후보관리번호</th>
+									 		<th width="25%">음원명</th>
 									 		<th width="25%">아티스트이름</th>
 									 		<th width="20%">등록일</th>
 									 		<th width="15%">관리</th>
 									 	</tr>
 			                          <c:forEach var="canitem" items="${canlist }" begin="0" end="10" varStatus="loop">
 			                          <tr>
-				                          <td>후보${loop.count}</td>
-				                          <td>${canitem.ca_no}</td>					                             
+				                          <td height="40px">후보${loop.count}</td>
+				                          <td style="text-align:center">${canitem.ca_no}</td>					                             
 				                          <td>${canitem.ss_no}</td>
 				                          <td>${canitem.at_no}</td>
 				                          <td>${canitem.ca_regidate}</td>

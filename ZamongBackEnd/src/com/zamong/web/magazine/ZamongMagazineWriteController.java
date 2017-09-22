@@ -39,34 +39,9 @@ public class ZamongMagazineWriteController extends HttpServlet {
 	   }
 	
 	
-	
-	
-	
-	//입력폼으로 이동
+
 		@Override
-		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			//3[요청분석 -입력폼 요청
-			//4]모델호출 및 결과값 받기
-			//5]결과값이 있으면 ,리퀘스트 영역에 저장
-			//6]뷰 선택
-			/*
-			 절대경로 지정시
-			 포워딩:컨텍스트 루트 경로 미 포함
-			 리다이렉트:컨텍스트 루트 포함
-			 단, server.xml에 Context태그의 path속성 값을
-			 지울시에는 신경 쓸 필요 없다
-			 */
-			//리다이렉트
-			//resp.sendRedirect(req.getContextPath()+"/DATAROOM_13/Write.jsp");
-			
-			//포워드
-			//req.getRequestDispatcher("/bbs/magazine/ZamongMagazineWrite.jsp").forward(req, resp);
-			doPost(req, resp);
-		}//doGet
-		
-		//입력 처리 즉 파일 업로드 및 데이터베이스 입력
-		@Override
-		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			//한글처리
 			req.setCharacterEncoding("UTF-8");
 			//오류시 입력값 보존을 위한 변수 선언

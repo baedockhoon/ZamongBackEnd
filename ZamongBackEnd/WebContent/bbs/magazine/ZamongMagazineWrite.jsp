@@ -94,7 +94,7 @@ function pasteHTML(filepath){
 		<!-- 아래에 실제내용 표시 -->
 		<div>
 			<div>
-				<form id="frm" action="${pageContext.request.contextPath}/ZAMONG/zamongMagazineWrite.do">
+				<form id="frm" action="${pageContext.request.contextPath}/ZAMONG/zamongMagazineWrite.do" method="post">
 				<table width="100%">
 					<tr>
 						<!-- <input type="hidden" name="ad_no" /> -->
