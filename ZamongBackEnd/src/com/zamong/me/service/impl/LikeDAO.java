@@ -61,12 +61,13 @@ public class LikeDAO {
 				return affected;
 			}
 			
-			public int getTotalLikeCount(String lk_targetno){
+			public int getTotalLikeCount(String me_no,String lk_targetno){
 				int total = 0;
-				String sql = "SELECT COUNT(*) FROM lk_like where lk_targetno=?";
+				String sql = "SELECT COUNT(*) FROM lk_like where me_no=? and lk_targetno=?";
 				try{
 					psmt = conn.prepareStatement(sql);
-					psmt.setString(1, lk_targetno);
+					psmt.setString(1, me_no);
+					psmt.setString(2, lk_targetno);
 					rs = psmt.executeQuery();
 					rs.next();
 					total = rs.getInt(1);
@@ -78,12 +79,14 @@ public class LikeDAO {
 				
 			}//getTotalLikeCount
 			
-			public int delete(String me_no) {
+			public int delete(String me_no,String lk_flag,String lk_targetno) {
 				int affected=0;
-				String sql="DELETE lk_like WHERE me_no=?";		
+				String sql="DELETE lk_like WHERE me_no=? and lk_flag=? and lk_targetno=?";		
 				try {
 					psmt = conn.prepareStatement(sql);
-					psmt.setString(1, me_no);	
+					psmt.setString(1, me_no);
+					psmt.setString(2, lk_flag);
+					psmt.setString(3, lk_targetno);
 					affected = psmt.executeUpdate();			
 				} catch (SQLException e) {e.printStackTrace();}		
 				return affected;
@@ -91,7 +94,7 @@ public class LikeDAO {
 			
 			public LikeDTO selectOne(String me_no,String lk_flag,String lk_targetno) {
 				LikeDTO dto=null;
-				String sql="SELECT * FROM lk_like WHERE me_no=? , lk_flag=?, lk_targetno=?";
+				String sql="SELECT * FROM lk_like WHERE me_no=? and lk_flag=? and lk_targetno=?";
 				try {
 					psmt = conn.prepareStatement(sql);
 					psmt.setString(1, me_no);

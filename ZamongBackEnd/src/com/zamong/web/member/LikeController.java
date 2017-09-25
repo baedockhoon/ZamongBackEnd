@@ -28,29 +28,19 @@ public class LikeController extends HttpServlet{
 		
 		affected =  dao.insert(dto);
 		
+		if(dao.getTotalLikeCount(me_no,lk_targetno) == 1) {
+			
+		total = dao.getTotalLikeCount(me_no,lk_targetno);
 		
-		System.out.println(lk_targetno);
-		if(dao.getTotalLikeCount(lk_targetno) == 1) {
-			/*dto.setMe_no(me_no);
-			dto.setLk_flag(lk_flag);
-			dto.setLk_targetno(lk_targetno);	
-			
-			affected =  dao.insert(dto);*/
-			
-		total = dao.getTotalLikeCount(lk_targetno);
-		/*System.out.println("total="+total);
-		System.out.println("lk_targetno="+lk_targetno);*/
 		dao.close();
 		
 		req.setAttribute("dto", dto);
 		req.setAttribute("total", total);
 		}
 		else {
-			
-			dao.delete(me_no);
-			total = dao.getTotalLikeCount(lk_targetno);
+			dao.delete(me_no,lk_flag,lk_targetno);
+			total = dao.getTotalLikeCount(me_no,lk_targetno);
 			req.setAttribute("total", total);
-			
 		}
 		req.getRequestDispatcher("/ZAMONG/Artist/List.do").forward(req, resp);
 		
