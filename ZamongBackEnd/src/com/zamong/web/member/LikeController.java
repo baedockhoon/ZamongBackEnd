@@ -28,9 +28,9 @@ public class LikeController extends HttpServlet{
 		
 		affected =  dao.insert(dto);
 		
-		if(dao.getTotalLikeCount(me_no,lk_targetno) == 1) {
+		if(dao.getLikeCount(me_no,lk_targetno) == 1) {
 			
-		total = dao.getTotalLikeCount(me_no,lk_targetno);
+		total = dao.getTotalLikeCount(lk_targetno);
 		
 		dao.close();
 		
@@ -39,7 +39,7 @@ public class LikeController extends HttpServlet{
 		}
 		else {
 			dao.delete(me_no,lk_flag,lk_targetno);
-			total = dao.getTotalLikeCount(me_no,lk_targetno);
+			total = dao.getTotalLikeCount(lk_targetno);
 			req.setAttribute("total", total);
 		}
 		req.getRequestDispatcher("/ZAMONG/Artist/List.do").forward(req, resp);

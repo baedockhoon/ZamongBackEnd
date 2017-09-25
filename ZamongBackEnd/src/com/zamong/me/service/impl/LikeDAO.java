@@ -61,13 +61,30 @@ public class LikeDAO {
 				return affected;
 			}
 			
-			public int getTotalLikeCount(String me_no,String lk_targetno){
+			public int getLikeCount(String me_no,String lk_targetno){
 				int total = 0;
 				String sql = "SELECT COUNT(*) FROM lk_like where me_no=? and lk_targetno=?";
 				try{
 					psmt = conn.prepareStatement(sql);
 					psmt.setString(1, me_no);
 					psmt.setString(2, lk_targetno);
+					rs = psmt.executeQuery();
+					rs.next();
+					total = rs.getInt(1);
+					
+				}//try
+				catch(Exception e){ e.printStackTrace(); };//catch
+				
+				return total;
+				
+			}//getTotalLikeCount
+			
+			public int getTotalLikeCount(String lk_targetno){
+				int total = 0;
+				String sql = "SELECT COUNT(*) FROM lk_like where lk_targetno=?";
+				try{
+					psmt = conn.prepareStatement(sql);
+					psmt.setString(1, lk_targetno);
 					rs = psmt.executeQuery();
 					rs.next();
 					total = rs.getInt(1);

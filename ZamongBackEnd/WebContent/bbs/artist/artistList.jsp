@@ -98,7 +98,7 @@
 									</td>
 									<td>${item.at_debutsong }</td>
 									<td>${item.at_regidate }</td>
-									<td><a href="<c:url value='/ZAMONG/Like.do?me_no=2&lk_flag=at0000&lk_targetno=${item.at_no}'/>"  >좋아요 ${total}</a></td>
+									<td><a href="<c:url value='/ZAMONG/Like.do?me_no=16&lk_flag=at0000&lk_targetno=${item.at_no}'/>"  >좋아요 ${total}</a></td>
 								</tr>
 							</c:forEach>
 						</c:otherwise>
