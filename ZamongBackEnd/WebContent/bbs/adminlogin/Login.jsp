@@ -21,7 +21,7 @@
   </head>
   
 <body >
-<jsp:include page="/Template/Top.jsp" />
+<%-- <jsp:include page="/Template/Top.jsp" /> --%>
 <div class="container theme-showcase" role="main">
 		<!-- Main jumbotron for a primary marketing message or call to action -->
 		<div class="jumbotron"><br/>
@@ -41,6 +41,9 @@
 			<label for="inputPassword" class="sr-only">비밀번호</label> 
 			<input type="password" name="zamongadminpass" id="inputPassword" class="form-control" placeholder="비밀번호" required>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
+			
+			 <span style="color:blue;font-size:2em;font-weight: bold">zamong / zamong</span><br/>
+			
 			<span style="color:red;font-size:1.4em;font-weight: bold">${ERROR_MASSAGE }</span>
 		</form>
 		</c:if>
