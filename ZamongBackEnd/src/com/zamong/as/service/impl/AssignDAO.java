@@ -68,8 +68,9 @@ public class AssignDAO {
 				dto.setAs_regidate(rs.getString(2));
 				dto.setMe_no(rs.getInt(3));
 				dto.setAl_no(rs.getInt(4));
-				dto.setAs_getpoint(rs.getString(5));
-				dto.setMe_id(rs.getString(6));
+				dto.setSs_no(rs.getInt(5));
+				dto.setAs_getpoint(rs.getString(6));
+				dto.setMe_id(rs.getString(7));
 				list.add(dto);
 			}
 		}
