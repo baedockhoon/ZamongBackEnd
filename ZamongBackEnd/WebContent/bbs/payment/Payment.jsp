@@ -1,3 +1,5 @@
+<%@page import="com.zamong.pd.service.ProductDTO"%>
+<%@page import="com.zamong.pd.service.impl.ProductDAO"%>
 <%@page import="com.zamong.bp.service.BuyproductDTO"%>
 <%@page import="com.zamong.bp.service.impl.BuyproductDAO"%>
 <%@page import="com.zamong.nt.service.impl.NotiDataDAO"%>
@@ -7,6 +9,17 @@
 <%
 String pd_no = request.getParameter("pd_no");
 String me_no = request.getParameter("me_no");
+
+
+ProductDAO dao = new ProductDAO(application);
+//조회수 업데이트
+
+//상세보기용 메소드 호출	
+ProductDTO dto = dao.selectOne(pd_no);
+//이전글/다음글 조회
+
+//3]자원반납
+dao.close();
 %>
 <!DOCTYPE html>
 <html>
@@ -78,8 +91,8 @@ String me_no = request.getParameter("me_no");
 							name="chargeRates" class="input_radio" value="selectRate"
 							checked="checked">
 							<input type="hidden" value="3" name="pd_no"/>
-                             <select id="anwser" name="price" title="결제금액" onchange="javascript:selChange(this.value);">
-                                <option value="">결제금액 선택</option>
+                             <select id="anwser" name="price" title="결제금액"  onchange="javascript:selChange(this.value);">
+                                <option value=""><%=dto.getPd_price() %></option>
                                  
 			                    <option value="sel">직접입력</option>
 
@@ -105,7 +118,7 @@ String me_no = request.getParameter("me_no");
 								
 								<option value="11000">11,000 원</option>
 						</select> 원</td> 
-							<td><span class="boxEmailEndInput"><input type="text" title="결제 도메인 입력란" name="price1"  value="" />원</span></td>
+							<td><span class="boxEmailEndInput"><input type="text" title="결제 도메인 입력란" name="price1"  value="<%=dto.getPd_price() %>" />원</span></td>
 			
 					</tr>
 					
