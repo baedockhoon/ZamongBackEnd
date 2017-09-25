@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.zamong.nt.service.NotiDataDTO;
 import com.zamong.nt.service.impl.NotiDataDAO;
+import com.zamong.se.service.SearchDTO;
+import com.zamong.se.service.impl.SearchDAO;
 
 import model.PagingUtil;
 
@@ -65,7 +67,16 @@ public class NoticeListController extends HttpServlet {
 		
 		//페이징을 위한 로직 끝]	
 		List<NotiDataDTO> list= dao.selectList(map);
-		
+		System.out.println(searchWord);
+		if (searchWord != null && !searchWord.equals("")) {
+		SearchDAO dao1 = new SearchDAO(req.getServletContext());
+			SearchDTO dto1 = new SearchDTO();
+					dto1.setSearch(searchWord);
+			if(dao1 != null) {
+				dao1.insert(dto1);
+			}
+		}
+			
 		//페이징용 문자열 생성
 		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, req.getServletContext().getContextPath()+"/ZAMONG/NoticeList.do?");
 		

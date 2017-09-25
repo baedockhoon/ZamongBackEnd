@@ -128,15 +128,16 @@
 				</table>
 				<hr />
 				<!-- <form action="" method="post"> -->
-
+				
 				<select name="searchColumn">
 					<option value="nt_title">제목</option>
-					<option value="nt_contents">내용</option>
+					<option value="nt_contents">내용</option>			
+				</select> 
+					&nbsp; <input type="text" id="tags" size="30" name="searchWord" /><input
+						type="submit" value="검색" />
+				</form>
 
-				</select> &nbsp; <input type="text" id="tags" size="30" name="searchWord" /><input
-					type="submit" value="검색" />
 
-			</form>
 		</div>
 	</div>
 	</body>

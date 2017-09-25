@@ -39,9 +39,10 @@
 	
 			<!-- 실제 내용의 제목 표시 -->
 			<div class="page-header">
-				<h1>회원님의 결제정보</h1>
+				<h1>${dto.me_id }회원님의 결제정보</h1>
 			</div>
 			<div class="tableBox">
+						최근에 구매하신 상품 :<span style="color: red; font-size: 1.8em;"> ${dto.pd_name }</span>
 				<table class="table table-striped">
 					<caption>총 포인트</caption>
 					<colgroup>
@@ -52,17 +53,12 @@
 						<th scope="row"><span class="star"></span><span
 							class="txt dB lh30 alignLeft pL10 fl">${dto.me_id }님의 총금액</span></th>
 						<td class="end">
-						<span>${dto.ch_havecash }원 입니다.</span>
+						<span style="color: red; font-size: 1.8em;">${dto.bp_price }원 입니다.</span>
 						</td>
 				</table>
-						<a href="<c:url value='/ZAMONG/Cash/List.do'/> " class="btn btn-sm btn-info">뒤로</a></td>	
+				
 			</div>
-			<%-- <div align="right">
-				<a href="<c:url value='/ZAMONG/MemberList.do'/> " class="btn btn-sm btn-info">목록</a></td>
-				<a href="<c:url value='/ZAMONG/MemberEdit.do?me_no=${dto.me_no}&nowPage=${nowPage }'/>" class="btn btn-sm btn-info">수정</a> 
-				<a href='javascript:isDelete(${dto.me_no})'><button
-									type="button" class="btn btn-sm btn-info">삭제</button></a>
-			</div> --%>
+			
 	</div>
 	
 

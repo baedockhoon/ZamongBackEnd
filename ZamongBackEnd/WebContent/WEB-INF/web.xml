@@ -716,6 +716,8 @@
 		<url-pattern>/ZAMONG/Payment/Write.do</url-pattern>
 	</servlet-mapping>
 	
+	
+	
 	<servlet>
 		<servlet-name>ZamongPaymentList</servlet-name>
 		<servlet-class>com.zamong.web.payment.PaymentListController</servlet-class>
@@ -724,6 +726,15 @@
 		<servlet-name>ZamongPaymentList</servlet-name>
 		<url-pattern>/ZAMONG/Payment/List.do</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>ZamongPaymentView</servlet-name>
+		<servlet-class>com.zamong.web.payment.PaymentViewController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ZamongPaymentView</servlet-name>
+		<url-pattern>/ZAMONG/Payment/View.do</url-pattern>
+	</servlet-mapping>
+	
 
 <servlet>
 		<servlet-name>ZamongCashWrite</servlet-name>
@@ -762,12 +773,30 @@
 	</servlet-mapping>
 
 <servlet>
+		<servlet-name>ZamongProductDelete</servlet-name>
+		<servlet-class>com.zamong.web.product.ProductDeleteController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ZamongProductDelete</servlet-name>
+		<url-pattern>/ZAMONG/Product/Delete.do</url-pattern>
+	</servlet-mapping>
+
+<servlet>
 		<servlet-name>ZamongProductWrite</servlet-name>
 		<servlet-class>com.zamong.web.product.ProductWriteController</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ZamongProductWrite</servlet-name>
 		<url-pattern>/ZAMONG/Product/Write.do</url-pattern>
+	</servlet-mapping>
+
+<servlet>
+		<servlet-name>ZamongUserList</servlet-name>
+		<servlet-class>com.zamong.web.payment.UserController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ZamongUserList</servlet-name>
+		<url-pattern>/ZAMONG/payment/UserList.do</url-pattern>
 	</servlet-mapping>
 
 <jsp-config>

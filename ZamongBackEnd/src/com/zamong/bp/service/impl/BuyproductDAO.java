@@ -18,6 +18,7 @@ import javax.sql.DataSource;
 import com.zamong.bp.service.BuyproductDTO;
 import com.zamong.ch.service.CashDTO;
 import com.zamong.nt.service.NotiDataDTO;
+import com.zamong.pd.service.ProductDTO;
 
 
 
@@ -51,32 +52,30 @@ public class BuyproductDAO {
 			
 		} catch (Exception e) {e.printStackTrace();}
 	}/////////////////close()
-public List<BuyproductDTO> selectList(){
+	public List<BuyproductDTO> selectList(Map<String,Object> map){
 		
 		List<BuyproductDTO> records = new Vector<BuyproductDTO>();
 		
 		//페이징 미 적용
-		String sql="SELECT *  FROM BP_BUYPRODUCT ";
+		//String sql="SELECT B.*,M.NAME FROM BBS B JOIN MEMBER M ON B.ID=M.ID ORDER BY NO DESC";
 		//페이징 적용-구간쿼리로 변경
+		String sql = "SELECT * FROM (SELECT T.*, ROWNUM R FROM (SELECT M.ME_id,B.*,P.PD_NAME FROM ME_MEMBER M JOIN BP_BUYPRODUCT B ON M.ME_NO = B.ME_NO JOIN PD_PRODUCT P ON P.PD_NO = B.PD_NO ";
+		//검색용 쿼리 추가
+		if(map.get("searchWord") !=null){
+			sql+=" WHERE "+map.get("searchColumn")+ " LIKE '%"+map.get("searchWord")+"%' ";
+		}		
+		sql+=" ORDER BY BP_NO DESC,BP_REGIDATE DESC) T) WHERE R BETWEEN ? AND ?";
 		
 		try {
 			psmt = conn.prepareStatement(sql);
 			
-			//페이징을 위한 시작 및 종료 rownum설정]			
+			//페이징을 위한 시작 및 종료 rownum설정]
+			psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
+			psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
+			
 			rs = psmt.executeQuery();
 			while(rs.next()){
-				BuyproductDTO dto = new BuyproductDTO(
-						rs.getString(1),
-						rs.getDate(2),
-						rs.getString(3),
-						rs.getString(4),
-						rs.getString(5),
-						rs.getString(6));
-				
-						
-					
-						
-			
+				BuyproductDTO dto = new BuyproductDTO(rs.getString(1),rs.getString(2),rs.getDate(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8));
 				records.add(dto);
 			}
 		} catch (SQLException e) {			
@@ -119,15 +118,15 @@ public List<BuyproductDTO> selectList(){
 
 	
 		//입력용]
-		public int insert(BuyproductDTO dto,CashDTO Cash) {
+		/*public int insert(BuyproductDTO dto,CashDTO Cash) {
 			int affected=0;
 			try {
 				conn.setAutoCommit(false);
 			String sql="INSERT INTO BP_BUYPRODUCT VALUES(BP_SEQ.NEXTVAL,SYSDATE,?,?,?,1)";
 			
-			/*String sql= "INSERT INTO CH_PAYMENT(CH_NO,CH_REGIDATE,ME_NO,BP_NO,CH_HAVECASH)" + 
+			String sql= "INSERT INTO CH_PAYMENT(CH_NO,CH_REGIDATE,ME_NO,BP_NO,CH_HAVECASH)" + 
 			"SELECT BP_SEQ.NEXTVAL,SYSDATE,2,?,?,1" + 
-			"FROM BP_BUYPRODUCT";*/
+			"FROM BP_BUYPRODUCT";
 			
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1,dto.getPd_no());
@@ -149,23 +148,55 @@ public List<BuyproductDTO> selectList(){
 			
 			return affected;
 		}/////////////////insert
+*/		
+	public int insert(BuyproductDTO dto) {
+		int affected=0;
+		try {
+
+		String sql="INSERT INTO BP_BUYPRODUCT VALUES(BP_SEQ.NEXTVAL,SYSDATE,?,?,?,1)";	
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1,dto.getPd_no());
+		    psmt.setString(2, dto.getMe_no());
+			psmt.setString(3,dto.getBp_price());
+			//psmt.setString(2,dto.getBp_buyway());
+			affected = psmt.executeUpdate();
 		
+		}catch (SQLException e) {e.printStackTrace();}
 		
-		public BuyproductDTO selectOne(String no) {
+		return affected;
+	}/////////////////insert
+	/*public CashDTO selectOne(String noString me_no) {
+		CashDTO dto=null;
+		String sql="SELECT ME_ID, SUM(CH_HAVECASH) FROM  CH_PAYMENT C join ME_MEMBER M ON C.ME_NO = M.ME_NO WHERE M.ME_NO=?  GROUP BY ME_ID ";
+		String sql="SELECT M.ME_ID,C.* FROM  CH_PAYMENT C join ME_MEMBER M ON C.ME_NO = M.ME_NO WHERE C.CH_NO=? ";	
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, no);
+			psmt.setString(2, me_no);
+			rs = psmt.executeQuery();
+			if(rs.next()){
+				dto = new CashDTO();
+			
+				dto.setMe_id(rs.getString(1));
+				dto.setCh_havecash(rs.getString(2));
+		
+				
+			}			
+		} catch (SQLException e) {e.printStackTrace();}		
+		return dto;
+	}/////////////////////selectOne()
+*/		public BuyproductDTO selectOne(String no) {
 			BuyproductDTO dto=null;
-			String sql="SELECT * FROM BP_BUYPRODUCT  WHERE BP_NO=?";
+			String sql="SELECT ME_ID,SUM(BP_PRICE),PD_NAME FROM  BP_BUYPRODUCT B join ME_MEMBER M ON B.ME_NO = M.ME_NO JOIN PD_PRODUCT P ON P.PD_NO = B.PD_NO WHERE M.ME_NO=?  GROUP BY ME_ID,PD_NAME ";
 			try {
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1, no);
 				rs = psmt.executeQuery();
 				if(rs.next()){
 					dto = new BuyproductDTO();
-					dto.setBp_no(rs.getString(1));
-					dto.setBp_regidate(rs.getDate(2));
-					dto.setPd_no(rs.getString(3));
-					dto.setMe_no(rs.getString(4));
-					dto.setBp_price(rs.getString(5));
-					dto.setBp_buyway(rs.getString(6));
+					dto.setMe_id(rs.getString(1));
+					dto.setBp_price(rs.getString(2));
+					dto.setPd_name(rs.getString(3));
 					
 				}			
 			} catch (SQLException e) {e.printStackTrace();}		

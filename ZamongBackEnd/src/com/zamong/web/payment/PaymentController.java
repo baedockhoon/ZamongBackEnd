@@ -11,6 +11,8 @@ import com.zamong.bp.service.BuyproductDTO;
 import com.zamong.bp.service.impl.BuyproductDAO;
 import com.zamong.ch.service.CashDTO;
 import com.zamong.ch.service.impl.CashDAO;
+import com.zamong.pd.service.ProductDTO;
+import com.zamong.pd.service.impl.ProductDAO;
 
 public class PaymentController extends HttpServlet {
 	String getStringValue(String value){
@@ -44,27 +46,35 @@ public class PaymentController extends HttpServlet {
 		 price  = getStringValue(req.getParameter("price"));
 		 price = price1;
 		 String pd_no = req.getParameter("pd_no");
+		 String pd_name = req.getParameter("pd_name");
+		 String pd_price = req.getParameter("pd_price");
 
 		//String buyway = req.getParameter("buyway");
 
 	String me_no = req.getParameter("me_no");
 		//price = req.getParameter("price");
-	CashDAO dao1 = new CashDAO(req.getServletContext());
-	CashDTO dto1 = new CashDTO();
+	/*CashDAO dao1 = new CashDAO(req.getServletContext());
+	CashDTO dto1 = new CashDTO();*/
+	ProductDAO dao1 = new ProductDAO(req.getServletContext());
+	ProductDTO dto1 = new ProductDTO();
 		BuyproductDAO dao = new BuyproductDAO(req.getServletContext());
 		BuyproductDTO dto = new BuyproductDTO();
 		dto.setBp_price(price);
 		dto.setMe_no(me_no);
 		dto.setPd_no(pd_no);
-		dto1.setMe_no(me_no);
-		dto1.setCh_havecash(price);
-		dao.insert(dto,dto1);
+	/*	dto1.setPd_name(pd_name);
+		dto1.setPd_no(pd_no);
+		dto1.setPd_price(pd_price);*/
+		/*dto1.setMe_no(me_no);
+		dto1.setCh_havecash(price);*/
+		dao.insert(dto);
 		
 		
 		req.setAttribute("dto",dto);
 		dao.close();
-		req.getRequestDispatcher("/ZAMONG/Cash/Write.do").forward(req, resp);
+		req.getRequestDispatcher("/ZAMONG/Payment/List.do").forward(req, resp);
 	/*req.getRequestDispatcher("/ZAMONG/MemberList.do").forward(req, resp);*/
+		/*req.getRequestDispatcher("/bbs/payment/PaymentList.jsp").forward(req, resp);*/
 	}
 	
 

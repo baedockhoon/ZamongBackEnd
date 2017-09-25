@@ -19,7 +19,10 @@
 <!-- 부가적인 테마(Bootstrap theme) -->
 <link rel="stylesheet"
 	href="<c:url value='/bootstrap/css/bootstrap-theme.min.css'/>">
+<%
+String pd_no = request.getParameter("pd_no");
 
+%>
 </head>
 <script>
 	function iswrite() {
@@ -38,7 +41,7 @@
 	 function goPopup(pd_no) {
 		// 주소검색을 수행할 팝업 페이지를 호출합니다.
 		// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
-		var pop = window.open("<c:url value='/bbs/payment/Payment.jsp?pd_no='/>"+pd_no, "pop",
+		var pop = window.open("<c:url value='/ZAMONG/payment/UserList.do?pd_no='/>"+pd_no, "pop",
 				"width=700,height=600, scrollbars=yes, resizable=yes");
 		}
 
@@ -48,7 +51,7 @@
 <body role="document">
 
 	<jsp:include page="/Template/Top.jsp" />
-
+	 <input type="hidden" name="pd_no" value="<%=pd_no%>"/>
 
 
 	<div class="container theme-showcase" role="main">
@@ -63,7 +66,7 @@
 				<li role="presentation" ><a
 					href="<c:url value='/ZAMONG/MemberList.do'/>">회원관리</a></li>
 				<li role="presentation" ><a
-					href="<c:url value='/ZAMONG/Cash/List.do'/>">결제내역</a></li>					
+					href="<c:url value='/ZAMONG/Payment/List.do'/>">결제내역</a></li>					
 				<li role="presentation"><a
 					href="<c:url value='/bbs/product/Producttest.jsp'/>">스트리밍</a></li>
 				<li role="presentation" class="active"><a
@@ -93,8 +96,9 @@
                 		<th colspan="4" style="text-align: center;"> ${item.pd_name } : 정기 결제   &nbsp;&nbsp;&nbsp; ${item.pd_price }원 
                 	
                 		</th>
-                		 <td align="center"><input type="button" value="구매" class="btn btn-sm btn-primary" onclick="goPopup(${item.pd_no});"/></td>  
-								
+                		 <td align="center"><input type="button" value="충전" class="btn btn-sm btn-primary" onclick="goPopup(${item.pd_no});"/></td>  
+									<td><a href='javascript:isDelete(${item.pd_no})'><button
+											type="button" class="btn btn-xs btn-primary">삭제</button></a></td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>
@@ -153,9 +157,9 @@
 	</div>
 
 	<script>
-function isDelete(mq_no){
+function isDelete(pd_no){
 	if(confirm("정말로 삭제 하시겠습니까?")){
-		location.href="ProblemDelete.do?mq_no="+mq_no;
+		location.href="<c:url value='/ZAMONG/Product/Delete.do'/>?pd_no="+pd_no;
 	}//////////////////			
 	
 }/////////////////////	

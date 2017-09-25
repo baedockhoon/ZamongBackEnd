@@ -28,16 +28,25 @@ public class ProductWriteController extends HttpServlet {
 	String no = req.getParameter("pd_no");
 		String pd_name = req.getParameter("pd_name");
 		String pd_price = req.getParameter("pd_price");
-
+String bp_no = req.getParameter("bp_no");
+String me_no = req.getParameter("me_no");
+String bp_buyway = req.getParameter("bp_buyway");
+String bp_price = req.getParameter("bp_price");
 
 
 
 		//price = req.getParameter("price");
 	ProductDAO dao = new ProductDAO(req.getServletContext());
 	ProductDTO dto = new ProductDTO();
+	BuyproductDAO dao1 = new BuyproductDAO(req.getServletContext());
+	BuyproductDTO dto1 = new BuyproductDTO();
 	dto.setPd_name(pd_name);
 	dto.setPd_price(pd_price);
-		
+	/*dto1.setBp_no(bp_no);
+	dto1.setBp_price(bp_price);
+	dto1.setMe_no(me_no);
+	dto1.setBp_buyway(bp_buyway);
+	dto1.setPd_no(no);*/
 		dao.insert(dto);
 	
 		dao.close();

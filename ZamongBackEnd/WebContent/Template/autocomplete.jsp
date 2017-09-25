@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ 
   <script>
+  	
   $( function() {
     var availableTags = [
       "자몽",
@@ -99,8 +102,7 @@
       "코스코",    
       "111",
       "메롱",
-      
-      
+            
     ];
     $( "#tags" ).autocomplete({
       source: availableTags

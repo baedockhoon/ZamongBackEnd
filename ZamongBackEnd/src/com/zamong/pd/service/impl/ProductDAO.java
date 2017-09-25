@@ -185,7 +185,30 @@ public List<ProductDTO> selectList(){
 			return affected;
 		}/////////////////insert
 		
-		
+	/*public int insert(ProductDTO dto,BuyproductDTO dto1) {
+		int affected=0;
+		try {
+			conn.setAutoCommit(false);
+			String sql="INSERT INTO PD_PRODUCT(PD_NO,PD_NAME,PD_PRICE,PD_REGIDATE) VALUES(PD_SEQ.NEXTVAL,?,?,SYSDATE)";		
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, dto.getPd_name());
+				psmt.setString(2, dto.getPd_price());
+				affected = psmt.executeUpdate();
+		if(affected == 1) {			
+			  sql="INSERT INTO BP_BUYPRODUCT VALUES(BP_SEQ.NEXTVAL,SYSDATE,?,?,?,?)";	
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1,dto1.getPd_no());
+			    psmt.setString(2, dto1.getMe_no());
+				psmt.setString(3,dto1.getBp_price());
+				psmt.setString(4,dto1.getBp_buyway());
+				affected = psmt.executeUpdate();
+				conn.commit();
+		}
+		}catch (SQLException e) {e.printStackTrace();}
+			
+		return affected;
+	}/////////////////insert
+*/		
 		public ProductDTO selectOne(String no) {
 			ProductDTO dto=null;
 			String sql="SELECT * FROM PD_PRODUCT WHERE PD_NO=?";
@@ -227,11 +250,19 @@ public List<ProductDTO> selectList(){
 		//삭제용
 		public int delete(String no) {
 			int affected=0;
-			String sql="DELETE NT_NOTICE WHERE NT_NO=?";		
 			try {
-				psmt = conn.prepareStatement(sql);
-				psmt.setString(1, no);			
-				affected = psmt.executeUpdate();			
+			//conn.setAutoCommit(false);
+			String	sql="DELETE PD_PRODUCT WHERE PD_NO=?";		
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, no);			
+			affected = psmt.executeUpdate();
+				/*if(affected == 1) {
+					conn.commit();
+					sql="DELETE BP_BUYPRODUCT WHERE BP_NO=?";	
+					psmt = conn.prepareStatement(sql);
+					psmt.setString(1,no);
+					affected = psmt.executeUpdate();
+				}*/
 			} catch (SQLException e) {e.printStackTrace();}		
 			return affected;
 		}

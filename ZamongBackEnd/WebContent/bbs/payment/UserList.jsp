@@ -29,15 +29,23 @@ String me_no = request.getParameter("me_no");
 <link rel="stylesheet"
 	href="<c:url value='/bootstrap/css/bootstrap-theme.min.css'/>">
 	<script>
-	function goSubmit() {
+/* 	function goSubmit() {
 	    window.opener.name = "parentPage"; // 부모창의 이름 설정
 	    document.myForm.target = "parentPage"; // 타켓을 부모창으로 설정 
 	    document.myForm.action = "<c:url value='/ZAMONG/Payment/Write.do'/>";
 	    document.myForm.submit();
 	    alert("충전성공");
-	   
+	    self.close();
 	}
-	
+	 */
+	 function goPopup(pd_no, me_no) {
+			// 주소검색을 수행할 팝업 페이지를 호출합니다.
+			// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+			var pop = window.open("<c:url value='/bbs/payment/Payment.jsp?pd_no="+pd_no+"&me_no="+me_no+"'/>", "pop",
+					"width=700,height=600, scrollbars=yes, resizable=yes");
+
+			
+		}
 	</script>  
 </head>
 
@@ -46,7 +54,7 @@ String me_no = request.getParameter("me_no");
 
 
 		<div class="txt_title type01">
-			<h1>자몽캐쉬 충전</h1>
+			<h1>구매 내역</h1>
 			<p class="txt_title_info">자몽이용권, 곡, 뮤직비디오 등 결제 시 사용가능합니다.</p>
 		</div>
 
@@ -55,62 +63,44 @@ String me_no = request.getParameter("me_no");
 	</div>
 
 
-	<div class="popup_cntt box_scroll">
-	  <%--   <form action="${pageContext.request.contextPath}/ZAMONG/Payment/Write.do" method="post">     --%>
-<form name="myForm" method="post">    
+	<div class="popup_cntt box_scroll">	
 	 <input type="hidden" name="pd_no" value="<%=pd_no%>"/>
 	 <input type="hidden" name="me_no" value="<%=me_no%>"/>
 		<div class="tbl_style">
-		
-			<table border="1" style="width: 100%" class="board_style03">
-				<caption>이 표는 자몽캐쉬 이벤트성 포인트 충전 결제 리스트로 관리자에서  최종 포인트금액, 결제방법 내용을 포함하고 있습니다.</caption>
-				<colgroup>
-					<col style="width: 119px; *width: 103px;">
-					<col style="width: 160px; *width: 144px;">
-					<col>
-				</colgroup>
-				<tbody>
-					 
-					<tr>
-						<th scope="row" class="bg_gray">충전금액</th>
-						<!--141021 수정 lyr-->
-				 <td style="vertical-align: middle"> <input type="radio"
-							name="chargeRates" class="input_radio" value="selectRate"
-							checked="checked">
-							<input type="hidden" value="3" name="pd_no"/>
-                             <select id="anwser" name="price" title="결제금액" onchange="javascript:selChange(this.value);">
-                                <option value="">결제금액 선택</option>
-                                 
-			                    <option value="sel">직접입력</option>
-
-								<option value="1000">1,000 원</option>
-
-								<option value="2000">2,000 원</option>
-
-								<option value="3000">3,000 원</option>
-
-								<option value="4000">4,000 원</option>
-
-								<option value="5000">5,000 원</option>
-
-								<option value="6000">6,000 원</option>
-
-								<option value="7000">7,000 원</option>
-
-								<option value="8000">8,000 원</option>
-
-								<option value="9000">9,000 원</option>
-
-								<option value="10000">10,000 원</option>
+				
+				<table class="table table-striped">
+				
+					<thead>
+						<tr>
+							<th>번호</th>
+							<th>이름</th>
+							<th>아이디</th>
+						
+						</tr>
+					</thead>
+						<c:choose>
+							<c:when test="${empty list }">
+								<tr bgcolor="white" align="center">
+									<td colspan="6">등록된 자료가 없어요</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="item" items="${list}" varStatus="loop">
+									<tr bgcolor="white" align="center">
+										<td>${item.me_no}</td>
+										<td>${item.me_name}</td>
+										<td>${item.me_id}</td>
+									
 								
-								<option value="11000">11,000 원</option>
-						</select> 원</td> 
-							<td><span class="boxEmailEndInput"><input type="text" title="결제 도메인 입력란" name="price1"  value="" />원</span></td>
-			
-					</tr>
-					
-				</tbody>
-			</table>
+				
+								
+										<!-- <td><a class="btn btn-sm btn-primary" href="javascript:iswrite()">충전</a><td> -->
+									  <td><input type="button" value="구매" class="btn btn-sm btn-primary" onclick="goPopup(${pd_no},${item.me_no});"/></td>  	
+									</tr>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+				</table>
 					
 			
 			<div class="popup_cntt box_scroll" style="text-align: center;">
@@ -119,7 +109,7 @@ String me_no = request.getParameter("me_no");
 			</div>
 
 		</div>
-	 	</form> 
+	 	 
 	</div>
 <script>
 function selChange(val){

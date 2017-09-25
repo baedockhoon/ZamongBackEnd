@@ -16,6 +16,7 @@ import javax.servlet.ServletContext;
 import javax.sql.DataSource;
 
 import com.zamong.nt.service.NotiDataDTO;
+import com.zamong.se.service.SearchDTO;
 
 
 
@@ -69,7 +70,9 @@ public class NotiDataDAO {
 			sql+=" AND "+map.get("searchColumn")+ " LIKE " + searchWord;
 		}
 		sql+=" ORDER BY NT_NO DESC) T) WHERE R BETWEEN ? AND ?";
-
+		
+		/////////////////insert
+		
 		try {
 			psmt = conn.prepareStatement(sql);
 

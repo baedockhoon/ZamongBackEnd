@@ -1,3 +1,4 @@
+<%@page import="oracle.net.aso.r"%>
 <%@page import="com.zamong.me.service.MemberDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashMap"%>
@@ -32,7 +33,8 @@ function goPopup(me_no) {
 
 	
 }
-</script> 
+</script>
+<% String me_no = request.getParameter("me_no"); %> 
 <script>
 	function iswrite() {
 		
@@ -65,7 +67,7 @@ function isList() {
 				<li role="presentation" class="active"><a
 					href="<c:url value='/ZAMONG/MemberList.do'/>">회원관리</a></li>
 				<li role="presentation" ><a
-					href="<c:url value='/ZAMONG/Cash/List.do'/>">결제내역</a></li>
+					href="<c:url value='/ZAMONG/Payment/List.do'/>">결제내역</a></li>
 					
 			<li role="presentation"><a
 					href="<c:url value='/bbs/product/Producttest.jsp'/>">스트리밍</a></li>
