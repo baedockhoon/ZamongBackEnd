@@ -64,6 +64,7 @@ public class MusicVideoDAO {
 					dto.setMv_contents(rs.getString(6));
 					dto.setMv_link(rs.getString(7));
 					dto.setMv_hitcount(rs.getString(8));
+					dto.setMv_image(rs.getString(9));
 					list.add(dto);
 					
 					/*	MV_NO
@@ -83,7 +84,7 @@ public class MusicVideoDAO {
 		//입력용]
 		public int insert(MusicVideoDTO dto) {
 			int affected=0;
-			String sql="INSERT INTO MV_MUSICVIDEO VALUES(MV_MUSICVIDEO_SEQ.NEXTVAL,SYSDATE,?,?,?,?,?,0)";
+			String sql="INSERT INTO MV_MUSICVIDEO VALUES(MV_MUSICVIDEO_SEQ.NEXTVAL,SYSDATE,?,?,?,?,?,0,?)";
 			try {
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1, dto.getAt_no());
@@ -91,7 +92,19 @@ public class MusicVideoDAO {
 				psmt.setString(3, dto.getMv_title());
 				psmt.setString(4, dto.getMv_contents());
 				psmt.setString(5, dto.getMv_link());
+				psmt.setString(6, dto.getMv_image());
 				affected = psmt.executeUpdate();
+				
+				/*MV_NO      -nextval
+				MV_REGIDATE  -sysdate
+				AT_NO   ?
+				SS_NO   ?
+				MV_TITLE ?
+				MV_CONTENTS ?
+				MV_LINK ?
+				MV_HITCOUNT
+				MV_IMAGE ?  
+				*/
 				
 			} catch (SQLException e) {e.printStackTrace();}
 			
@@ -127,7 +140,7 @@ public class MusicVideoDAO {
 				e.printStackTrace();
 			}
 			
-			sql="select m.mv_no,m.mv_regidate,a.at_name,s.ss_title,m.mv_title,m.mv_contents,m.mv_link,m.mv_hitcount "
+			sql="select m.mv_no,m.mv_regidate,a.at_name,s.ss_title,m.mv_title,m.mv_contents,m.mv_link,m.mv_hitcount,m.mv_image "
 					+ "from mv_musicvideo m join at_artist a on m.at_no=a.at_no join ss_soundsource s on m.ss_no=s.ss_no where m.mv_no=?";
 			try {
 				psmt = conn.prepareStatement(sql);
@@ -143,6 +156,7 @@ public class MusicVideoDAO {
 					dto.setMv_contents(rs.getString(6));
 					dto.setMv_link(rs.getString(7));
 					dto.setMv_hitcount(rs.getString(8));
+					dto.setMv_image(rs.getString(9));
 				}			
 			} catch (SQLException e) {e.printStackTrace();}		
 			return dto;
@@ -151,7 +165,7 @@ public class MusicVideoDAO {
 		//수정용]
 		public int update(MusicVideoDTO dto) {
 			int affected=0;
-			String sql="UPDATE MV_MUSICVIDEO SET AT_NO=?,SS_NO=?,MV_TITLE=?,MV_CONTENTS=?,MV_LINK=? WHERE MV_NO=?";
+			String sql="UPDATE MV_MUSICVIDEO SET AT_NO=?,SS_NO=?,MV_TITLE=?,MV_CONTENTS=?,MV_LINK=?,MV_IMAGE=? WHERE MV_NO=?";
 			try {
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1, dto.getAt_no());
@@ -159,10 +173,9 @@ public class MusicVideoDAO {
 				psmt.setString(3, dto.getMv_title());
 				psmt.setString(4, dto.getMv_contents());
 				psmt.setString(5, dto.getMv_link());
-				psmt.setString(6, dto.getMv_no());
-
+				psmt.setString(6, dto.getMv_image());
+				psmt.setString(7, dto.getMv_no());
 				affected = psmt.executeUpdate();
-				
 			} catch (SQLException e) {e.printStackTrace();}
 			
 			return affected;
@@ -200,8 +213,8 @@ public class MusicVideoDAO {
 							rs.getString(5),
 							rs.getString(6),
 							rs.getString(7),
-							rs.getString(8));
-					//dto.setName(rs.getString(7));
+							rs.getString(8),
+							rs.getString(9));
 					records.add(dto);
 				}
 			} catch (SQLException e) {			
@@ -237,7 +250,7 @@ public class MusicVideoDAO {
 				psmt.setString(1, no);
 				rs = psmt.executeQuery();
 				if (rs.next()) {// 이전글 존재
-					map.put("PREV", new MusicVideoDTO(rs.getString(1),null,null,null,rs.getString(2),null,null,null));//MV_NO 및 MV_TITLE만 가져오기 
+					map.put("PREV", new MusicVideoDTO(rs.getString(1),null,null,null,rs.getString(2),null,null,null,null));//MV_NO 및 MV_TITLE만 가져오기 
 
 				}
 				// 다음글 구하기
@@ -246,7 +259,7 @@ public class MusicVideoDAO {
 				psmt.setString(1, no);
 				rs = psmt.executeQuery();
 				if (rs.next()) {// 다음글 존재
-					map.put("NEXT", new MusicVideoDTO(rs.getString(1),null,null,null,rs.getString(2),null,null,null));
+					map.put("NEXT", new MusicVideoDTO(rs.getString(1),null,null,null,rs.getString(2),null,null,null,null));
 				}
 
 			} catch (SQLException e) {

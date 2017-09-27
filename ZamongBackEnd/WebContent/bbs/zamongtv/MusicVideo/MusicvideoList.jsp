@@ -75,7 +75,7 @@
                         <th>아티스트번호</th>
                         <th>음원번호</th>
                         <th>뮤직비디오 제목 </th>
-                        <!-- <th>링크 </th> -->
+                        <!-- <th>영상이미지</th> -->
                         <!-- <th>뮤비 설명</th> -->
                         <th>조회수</th>
                         <th>게시일</th>
@@ -95,8 +95,8 @@
                           <td>${item.mv_no}</td>					                             
                           <td>${item.at_no}</td>
                           <td>${item.ss_no}</td>
-                          <td align="left"><a href='<c:url value="/ZAMONG/MusicVideoView.do?mv_no=${item.mv_no}"/>'>${item.mv_title}</a></td>
-                          <%-- <td>${item.mv_link}</td> --%>
+                          <td align="left"><a href='<c:url value="/ZAMONG/MusicVideoView.do?mv_no=${item.mv_no}"/>'><img width="160" height="120" src="${item.mv_image}"/>&nbsp;${item.mv_title}</a></td>
+                          <!-- <td><img width="160" height="120" src="${item.mv_image}"/></td> -->
                           <%-- <td>${item.mv_contents}</td> --%>
                           <td>${item.mv_hitcount}</td>
                           <td>${item.mv_regidate}</td>

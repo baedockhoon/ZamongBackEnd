@@ -18,14 +18,21 @@
 	<!-- 부가적인 테마(Bootstrap theme) -->
 	<link rel="stylesheet" href="<c:url value='/bootstrap/css/bootstrap-theme.min.css'/>">
 	
-	<script>
-		function cancel() {
-			if(confirm("취소시 내용을 모두 잃을 수 있습니다. 정말로 취소 하시겠습니까?")){
+	<script language="javascript">
+ 		function FindArtistPopup() {
+    	    window.open("${pageContext.request.contextPath}/bbs/zamongtv/FindArtistPopup.jsp", "_blank", "toolbar=yes,scrollbars=yes,resizable=no,location=no,top=500,left=500,width=400,height=400");
+    	}
+ 		
+ 		function FindSoundSourcePopup() {
+    	    window.open("${pageContext.request.contextPath}/bbs/zamongtv/FindSoundSourcePopup.jsp", "_blank", "toolbar=yes,scrollbars=yes,resizable=no,location=no,top=500,left=500,width=400,height=400");
+    	}
+ 		
+ 		function cancel(){
+ 			if(confirm("취소시 내용을 모두 잃을 수 있습니다. 정말로 취소 하시겠습니까?")){
 				history.back();
 			}
-		}
-		
-	</script>
+ 		}
+</script>
   </head>
 
   <body role="document">
@@ -52,13 +59,13 @@
 					<tr>
               			<td>아티스트</td>
               			<td>
-              			<input type="text" name="at_no" style="width:10%" value="${dto.at_no }"/><button type="button" class="btn btn-default" id="assign">아티스트 찾기</button> 버튼클릭 후 아티스트 선택
+              			<input id="p_txt" type="text"  name="artist" style="width:10%" required="required"/><a href="javascript:FindArtistPopup();"><button type="button" class="btn btn-default" id="assign">아티스트 찾기</button></a> ${artistnull }
               			</td>
 		            </tr>
 		            <tr>
               			<td>음원</td>
               			<td>
-              			<input type="text" name="ss_no" style="width:10%" value="${dto.ss_no }"/><button type="button" class="btn btn-default" id="assign">음원 찾기</button> 버튼클릭 후 음원 선택
+              			<input id="ss_txt" type="text"  name="soundSource" style="width:10%" required="required"/><a href="javascript:FindSoundSourcePopup();"><button type="button" class="btn btn-default" id="assign">음원 찾기</button></a> ${artistnull }
               			</td>
 		            </tr>
 					<tr bgcolor="white">

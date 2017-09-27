@@ -49,6 +49,15 @@ public class MusicVideoWriteController extends HttpServlet {
 		String title = req.getParameter("title");
 		String contents = req.getParameter("contents");
 		String link = req.getParameter("link");
+		String image="";
+		
+		if(link.contains("<iframe") && link.contains("https://www.youtube.com/embed/")) {
+			int startNum=link.indexOf("https://www.youtube.com/embed/")+30;
+			image ="https://img.youtube.com/vi/"+link.substring(startNum,startNum+11)+"/0.jpg";
+		}
+		else {
+			image ="https://img.youtube.com/vi/0/0.jpg";
+		}
 		
 		//3]데이타를 전달할 DTO객체 생성및 데이타 설정
 		MusicVideoDAO dao = new MusicVideoDAO(req.getServletContext());
@@ -58,6 +67,7 @@ public class MusicVideoWriteController extends HttpServlet {
 		dto.setMv_title(title);
 		dto.setMv_contents(contents);
 		dto.setMv_link(link);
+		dto.setMv_image(image);
 		//4]CRUD작업용 DAO계열 객체 생성
 		int sucorfail;//DB입력 성공시에는 1,실패시 0
 		sucorfail = dao.insert(dto);

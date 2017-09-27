@@ -34,8 +34,9 @@
 				<li><a href="<c:url value='/ZAMONG/Product/List.do'/>">상품테이블</a></li>
 				</ul>
 				</li>
+				<li><a href="<c:url value='/ZAMONG/Artist/List.do'/>">아티스트</a></li>
 				<li class="dropdown"><a
-					href="<c:url value='/ZAMONG/Daily.do'/>" class="dropdown-toggle"
+					href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-expanded="false">음원관리<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu" role="menu">
@@ -43,7 +44,7 @@
 						<li><a href="<c:url value='/ZAMONG/Daily.do'/>">TOP100</a></li>
 						<li><a href="<c:url value='/ZAMONG/times2010.do'/>">시대별 차트</a></li>
 					</ul></li>
-				<li><a href="<c:url value='/ZAMONG/Artist/List.do'/>">아티스트</a></li>
+				
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-expanded="false">자몽TV<span
 						class="caret"></span></a>

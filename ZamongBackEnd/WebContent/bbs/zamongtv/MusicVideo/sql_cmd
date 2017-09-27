@@ -1,6 +1,9 @@
 DROP TABLE MV_MUSICVIDEO CASCADE CONSTRAINTS;
 
 
+alter table mv_musicvideo add(mv_image varchar(100));
+
+
 CREATE TABLE MV_MUSICVIDEO
 (
 	MV_NO number NOT NULL,

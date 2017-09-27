@@ -44,6 +44,9 @@ public class MusicVideoEditController extends HttpServlet{
 		String mv_contents = req.getParameter("mv_contents");
 		String mv_link = req.getParameter("mv_link");
 		
+		int startNum=mv_link.indexOf("https://www.youtube.com/embed/")+30;
+		String image ="https://img.youtube.com/vi/"+mv_link.substring(startNum,startNum+11)+"/0.jpg";
+		
 		//데이타베이스 CRUD작업과 관련된 모델 호출]
 			MusicVideoDAO dao = new MusicVideoDAO(req.getServletContext());
 			MusicVideoDTO dto = new MusicVideoDTO();
@@ -53,6 +56,7 @@ public class MusicVideoEditController extends HttpServlet{
 			dto.setMv_title(mv_title);
 			dto.setMv_contents(mv_contents);
 			dto.setMv_link(mv_link);
+			dto.setMv_image(image);
 			
 			sucorfail=dao.update(dto);
 
