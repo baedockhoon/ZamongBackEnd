@@ -13,6 +13,8 @@ import com.zamong.ch.service.CashDTO;
 import com.zamong.ch.service.impl.CashDAO;
 import com.zamong.pd.service.ProductDTO;
 import com.zamong.pd.service.impl.ProductDAO;
+import com.zamong.st.service.StreamingDTO;
+import com.zamong.st.service.impl.StreamingDAO;
 
 public class PaymentController extends HttpServlet {
 	String getStringValue(String value){
@@ -39,7 +41,6 @@ public class PaymentController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");	
-	String no = req.getParameter("bp_no");
 		String price;
 		String price1;
 		 price1= req.getParameter("price1");
@@ -53,25 +54,27 @@ public class PaymentController extends HttpServlet {
 
 	String me_no = req.getParameter("me_no");
 		//price = req.getParameter("price");
-	/*CashDAO dao1 = new CashDAO(req.getServletContext());
-	CashDTO dto1 = new CashDTO();*/
-	ProductDAO dao1 = new ProductDAO(req.getServletContext());
-	ProductDTO dto1 = new ProductDTO();
+	CashDAO cash = new CashDAO(req.getServletContext());
+	CashDTO cash1 = new CashDTO();
+	StreamingDAO dao1 = new StreamingDAO(req.getServletContext());
+	StreamingDTO dto1 = new StreamingDTO();
 		BuyproductDAO dao = new BuyproductDAO(req.getServletContext());
 		BuyproductDTO dto = new BuyproductDTO();
 		dto.setBp_price(price);
 		dto.setMe_no(me_no);
 		dto.setPd_no(pd_no);
+		dto1.setMe_no(me_no);
 	/*	dto1.setPd_name(pd_name);
 		dto1.setPd_no(pd_no);
 		dto1.setPd_price(pd_price);*/
-		/*dto1.setMe_no(me_no);
-		dto1.setCh_havecash(price);*/
-		dao.insert(dto);
+		cash1.setMe_no(me_no);
+		cash1.setCh_havecash(price);
+		dao.insert(dto,dto1,cash1);
 		
 		
 		req.setAttribute("dto",dto);
 		dao.close();
+	/*	req.getRequestDispatcher("/ZAMONG/Streaming/Write.do").forward(req, resp);*/
 		req.getRequestDispatcher("/ZAMONG/Payment/List.do").forward(req, resp);
 	/*req.getRequestDispatcher("/ZAMONG/MemberList.do").forward(req, resp);*/
 		/*req.getRequestDispatcher("/bbs/payment/PaymentList.jsp").forward(req, resp);*/

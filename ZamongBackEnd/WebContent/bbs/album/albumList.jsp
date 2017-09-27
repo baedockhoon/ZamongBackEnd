@@ -169,7 +169,8 @@
 										</a>
 									</td>
 									<td>${empty ssItem.ss_likecount ? "0" : ssItem.ss_likecount }</td>
-
+<td><a href='javascript:isDelete(${ssItem.ss_no })'><button
+												type="button" class="btn btn-xs btn-primary">음원</button></a></td>
 								</tr>
 							</c:forEach>
 						</c:otherwise>
@@ -198,18 +199,19 @@
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<!-- <script>
-		function isDelete(nt_no) {
-			if (confirm("정말로 삭제 할래?")) {
-				location.href = "NoticeDelete.do?nt_no=" + nt_no;
+	 <script>
+		function isDelete(ss_no) {
+			if (confirm("음원을 구매 하시겠습니까?")) {
+		var pop = window.open("<c:url value='/ZAMONG/payment/UserList1.do?ss_no='/>"+ss_no, "pop",
+		"width=700,height=600, scrollbars=yes, resizable=yes");
 			}//////////////////			
 
 		}/////////////////////	
-		function isabc() {
+		/* function isabc() {
 			alert($("form").get(0));
 			$("form").submit();
-		}
-	</script> -->
+		} */
+	</script>
 	<script type="text/javascript">
 		$(function(){
 			//alert($(".page-header li:eq(0)").html());

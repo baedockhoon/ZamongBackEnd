@@ -81,8 +81,8 @@ function goPopup(bp_no,me_no) {
 				<li role="presentation" class="active"><a
 					href="<c:url value='/ZAMONG/Payment/List.do'/>">결제내역</a></li>
 					
-			<li role="presentation"><a
-					href="<c:url value='/bbs/product/Producttest.jsp'/>">스트리밍</a></li>
+		<li role="presentation" ><a
+					href="<c:url value='/ZAMONG/Streaming/List.do'/>">스트리밍</a></li>
 				<li role="presentation"><a
 					href="<c:url value='/ZAMONG/Product/List.do'/>">상품</a></li>
 			</ul>
@@ -129,13 +129,13 @@ function goPopup(bp_no,me_no) {
 						<c:forEach var="item" items="${list}" varStatus="loop">
 								<input type="hidden" name="me_no" value="${item.me_no }" />
 							<tr bgcolor="white" align="center">
-								<td>${item.bp_no}</td>
+								<td align="left">${item.bp_no}</td>
 			<%-- 				 <td><a
 									href='<c:url value="/ZAMONG/Payment/View.do?bp_no=${item.bp_no}&me_no=${item.me_no }&nowPage=${nowPage }"/>'>${item.me_id}</a></td>	 --%>	
-									<td onclick="goPopup(${item.bp_no},${item.me_no});"><a>${item.me_id}</a></td>				 
-								<td>${item.bp_regidate}</td>	
-								<td>${item.pd_name }</td>						
-								<td>${item.bp_price}원</td>
+									<td align="left" onclick="goPopup(${item.bp_no},${item.me_no});"><a>${item.me_id}</a></td>				 
+								<td align="left">${item.bp_regidate}</td>	
+								<td align="left">${item.pd_name }</td>						
+								<td align="left">${item.bp_price}원</td>
 								
 
 								<%-- <td><a href='javascript:isDelete(${item.nt_no})'><button

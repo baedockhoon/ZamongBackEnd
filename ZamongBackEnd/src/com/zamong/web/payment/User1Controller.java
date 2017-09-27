@@ -18,7 +18,7 @@ import com.zamong.me.service.impl.MemberDAO;
 
 import model.PagingUtil;
 
-public class UserController extends HttpServlet {
+public class User1Controller extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doGet(req, resp);
@@ -76,7 +76,7 @@ public class UserController extends HttpServlet {
 		
 		
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/bbs/payment/UserList.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/bbs/payment/UserList1.jsp");
 
 		dispatcher.forward(req, resp);
 

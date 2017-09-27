@@ -36,8 +36,9 @@ public class CashViewController extends HttpServlet{
 		//5]필요한 값 리퀘스트 영역에 저장
 		req.setAttribute("dto", dto);
 		req.setAttribute("nowPage", nowPage);
+		req.setAttribute("me_no", me_no);
 		//6]뷰 선택후 포워딩                
-		req.getRequestDispatcher("/bbs/membermgmt/MemberPointView.jsp").forward(req, resp);
+		req.getRequestDispatcher("/bbs/membermgmt/CashPoint.jsp").forward(req, resp);
 		
 		
 		

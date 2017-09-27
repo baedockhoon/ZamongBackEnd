@@ -9,7 +9,7 @@
 <%
 String pd_no = request.getParameter("pd_no");
 String me_no = request.getParameter("me_no");
-
+String bp_no = request.getParameter("bp_no");
 
 ProductDAO dao = new ProductDAO(application);
 //조회수 업데이트
@@ -71,6 +71,7 @@ dao.close();
 	<div class="popup_cntt box_scroll">
 	  <%--   <form action="${pageContext.request.contextPath}/ZAMONG/Payment/Write.do" method="post">     --%>
 <form name="myForm" method="post">    
+ <input type="hidden" name="bp_no" value="<%=bp_no%>"/> 
 	 <input type="hidden" name="pd_no" value="<%=pd_no%>"/>
 	 <input type="hidden" name="me_no" value="<%=me_no%>"/>
 		<div class="tbl_style">

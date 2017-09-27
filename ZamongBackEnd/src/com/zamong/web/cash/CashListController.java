@@ -88,7 +88,7 @@ public class CashListController extends HttpServlet {
 		
 		//5]필요한 값 리퀘스트 영역에 저장
 		//6]뷰 선택후 포워딩                
-		req.getRequestDispatcher("/bbs/membermgmt/MemberPoint.jsp").forward(req, resp);
+		req.getRequestDispatcher("/bbs/membermgmt/CashPoint.jsp").forward(req, resp);
 		
 	}/////////////////////service()
 	

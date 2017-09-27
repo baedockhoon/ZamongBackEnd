@@ -90,7 +90,7 @@ public class PaymentListController extends HttpServlet {
 		List<BuyproductDTO> list= dao.selectList(map);
 		
 		//페이징용 문자열 생성
-		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, req.getServletContext().getContextPath()+"/ZAMONG/Cash/List.do?");
+		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, req.getServletContext().getContextPath()+"/ZAMONG/Payment/List.do?");
 		
 		
 		//라]결과값이 있으면 리퀘스트 영역에 저장
@@ -101,6 +101,7 @@ public class PaymentListController extends HttpServlet {
 		req.setAttribute("totalRecordCount", totalRecordCount);
 		req.setAttribute("pageSize", pageSize);
 		req.setAttribute("nowPage", nowPage);
+		req.setAttribute("bp_no",no);
 		dao.close();
 	
 		dao.close();

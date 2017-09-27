@@ -550,7 +550,7 @@
   </servlet-mapping>
  
  
- <!-- NoticeList -->
+ <!-- 공지사항 -->
  
   <servlet>
     <servlet-name>ZamongNoticeList</servlet-name>
@@ -561,7 +561,7 @@
     <url-pattern>/ZAMONG/NoticeList.do</url-pattern>
   </servlet-mapping>
 
-<!-- NoticeWrite -->
+
 
   <servlet>
     <servlet-name>ZamongNoticeWrite</servlet-name>
@@ -572,7 +572,7 @@
     <url-pattern>/ZAMONG/NoticeWrite.do</url-pattern>
   </servlet-mapping>
  
- <!-- NoticeView -->
+
 
   <servlet>
     <servlet-name>ZamongNoticeView</servlet-name>
@@ -583,7 +583,7 @@
     <url-pattern>/ZAMONG/NoticeView.do</url-pattern>
   </servlet-mapping>
  
- <!-- NoticeEdit -->
+
 
   <servlet>
     <servlet-name>ZamongNoticeEdit</servlet-name>
@@ -595,7 +595,7 @@
   </servlet-mapping>
  
  
-  <!-- NoticeDelete -->
+
 
  
   <servlet>
@@ -606,8 +606,9 @@
     <servlet-name>ZamongNoticeDelete</servlet-name>
     <url-pattern>/ZAMONG/NoticeDelete.do</url-pattern>
   </servlet-mapping>
- 
- <!--ProblemList  -->
+  <!-- 공지사항끝 -->
+  
+ <!--문의사항  -->
   <servlet>
     <servlet-name>ZamongProblemDownload</servlet-name>
     <servlet-class>com.zamong.web.problem.DownloadController</servlet-class>
@@ -660,7 +661,9 @@
     <servlet-name>ZamongProblemEdit</servlet-name>
     <url-pattern>/ZAMONG/ProblemEdit.do</url-pattern>
   </servlet-mapping>
- <!--UserQuestionList  -->
+  <!-- 문의사항 끝 -->
+  
+ <!--자주하는질문  -->
     <servlet>
     <servlet-name>ZamongUserQuestionList</servlet-name>
     <servlet-class>com.zamong.web.userquestion.UserQuestionListController</servlet-class>
@@ -706,7 +709,9 @@
     <servlet-name>ZamongUserQuestionWrite</servlet-name>
     <url-pattern>/ZAMONG/UserQuestionWrite.do</url-pattern>
   </servlet-mapping>
+<!-- 자주하는질문끝  -->
 
+<!-- 결제 -->
 <servlet>
 		<servlet-name>ZamongPaymentWrite</servlet-name>
 		<servlet-class>com.zamong.web.payment.PaymentController</servlet-class>
@@ -734,8 +739,9 @@
 		<servlet-name>ZamongPaymentView</servlet-name>
 		<url-pattern>/ZAMONG/Payment/View.do</url-pattern>
 	</servlet-mapping>
-	
+	<!-- 결제 끝 -->
 
+<!-- 캐시포인트 -->
 <servlet>
 		<servlet-name>ZamongCashWrite</servlet-name>
 		<servlet-class>com.zamong.web.cash.CashWriteController</servlet-class>
@@ -762,7 +768,10 @@
 		<servlet-name>ZamongCashView</servlet-name>
 		<url-pattern>/ZAMONG/Cash/View.do</url-pattern>
 	</servlet-mapping>
-
+	<!-- 캐시포인트끝 -->
+	
+	
+	<!-- 상품 -->
 <servlet>
 		<servlet-name>ZamongProductList</servlet-name>
 		<servlet-class>com.zamong.web.product.ProductListController</servlet-class>
@@ -798,7 +807,36 @@
 		<servlet-name>ZamongUserList</servlet-name>
 		<url-pattern>/ZAMONG/payment/UserList.do</url-pattern>
 	</servlet-mapping>
-
+	
+	<servlet>
+		<servlet-name>ZamongUserList1</servlet-name>
+		<servlet-class>com.zamong.web.payment.User1Controller</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ZamongUserList1</servlet-name>
+		<url-pattern>/ZAMONG/payment/UserList1.do</url-pattern>
+	</servlet-mapping>
+	<!-- 상품 끝 -->
+	
+	<!-- 스트리밍 -->
+	<servlet>
+		<servlet-name>ZamongStreamingList</servlet-name>
+		<servlet-class>com.zamong.web.streaming.StreamingListController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ZamongStreamingList</servlet-name>
+		<url-pattern>/ZAMONG/Streaming/List.do</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>ZamongStreamingWrite</servlet-name>
+		<servlet-class>com.zamong.web.streaming.StreamingWriteController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ZamongStreamingWrite</servlet-name>
+		<url-pattern>/ZAMONG/Streaming/Write.do</url-pattern>
+	</servlet-mapping>
+	
 <jsp-config>
 							<taglib>
 								<taglib-uri>										

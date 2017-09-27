@@ -15,7 +15,7 @@
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <link rel="icon" href="<c:url value='/Images/zamonglogo.gif'/>" />
 
-<title>공지사항</title>
+<title>결제</title>
 <!-- Bootstrap core CSS -->
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet"

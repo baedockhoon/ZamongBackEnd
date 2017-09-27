@@ -1,4 +1,4 @@
-package com.zamong.bp.service.impl;
+package com.zamong.st.service.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +16,6 @@ import javax.servlet.ServletContext;
 import javax.sql.DataSource;
 
 import com.zamong.bp.service.BuyproductDTO;
-import com.zamong.ch.service.CashDTO;
 import com.zamong.nt.service.NotiDataDTO;
 import com.zamong.pd.service.ProductDTO;
 import com.zamong.st.service.StreamingDTO;
@@ -25,14 +24,13 @@ import com.zamong.st.service.StreamingDTO;
 
 
 
-
-public class BuyproductDAO {
+public class StreamingDAO {
 
 	private Connection conn; 
 	private PreparedStatement psmt;
 	private ResultSet rs;
 	//톰캣이 만들어 놓은 커넥션을 커넥션 풀에서 가져다 쓰기]
-	public BuyproductDAO(ServletContext context){
+	public StreamingDAO(ServletContext context){
 		try {
 			Context ctx = new InitialContext();
 			DataSource source=(DataSource)ctx.lookup(context.getInitParameter("TOMCAT_JNDI_ROOT")+"/jdbc/zamong");
@@ -53,30 +51,41 @@ public class BuyproductDAO {
 			
 		} catch (Exception e) {e.printStackTrace();}
 	}/////////////////close()
-	public List<BuyproductDTO> selectList(Map<String,Object> map){
+public List<StreamingDTO> selectList(){
 		
-		List<BuyproductDTO> records = new Vector<BuyproductDTO>();
+		List<StreamingDTO> records = new Vector<StreamingDTO>();
 		
 		//페이징 미 적용
-		//String sql="SELECT B.*,M.NAME FROM BBS B JOIN MEMBER M ON B.ID=M.ID ORDER BY NO DESC";
+	/*	String sql="SELECT M.ME_ID,ST_NO,TO_CHAR(SYSDATE,'YYYY-MM-DD')AS ST_START_DATE,"
+				+ "TO_CHAR(ADD_MONTHS(SYSDATE,+1),'YYYY-MM-DD')AS ST_END_DATE"
+				+ ",BP_NO,M.ME_NO FROM ST_STREAMING S JOIN ME_MEMBER M ON S.ME_NO = M.ME_NO "
+				+ " JOIN BP_BUY "
+				+ " ORDER BY ST_NO DESC ";*/
+		String sql="SELECT M.ME_ID,ST_NO,TO_CHAR(ST_START_DATE,'YYYY-MM-DD')AS ST_START_DATE, TO_CHAR(ST_END_DATE,'YYYY-MM-DD')AS ST_END_DATE, S.BP_NO,M.ME_NO, P.PD_NAME FROM ST_STREAMING S JOIN ME_MEMBER M ON S.ME_NO = M.ME_NO " + 
+				"JOIN (SELECT BP_NO, PD_NAME FROM BP_BUYPRODUCT B JOIN PD_PRODUCT P ON B.PD_NO = P.PD_NO) P ON S.BP_NO = P.BP_NO " + 
+				"ORDER BY ST_NO DESC";
 		//페이징 적용-구간쿼리로 변경
-		String sql = "SELECT * FROM (SELECT T.*, ROWNUM R FROM (SELECT M.ME_id,B.*,P.PD_NAME FROM ME_MEMBER M JOIN BP_BUYPRODUCT B ON M.ME_NO = B.ME_NO JOIN PD_PRODUCT P ON P.PD_NO = B.PD_NO ";
-		//검색용 쿼리 추가
-		if(map.get("searchWord") !=null){
-			sql+=" WHERE "+map.get("searchColumn")+ " LIKE '%"+map.get("searchWord")+"%' ";
-		}		
-		sql+=" ORDER BY BP_NO DESC,BP_REGIDATE DESC) T) WHERE R BETWEEN ? AND ?";
 		
 		try {
 			psmt = conn.prepareStatement(sql);
 			
-			//페이징을 위한 시작 및 종료 rownum설정]
-			psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
-			psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
-			
+			//페이징을 위한 시작 및 종료 rownum설정]			
 			rs = psmt.executeQuery();
 			while(rs.next()){
-				BuyproductDTO dto = new BuyproductDTO(rs.getString(1),rs.getString(2),rs.getDate(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8));
+				StreamingDTO dto = new StreamingDTO(
+						rs.getString(1),					
+						rs.getString(2),
+						rs.getDate(3),
+						rs.getDate(4),
+						rs.getString(5),
+						rs.getString(6),
+						rs.getString(7));
+
+				
+						
+					
+						
+			
 				records.add(dto);
 			}
 		} catch (SQLException e) {			
@@ -86,7 +95,7 @@ public class BuyproductDAO {
 	}/////////////////selectList
 	public int getTotalRecordCount(Map<String, Object> map) {
 		int totalCount = 0;
-		String sql = "SELECT COUNT(*) FROM BP_BUYPRODUCT ";
+		String sql = "SELECT COUNT(*) FROM NT_NOTICE ";
 		// 검색용 쿼리 추가
 		if (!(map.get("Notice_category") == null && map.get("searchWord") == null)
 				&& !(map.get("Notice_category").equals("") && map.get("searchWord").equals(""))) {
@@ -116,105 +125,114 @@ public class BuyproductDAO {
 	
 	
 	
+	/*public int getTotalRecordCount(Map<String, Object> map) {
+		int totalCount = 0;
+		String sql = "SELECT COUNT(*) FROM NT_NOTICE ";
+		// 검색용 쿼리 추가
+		if (map.get("searchWord") != null) {
+			sql += " WHERE " + map.get("searchColumn") + " LIKE '%" + map.get("searchWord") + "%' ";
+		}
 
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+			rs.next();
+			totalCount = rs.getInt(1);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return totalCount;
+	}/////////////// getTotalRecordCount
+*/	
+	
+	/*public List selectList() {
+		List list = new Vector();
+		String sql="SELECT * FROM NT_NOTICE ORDER BY NT_NO DESC";
+		try{
+			
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			while(rs.next()){
+				NotiDataDTO dto = new NotiDataDTO();
+				dto.setNt_no(rs.getString(1));
+				dto.setNt_regidate(rs.getDate(2));
+				dto.setAd_no(rs.getString(3));
+				dto.setNt_classification(rs.getString(4));
+				dto.setNt_title(rs.getString(5));
+				dto.setNt_contents(rs.getString(6));
+				dto.setNt_hitcount(rs.getString(7));
+				list.add(dto);
+			}
+		}
+		catch(SQLException e){e.printStackTrace();}
+		return list;
+	}/////////////selectList()
+*/	
+	public void updateVisitCount(String no) {
+		String sql = "UPDATE NT_NOTICE SET NT_HITCOUNT=NT_HITCOUNT+1 WHERE NT_NO=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, no);
+			psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}//////////////////// updateVisitCount
 	
 		//입력용]
-		/*public int insert(BuyproductDTO dto,CashDTO Cash) {
+		public int insert(ProductDTO dto) {
 			int affected=0;
+			String sql="INSERT INTO PD_PRODUCT(PD_NO,PD_NAME,PD_PRICE,PD_REGIDATE) VALUES(PD_SEQ.NEXTVAL,?,?,SYSDATE)";
 			try {
-				conn.setAutoCommit(false);
-			String sql="INSERT INTO BP_BUYPRODUCT VALUES(BP_SEQ.NEXTVAL,SYSDATE,?,?,?,1)";
-			
-			String sql= "INSERT INTO CH_PAYMENT(CH_NO,CH_REGIDATE,ME_NO,BP_NO,CH_HAVECASH)" + 
-			"SELECT BP_SEQ.NEXTVAL,SYSDATE,2,?,?,1" + 
-			"FROM BP_BUYPRODUCT";
-			
 				psmt = conn.prepareStatement(sql);
-				psmt.setString(1,dto.getPd_no());
-			    psmt.setString(2, dto.getMe_no());
-				psmt.setString(3,dto.getBp_price());
-				//psmt.setString(2,dto.getBp_buyway());
+				psmt.setString(1, dto.getPd_name());
+				psmt.setString(2, dto.getPd_price());
 				affected = psmt.executeUpdate();
-			if(affected == 1) {
-				if (dto.getPd_no().equalsIgnoreCase("3")) {
-					sql ="INSERT INTO CH_PAYMENT VALUES(CH_SEQ.NEXTVAL,SYSDATE,?,?)";
-					psmt = conn.prepareStatement(sql);
-					psmt.setString(1,Cash.getMe_no());
-					psmt.setString(2, Cash.getCh_havecash());
-					affected = psmt.executeUpdate();
-					conn.commit();
-				}
-			} 
-			}catch (SQLException e) {e.printStackTrace();}
+				
+			} catch (SQLException e) {e.printStackTrace();}
 			
 			return affected;
 		}/////////////////insert
-*/		
-	public int insert(BuyproductDTO dto,StreamingDTO dto1,CashDTO Cash) {
+		
+	/*public int insert(ProductDTO dto,BuyproductDTO dto1) {
 		int affected=0;
 		try {
 			conn.setAutoCommit(false);
-		String sql="INSERT INTO BP_BUYPRODUCT VALUES(BP_SEQ.NEXTVAL,SYSDATE,?,?,?,1)";	
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1,dto.getPd_no());
-		    psmt.setString(2, dto.getMe_no());
-			psmt.setString(3,dto.getBp_price());
-			//psmt.setString(2,dto.getBp_buyway());
-			affected = psmt.executeUpdate();
-		if(affected == 1) {
-			if(dto.getPd_no().equalsIgnoreCase("3")) {
-				sql ="INSERT INTO CH_PAYMENT VALUES(CH_SEQ.NEXTVAL,SYSDATE,?,?)";
+			String sql="INSERT INTO PD_PRODUCT(PD_NO,PD_NAME,PD_PRICE,PD_REGIDATE) VALUES(PD_SEQ.NEXTVAL,?,?,SYSDATE)";		
 				psmt = conn.prepareStatement(sql);
-				psmt.setString(1,Cash.getMe_no());
-				psmt.setString(2, Cash.getCh_havecash());
+				psmt.setString(1, dto.getPd_name());
+				psmt.setString(2, dto.getPd_price());
+				affected = psmt.executeUpdate();
+		if(affected == 1) {			
+			  sql="INSERT INTO BP_BUYPRODUCT VALUES(BP_SEQ.NEXTVAL,SYSDATE,?,?,?,?)";	
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1,dto1.getPd_no());
+			    psmt.setString(2, dto1.getMe_no());
+				psmt.setString(3,dto1.getBp_price());
+				psmt.setString(4,dto1.getBp_buyway());
 				affected = psmt.executeUpdate();
 				conn.commit();
-			}
-			else {
-			sql ="INSERT INTO ST_STREAMING VALUES(ST_SEQ.NEXTVAL,SYSDATE,SYSDATE+30 ,BP_SEQ.CURRVAL,?)";
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1,dto1.getMe_no());
-			affected = psmt.executeUpdate();
-			conn.commit();
-		}
 		}
 		}catch (SQLException e) {e.printStackTrace();}
-		
+			
 		return affected;
 	}/////////////////insert
-	/*public CashDTO selectOne(String noString me_no) {
-		CashDTO dto=null;
-		String sql="SELECT ME_ID, SUM(CH_HAVECASH) FROM  CH_PAYMENT C join ME_MEMBER M ON C.ME_NO = M.ME_NO WHERE M.ME_NO=?  GROUP BY ME_ID ";
-		String sql="SELECT M.ME_ID,C.* FROM  CH_PAYMENT C join ME_MEMBER M ON C.ME_NO = M.ME_NO WHERE C.CH_NO=? ";	
-		try {
-			psmt = conn.prepareStatement(sql);`
-			psmt.setString(1, no);
-			psmt.setString(2, me_no);
-			rs = psmt.executeQuery();
-			if(rs.next()){
-				dto = new CashDTO();
-			
-				dto.setMe_id(rs.getString(1));
-				dto.setCh_havecash(rs.getString(2));
-		
-				
-			}			
-		} catch (SQLException e) {e.printStackTrace();}		
-		return dto;
-	}/////////////////////selectOne()
-*/		public BuyproductDTO selectOne(String no) {
-			BuyproductDTO dto=null;
-			/*String sql="SELECT ME_ID,SUM(BP_PRICE),PD_NAME FROM  BP_BUYPRODUCT B join ME_MEMBER M ON B.ME_NO = M.ME_NO JOIN PD_PRODUCT P ON P.PD_NO = B.PD_NO WHERE M.ME_NO=?  GROUP BY ME_ID,PD_NAME ";*/
-			String sql ="SELECT ME_ID, SUM(BP_PRICE) FROM ME_MEMBER M JOIN BP_BUYPRODUCT B ON M.ME_NO = B.ME_NO WHERE M.ME_NO=? GROUP BY ME_ID";
+*/		
+		public ProductDTO selectOne(String no) {
+			ProductDTO dto=null;
+			String sql="SELECT * FROM PD_PRODUCT WHERE PD_NO=?";
 			try {
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1, no);
 				rs = psmt.executeQuery();
 				if(rs.next()){
-					dto = new BuyproductDTO();
-					dto.setMe_id(rs.getString(1));
-					dto.setBp_price(rs.getString(2));
-			
+					dto = new ProductDTO();
+					dto.setPd_no(rs.getString(1));
+					dto.setPd_name(rs.getString(2));			
+					dto.setPd_price(rs.getString(3));
+				
 					
 				}			
 			} catch (SQLException e) {e.printStackTrace();}		
@@ -243,11 +261,19 @@ public class BuyproductDAO {
 		//삭제용
 		public int delete(String no) {
 			int affected=0;
-			String sql="DELETE NT_NOTICE WHERE NT_NO=?";		
 			try {
-				psmt = conn.prepareStatement(sql);
-				psmt.setString(1, no);			
-				affected = psmt.executeUpdate();			
+			//conn.setAutoCommit(false);
+			String	sql="DELETE PD_PRODUCT WHERE PD_NO=?";		
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, no);			
+			affected = psmt.executeUpdate();
+				/*if(affected == 1) {
+					conn.commit();
+					sql="DELETE BP_BUYPRODUCT WHERE BP_NO=?";	
+					psmt = conn.prepareStatement(sql);
+					psmt.setString(1,no);
+					affected = psmt.executeUpdate();
+				}*/
 			} catch (SQLException e) {e.printStackTrace();}		
 			return affected;
 		}

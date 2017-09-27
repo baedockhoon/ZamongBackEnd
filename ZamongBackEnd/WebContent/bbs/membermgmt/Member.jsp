@@ -28,8 +28,8 @@
 function goPopup(me_no) {
 	// 주소검색을 수행할 팝업 페이지를 호출합니다.
 	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
-	var pop = window.open("<c:url value='/bbs/payment/Payment.jsp?me_no='/>"+me_no, "pop",
-			"width=700,height=600, scrollbars=yes, resizable=yes");
+	var pop = window.open("<c:url value='/ZAMONG/Cash/View.do?me_no='/>"+me_no, "pop",
+			"width=550,height=500, scrollbars=yes, resizable=yes");
 
 	
 }
@@ -69,8 +69,8 @@ function isList() {
 				<li role="presentation" ><a
 					href="<c:url value='/ZAMONG/Payment/List.do'/>">결제내역</a></li>
 					
-			<li role="presentation"><a
-					href="<c:url value='/bbs/product/Producttest.jsp'/>">스트리밍</a></li>
+			<li role="presentation" ><a
+					href="<c:url value='/ZAMONG/Streaming/List.do'/>">스트리밍</a></li>
 				<li role="presentation"><a
 					href="<c:url value='/ZAMONG/Product/List.do'/>">상품</a></li>
 			</ul>
@@ -127,7 +127,7 @@ function isList() {
 										<td>${item.me_email}</td>
 										<td>${item.me_regidate}</td>
 										<!-- <td><a class="btn btn-sm btn-primary" href="javascript:iswrite()">충전</a><td> -->
-									  <td><input type="button" value="당첨포인트충전" class="btn btn-sm btn-primary" onclick="goPopup(${item.me_no});"/></td>  
+									  <td><input type="button" value="캐쉬잔액" class="btn btn-sm btn-primary" onclick="goPopup(${item.me_no});"/></td>  
 									<%--  <td><a class="btn btn-sm btn-primary" href='<c:url value="/bbs/payment/Payment.jsp?me_no=${item.me_no }"/>'>충전</a></td> --%>   
 										<td><a class="btn btn-sm btn-primary" href="javascript:isList()">포인트전환</a><td>
 									</tr>

@@ -4,7 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-
+<%
+String me_no = request.getParameter("me_no"); %>
 
 
 <head>
@@ -39,32 +40,36 @@
 	
 			<!-- 실제 내용의 제목 표시 -->
 			<div class="page-header">
-				<h1>${dto.me_id }회원님의 결제정보</h1>
+				<h1>음원 결제</h1>
 			</div>
+			<input type="hidden" name="me_no" value="<%=me_no %>" />
 			<div class="tableBox">
-						
 				<table class="table table-striped">
-					<caption>총 포인트</caption>
-					<colgroup>
-						<col style="width: 25%;" />
-						<col style="width: 75%;" />
-					</colgroup>
+					 
 					<tr>
 						<th scope="row"><span class="star"></span><span
-							class="txt dB lh30 alignLeft pL10 fl">${dto.me_id }님의 총금액</span></th>
+							class="txt dB lh30 alignLeft pL10 fl">${dto.me_id }님의 캐쉬 잔액은</span></th>
 						<td class="end">
-						<span style="color: red; font-size: 1.8em;">${dto.bp_price }원 입니다.</span>
+				<span style="color: red; font-size: 1.8em;">${dto.ch_havecash }</span>원 입니다.
 						</td>
 				</table>
-				
+			이 음원은 가격이 500캐쉬입니다. 구매하시려면 확인버튼을 눌러주세요.
+			<hr/>
+			구매하실경우 500캐쉬가 차감됩니다.
+						
 			</div>
-			
+			<%-- <div align="right">
+				<a href="<c:url value='/ZAMONG/MemberList.do'/> " class="btn btn-sm btn-info">목록</a></td>
+				<a href="<c:url value='/ZAMONG/MemberEdit.do?me_no=${dto.me_no}&nowPage=${nowPage }'/>" class="btn btn-sm btn-info">수정</a> 
+				<a href='javascript:isDelete(${dto.me_no})'><button
+									type="button" class="btn btn-sm btn-info">삭제</button></a>
+			</div> --%>
 	</div>
 	
 
 	
 	<!-- /내용끝 -->
-	<jsp:include page="/Template/Foot.jsp" />
+	
 	
 	
 	
