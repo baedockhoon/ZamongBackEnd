@@ -12,6 +12,7 @@ public class MusicVideoDTO {
 	private String mv_contents;
 	private String mv_link;
 	private String mv_hitcount;
+	private String mv_image;
 	
 	/*	MV_NO
 	MV_REGIDATE
@@ -27,7 +28,7 @@ public class MusicVideoDTO {
 		// TODO Auto-generated constructor stub
 	}
 	public MusicVideoDTO(String mv_no, Date mv_regidate, String at_no, String ss_no, String mv_title,
-			String mv_contents, String mv_link, String mv_hitcount) {
+			String mv_contents, String mv_link, String mv_hitcount, String mv_image) {
 		super();
 		this.mv_no = mv_no;
 		this.mv_regidate = mv_regidate;
@@ -37,6 +38,7 @@ public class MusicVideoDTO {
 		this.mv_contents = mv_contents;
 		this.mv_link = mv_link;
 		this.mv_hitcount = mv_hitcount;
+		this.mv_image = mv_image;
 	}
 	
 	
@@ -88,4 +90,12 @@ public class MusicVideoDTO {
 	public void setMv_hitcount(String mv_hitcount) {
 		this.mv_hitcount = mv_hitcount;
 	}
+	
+	public String getMv_image() {
+		return mv_image;
+	}
+	public void setMv_image(String mv_image) {
+		this.mv_image = mv_image;
+	}
+	
 }
