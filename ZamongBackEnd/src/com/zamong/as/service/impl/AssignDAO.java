@@ -68,9 +68,8 @@ public class AssignDAO {
 				dto.setAs_regidate(rs.getString(2));
 				dto.setMe_no(rs.getInt(3));
 				dto.setAl_no(rs.getInt(4));
-				dto.setSs_no(rs.getInt(5));
-				dto.setAs_getpoint(rs.getString(6));
-				dto.setMe_id(rs.getString(7));
+				dto.setAs_getpoint(rs.getString(5));
+				dto.setMe_id(rs.getString(6));
 				list.add(dto);
 			}
 		}
@@ -99,7 +98,7 @@ public class AssignDAO {
 	//입력용
 	public int insert(AssignDTO dto) {
 		int affected = 0;
-		String sql = "INSERT INTO AS_ASSIGN VALUES(AS_SEQ.NEXTVAL,SYSDATE,2,2,2,?)";
+		String sql = "INSERT INTO AS_ASSIGN VALUES(AS_SEQ.NEXTVAL,SYSDATE,2,2,?)";
 		try{
 			psmt = conn.prepareStatement(sql);
 			//psmt.setInt(1, dto.getMe_no());
