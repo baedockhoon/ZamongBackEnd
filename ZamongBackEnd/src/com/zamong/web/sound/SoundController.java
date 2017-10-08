@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.RandomAccessFile;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -39,8 +40,6 @@ public class SoundController extends HttpServlet {
 		String url = req.getRequestURL().toString();
 		String mode = req.getMethod();
 
-		System.out.println(url);
-		System.out.println(mode);
 		if (url.toUpperCase().contains("WRITE.DO")) {
 			req.setCharacterEncoding("UTF-8");
 			SoundDTO dto = new SoundDTO();
@@ -51,9 +50,22 @@ public class SoundController extends HttpServlet {
 			if (mr != null) {// 파일 업로드 성공시 데이터 입력처리
 				// 기타 파라미터 받아서 테이블에 입력처리
 				String index = mr.getParameter("index");
+				String fileName = mr.getFilesystemName("ss_name"+index);  
+			    String now = new SimpleDateFormat("yyyyMMddHmsS").format(new Date());  //현재시간
+			    int i = -1;
+			    i = fileName.lastIndexOf("."); // 파일 확장자 위치
+			    String realFileName = now + fileName.substring(i, fileName.length());  //현재시간과 확장자 합치기
+
+			    File oldFile = new File(req.getServletContext().getRealPath("/Mp3") + File.separator + fileName);
+			    File newFile = new File(req.getServletContext().getRealPath("/Mp3") + File.separator + realFileName); 
+			    
+			    oldFile.renameTo(newFile); // 파일명 변경
+				
 				Mp3File mp3file;
 				try {
-					mp3file = new Mp3File(req.getServletContext().getRealPath("/Mp3") + File.separator + mr.getFilesystemName("ss_name"+index));
+					//mr.getFilesystemName("ss_name"+index)
+					
+					mp3file = new Mp3File(newFile);
 					if (mp3file.hasId3v2Tag()) {
 						ID3v2 id3v2Tag = mp3file.getId3v2Tag();
 						
@@ -92,7 +104,7 @@ public class SoundController extends HttpServlet {
 								  ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData);
 								  BufferedImage bufferedImage = ImageIO.read(inputStream);
 	
-								  ImageIO.write(bufferedImage, "png", new File(saveDirectory+File.separator+id3v2Tag.getTitle()+".png")); //저장하고자 하는 파일 경로를 입력합니다.
+								  ImageIO.write(bufferedImage, "png", new File(saveDirectory + File.separator + realFileName + ".png")); //저장하고자 하는 파일 경로를 입력합니다.
 	
 								  sucorfail=1;
 							}
@@ -105,7 +117,7 @@ public class SoundController extends HttpServlet {
 						}
 						System.out.println(al_releasedate);
 						String al_albumname = id3v2Tag.getAlbum();
-						String ss_path = mr.getFilesystemName("ss_name"+index);
+						String ss_path = realFileName;
 
 						/*if(ss_path == null){//파일 미교체
 							ss_path = mr.getParameter("ss_path");
@@ -117,7 +129,7 @@ public class SoundController extends HttpServlet {
 							dto.setAl_albumname(al_albumname);
 						}
 						dto.setSs_path(ss_path);
-						dto.setAl_albumimage(id3v2Tag.getTitle()+".png");
+						dto.setAl_albumimage(realFileName+".png");
 
 						//DB 업데이트 성공 및 파일 교체시 기존 업로드된 파일 삭제
 						/*if(sucorfail == 1 && mr.getFilesystemName("ss_name") != null)
