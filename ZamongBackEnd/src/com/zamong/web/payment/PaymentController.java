@@ -64,9 +64,7 @@ public class PaymentController extends HttpServlet {
 		dto.setMe_no(me_no);
 		dto.setPd_no(pd_no);
 		dto1.setMe_no(me_no);
-	/*	dto1.setPd_name(pd_name);
-		dto1.setPd_no(pd_no);
-		dto1.setPd_price(pd_price);*/
+
 		cash1.setMe_no(me_no);
 		cash1.setCh_havecash(price);
 		dao.insert(dto,dto1,cash1);

@@ -157,8 +157,6 @@ $(function(){
 		<div>
 			<form id="frm" onsubmit="return isValidate(this);" action="${pageContext.request.contextPath}/ZAMONG/ProblemWrite.do" method="post" enctype="multipart/form-data">
 			
-		
-				<strong style="font-size: 1.4em">1:1문의 하기</strong>
 			<table class="table table-striped" style="">
 				<hr/>
 				<tr>
@@ -362,6 +360,8 @@ $(function(){
 					</table>
 			</form>	
 		</div>
+		
+				<strong style="font-size: 1.4em">1:1문의 하기</strong>
 		
 	</div>
 	

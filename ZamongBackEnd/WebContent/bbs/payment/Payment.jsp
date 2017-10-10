@@ -126,15 +126,40 @@ dao.close();
 				</tbody>
 			</table>
 					
+					
 			
 			<div class="popup_cntt box_scroll" style="text-align: center;">
-			 	 <input type="button" onclick="goSubmit()" value="확인" /> 
+			 	 <input type="button" onclick="goSubmit()" value="결제하기"  class="btn btn-sm btn-primary"/> 
+			 	 <a id="list"
+								class="btn btn-sm btn-primary">취소</a>
 <!-- 		 <input type="submit" value="확인"/>    --> 
 			</div>
 
 		</div>
 	 	</form> 
 	</div>
+	<div class="tbl_style mt24">
+                    <table border="1" style="width:100%" class="board_style02">
+                        <caption>이 표는 멜론캐쉬 충전 결제 리스트로 보유 멜론캐쉬, 충전금액, 결제방법 내용을 포함하고 있습니다.</caption>
+                        <colgroup>
+					<col style="width:119px;*width:103px;"><!--141126 수정 lyr-->
+                            <col>
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th scope="col" class="bg_gray">유의사항</th>
+                                <td class="td_type1">
+                                    <ul class="list_bullet">
+                                        <li>결제금액과 멜론캐쉬는 1:1 배율로 충전금액 3,000원을 선택하시면 멜론캐쉬<br> 3,000원이 충전됩니다.</li>
+                                        <li>3,000원 충전 시 실제 결제금액은 부가가치세 10% 포함된 금액으로,<br>3,300원입니다.</li>
+                                        <li>멜론캐쉬 충전 한도 금액<br> 1회 충전한도 : 1만원 / 매월 충전한도 : 5만원</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 <script>
 function selChange(val){
     if(val=="sel"){
@@ -145,6 +170,20 @@ function selChange(val){
     
 }
 </script>
+<script>
+$(function(){
 
+	$("a").click(function(){
+		if(this.id == "list"){	
+			history.back();
+		} 
+		else if(this.id == "insert"){
+			location.href ="<c:url value='/ZAMONG/Product/List.do'/>";
+		}
+	});
+});
+	
+	
+</script>
 </body>
 </html>
