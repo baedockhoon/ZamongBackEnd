@@ -17,7 +17,6 @@ import javax.sql.DataSource;
 
 import com.zamong.at.service.ArtistDTO;
 import com.zamong.at.service.ArtistGropDTO;
-import com.zamong.nt.service.NotiDataDTO;
 
 public class ArtistGropDAO {
 
@@ -87,7 +86,7 @@ public class ArtistGropDAO {
 
 			rs = psmt.executeQuery();
 			while (rs.next()) {
-				ArtistDTO dto = new ArtistDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5).toString()
+				ArtistDTO dto = new ArtistDTO(rs.getString(1), rs.getDate(2), rs.getString(3), rs.getString(4), rs.getDate(5).toString()
 						, rs.getString(6), rs.getDate(7).toString(), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11));
 
 				records.add(dto);
@@ -124,7 +123,7 @@ public class ArtistGropDAO {
 	 * sql="SELECT * FROM NT_NOTICE ORDER BY NT_NO DESC"; try{
 	 * 
 	 * psmt = conn.prepareStatement(sql); rs = psmt.executeQuery();
-	 * while(rs.next()){ NotiDataDTO dto = new NotiDataDTO();
+	 * while(rs.next()){ ArtistDTO dto = new ArtistDTO();
 	 * dto.setNt_no(rs.getString(1)); dto.setNt_regidate(rs.getDate(2));
 	 * dto.setAd_no(rs.getString(3)); dto.setNt_classification(rs.getString(4));
 	 * dto.setNt_title(rs.getString(5)); dto.setNt_contents(rs.getString(6));
@@ -179,90 +178,60 @@ public class ArtistGropDAO {
 		return affected;
 	}///////////////// insert
 
-	public NotiDataDTO selectOne(String no) {
-		NotiDataDTO dto = null;
-		String sql = "SELECT * FROM NT_NOTICE WHERE NT_NO=?";
+	public ArtistDTO selectOne(String no) {
+		ArtistDTO dto = null;
+		String sql = "SELECT G.*, M.AT_NO FROM GP_ATGROUP G JOIN GM_GROUPMEMBER M ON G.GP_NO = M.GP_NO WHERE G.GP_NO = ? AND ROWNUM = 1";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, no);
 			rs = psmt.executeQuery();
 			if (rs.next()) {
-				dto = new NotiDataDTO();
-				dto.setNt_no(rs.getString(1));
-				dto.setNt_regidate(rs.getDate(2));
-				dto.setAd_no(rs.getString(3));
-				dto.setNt_classification(rs.getString(4));
-				dto.setNt_title(rs.getString(5));
-				dto.setNt_contents(rs.getString(6));
-				dto.setNt_hitcount(rs.getString(7));
-
+				dto = new ArtistDTO();
+				dto.setGp_no(rs.getString(1));
+				dto.setGp_regidate(rs.getDate(2).toString());
+				dto.setGp_name(rs.getString(3));
+				dto.setGp_gender(rs.getString(4));
+				dto.setGp_image(rs.getString(5));
+				dto.setGp_belong(rs.getString(6));
+				dto.setGp_debutdate(rs.getDate(7).toString());
 			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return dto;
 	}///////////////////// selectOne()
-
-	public int update(NotiDataDTO dto) {
-		int affected = 0;
-		String sql = "UPDATE NT_NOTICE " + "SET NT_CLASSIFICATION=?,NT_TITLE=?,NT_CONTENTS=? " + "WHERE NT_NO=?";
-
+	
+	public List<ArtistDTO> selectArtist(String no) {
+		ArtistDTO dto = null;
+		List<ArtistDTO> records = new Vector<ArtistDTO>();
+		String sql = "SELECT A.* FROM (SELECT G.*, M.AT_NO FROM GP_ATGROUP G JOIN GM_GROUPMEMBER M ON G.GP_NO = M.GP_NO WHERE G.GP_NO=?) G JOIN AT_ARTIST A ON G.AT_NO = A.AT_NO";
 		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, dto.getNt_classification());
-			psmt.setString(2, dto.getNt_title());
-			psmt.setString(3, dto.getNt_contents());
-			psmt.setString(4, dto.getNt_no());
-			affected = psmt.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return affected;
-	}//////////////////// update
-
-	// 삭제용
-	public int delete(String no) {
-		int affected = 0;
-		String sql = "DELETE NT_NOTICE WHERE NT_NO=?";
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, no);
-			affected = psmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return affected;
-	}
-
-	public Map<String, NotiDataDTO> prevNnext(String no) {
-		Map<String, NotiDataDTO> map = new HashMap<String, NotiDataDTO>();
-
-		String sql = "SELECT NT_NO, NT_TITLE FROM NT_NOTICE WHERE NT_NO=(SELECT MIN(NT_NO) FROM NT_NOTICE WHERE NT_NO > ?)";
-		try {
-			// 이전글 구하기]
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, no);
 			rs = psmt.executeQuery();
-			if (rs.next()) {// 이전글 존재
-				map.put("PREV", new NotiDataDTO(rs.getString(1), null, null, null, rs.getString(2), null, null));
-
-			}
-			// 다음글 구하기
-			sql = "SELECT NT_NO,NT_TITLE FROM NT_NOTICE WHERE NT_NO=(SELECT MAX(NT_NO) FROM NT_NOTICE WHERE NT_NO < ?)";
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, no);
-			rs = psmt.executeQuery();
-			if (rs.next()) {// 다음글 존재
-				map.put("NEXT", new NotiDataDTO(rs.getString(1), null, null, null, rs.getString(2), null, null));
+			
+			while (rs.next()) {
+				dto = new ArtistDTO();
+				dto.setAt_no(rs.getString(1));
+				dto.setAt_regidate(rs.getDate(2));
+				dto.setAt_name(rs.getString(3));
+				dto.setAt_belong(rs.getString(4));
+				dto.setAt_debutdate(rs.getDate(5).toString());
+				dto.setAt_debutsong(rs.getString(6));
+				dto.setAt_birth(rs.getDate(7).toString());
+				dto.setAt_contry(rs.getString(8));
+				dto.setAt_gender(rs.getString(9));
+				dto.setAt_artistinfo(rs.getString(10));
+				dto.setAt_image(rs.getString(11));
+				records.add(dto);
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return records;
+	}///////////////////// selectOne()
 
-		return map;
-	}//////////////// prevNnext
 
 }

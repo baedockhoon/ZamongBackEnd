@@ -16,7 +16,6 @@ import javax.servlet.ServletContext;
 import javax.sql.DataSource;
 
 import com.zamong.at.service.ArtistDTO;
-import com.zamong.nt.service.NotiDataDTO;
 
 public class ArtistDAO extends ArtistGropDAO {
 
@@ -84,7 +83,7 @@ public class ArtistDAO extends ArtistGropDAO {
 
 			rs = psmt.executeQuery();
 			while (rs.next()) {
-				ArtistDTO dto = new ArtistDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+				ArtistDTO dto = new ArtistDTO(rs.getString(1), rs.getDate(2), rs.getString(3), rs.getString(4),
 						rs.getDate(5).toString(), rs.getString(6), rs.getDate(7).toString(), rs.getString(8),
 						rs.getString(9), rs.getString(10), rs.getString(11));
 
@@ -122,7 +121,7 @@ public class ArtistDAO extends ArtistGropDAO {
 	 * sql="SELECT * FROM NT_NOTICE ORDER BY NT_NO DESC"; try{
 	 * 
 	 * psmt = conn.prepareStatement(sql); rs = psmt.executeQuery();
-	 * while(rs.next()){ NotiDataDTO dto = new NotiDataDTO();
+	 * while(rs.next()){ ArtistDTO dto = new ArtistDTO();
 	 * dto.setNt_no(rs.getString(1)); dto.setNt_regidate(rs.getDate(2));
 	 * dto.setAd_no(rs.getString(3)); dto.setNt_classification(rs.getString(4));
 	 * dto.setNt_title(rs.getString(5)); dto.setNt_contents(rs.getString(6));
@@ -206,7 +205,7 @@ public class ArtistDAO extends ArtistGropDAO {
 				// psmt.setString(1, searchWord);
 				rs = psmt.executeQuery();
 				while (rs.next()) {
-					ArtistDTO dto = new ArtistDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+					ArtistDTO dto = new ArtistDTO(rs.getString(1), rs.getDate(2), rs.getString(3), rs.getString(4),
 							rs.getDate(5).toString(), rs.getString(6), rs.getDate(7).toString(), rs.getString(8),
 							rs.getString(9), rs.getString(10), rs.getString(11));
 					records.add(dto);
@@ -220,7 +219,7 @@ public class ArtistDAO extends ArtistGropDAO {
 				// psmt.setString(1, searchWord);
 				rs = psmt.executeQuery();
 				while (rs.next()) {
-					ArtistDTO dto = new ArtistDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+					ArtistDTO dto = new ArtistDTO(rs.getString(1), rs.getDate(2), rs.getString(3), rs.getString(4),
 							rs.getDate(5).toString(), rs.getString(6), rs.getDate(7).toString(), rs.getString(8),
 							rs.getString(9), rs.getString(10), rs.getString(11));
 					records.add(dto);
@@ -237,7 +236,7 @@ public class ArtistDAO extends ArtistGropDAO {
 				while (rs.next()) {
 					ArtistDTO dto = new ArtistDTO();
 					dto.setGp_no(rs.getString(1));
-					dto.setAt_regidate(rs.getDate(2).toString());
+					dto.setAt_regidate(rs.getDate(2));
 					dto.setAt_name(rs.getString(3));
 					dto.setAt_gender(rs.getString(4));
 					dto.setAt_image(rs.getString(5));
@@ -261,7 +260,7 @@ public class ArtistDAO extends ArtistGropDAO {
 					while (rs.next()) {
 						ArtistDTO dto = new ArtistDTO();
 						dto.setGp_no(rs.getString(1));
-						dto.setAt_regidate(rs.getDate(2).toString());
+						dto.setAt_regidate(rs.getDate(2));
 						dto.setAt_name(rs.getString(3));
 						dto.setAt_gender(rs.getString(4));
 						dto.setAt_image(rs.getString(5));
@@ -276,68 +275,33 @@ public class ArtistDAO extends ArtistGropDAO {
 			e.printStackTrace();
 		}
 		return records;
+	}///////////////////// searchArtist()
+
+	public ArtistDTO selectArtistOne(String no) {
+		ArtistDTO dto = null;
+		String sql = "SELECT * FROM AT_ARTIST WHERE AT_NO=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, no);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				dto = new ArtistDTO();
+				dto.setAt_no(rs.getString(1));
+				dto.setAt_regidate(rs.getDate(2));
+				dto.setAt_name(rs.getString(3));
+				dto.setAt_belong(rs.getString(4));
+				dto.setAt_debutdate(rs.getDate(5).toString());
+				dto.setAt_debutsong(rs.getString(6));
+				dto.setAt_birth(rs.getDate(7).toString());
+				dto.setAt_contry(rs.getString(8));
+				dto.setAt_gender(rs.getString(9));
+				dto.setAt_artistinfo(rs.getString(10));
+				dto.setAt_image(rs.getString(11));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return dto;
 	}///////////////////// selectOne()
-
-	public int update(NotiDataDTO dto) {
-		int affected = 0;
-		String sql = "UPDATE NT_NOTICE " + "SET NT_CLASSIFICATION=?,NT_TITLE=?,NT_CONTENTS=? " + "WHERE NT_NO=?";
-
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, dto.getNt_classification());
-			psmt.setString(2, dto.getNt_title());
-			psmt.setString(3, dto.getNt_contents());
-			psmt.setString(4, dto.getNt_no());
-			affected = psmt.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return affected;
-	}//////////////////// update
-
-	// 삭제용
-	public int delete(String no) {
-		int affected = 0;
-		String sql = "DELETE NT_NOTICE WHERE NT_NO=?";
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, no);
-			affected = psmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return affected;
-	}
-
-	public Map<String, NotiDataDTO> prevNnext(String no) {
-		Map<String, NotiDataDTO> map = new HashMap<String, NotiDataDTO>();
-
-		String sql = "SELECT NT_NO, NT_TITLE FROM NT_NOTICE WHERE NT_NO=(SELECT MIN(NT_NO) FROM NT_NOTICE WHERE NT_NO > ?)";
-		try {
-			// 이전글 구하기]
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, no);
-			rs = psmt.executeQuery();
-			if (rs.next()) {// 이전글 존재
-				map.put("PREV", new NotiDataDTO(rs.getString(1), null, null, null, rs.getString(2), null, null));
-
-			}
-			// 다음글 구하기
-			sql = "SELECT NT_NO,NT_TITLE FROM NT_NOTICE WHERE NT_NO=(SELECT MAX(NT_NO) FROM NT_NOTICE WHERE NT_NO < ?)";
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, no);
-			rs = psmt.executeQuery();
-			if (rs.next()) {// 다음글 존재
-				map.put("NEXT", new NotiDataDTO(rs.getString(1), null, null, null, rs.getString(2), null, null));
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return map;
-	}//////////////// prevNnext
 
 }

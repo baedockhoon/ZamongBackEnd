@@ -877,6 +877,14 @@
 		<url-pattern>/ZAMONG/Artist/Edit.do</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>ZamongArtistView</servlet-name>
+		<servlet-class>com.zamong.web.artist.ArtistController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ZamongArtistView</servlet-name>
+		<url-pattern>/ZAMONG/Artist/View.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>ZamongArtistDelete</servlet-name>
 		<servlet-class>com.zamong.web.artist.ArtistController</servlet-class>
 	</servlet>

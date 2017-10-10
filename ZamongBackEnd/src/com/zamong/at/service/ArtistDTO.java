@@ -4,7 +4,7 @@ import java.util.Date;
 //음원 DTO 수정 필요할 수 있음
 public class ArtistDTO extends ArtistGropDTO{
 	private String at_no; //엘범고유번호
-	private String at_regidate; //등록일
+	private java.sql.Date at_regidate; //등록일
 	private String at_name; //가수이름
 	private String at_belong; //소속사
 	private String at_debutdate; //데뷔일
@@ -21,7 +21,7 @@ public class ArtistDTO extends ArtistGropDTO{
 		// TODO Auto-generated constructor stub
 	}
 
-	public ArtistDTO(String at_no, String at_regidate, String at_name, String at_belong, String at_debutdate,
+	public ArtistDTO(String at_no, java.sql.Date at_regidate, String at_name, String at_belong, String at_debutdate,
 			String at_debutsong, String at_birth, String at_contry, String at_gender, String at_artistinfo,
 			String at_image) {
 		super();
@@ -44,10 +44,10 @@ public class ArtistDTO extends ArtistGropDTO{
 	public void setAt_no(String at_no) {
 		this.at_no = at_no;
 	}
-	public String getAt_regidate() {
+	public java.sql.Date getAt_regidate() {
 		return at_regidate;
 	}
-	public void setAt_regidate(String at_regidate) {
+	public void setAt_regidate(java.sql.Date at_regidate) {
 		this.at_regidate = at_regidate;
 	}
 	public String getAt_name() {

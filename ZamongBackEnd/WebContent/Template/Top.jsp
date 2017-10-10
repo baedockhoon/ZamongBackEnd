@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+	<link rel="stylesheet" href="<c:url value='/bootstrap/css/bootstrap.min.css'/>" type="text/css" />
+	<!-- 부가적인 테마(Bootstrap theme) -->
+	<link rel="stylesheet" href="<c:url value='/bootstrap/css/bootstrap-theme.min.css'/>">
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js" type="text/javascript"></script>
 <!-- jQuery UI CSS파일 --> 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
@@ -10,6 +12,14 @@
 <!-- jQuery UI 라이브러리 js파일 -->
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <%--  네비바 삭제후 <jsp:include page="/Template/Top.jsp" /> 추가  --%>
+
+<script>
+	$(function (){
+		$(".dropdown").click(function(){
+			$(this).children(".dropdown-menu").toggle();
+		});
+	});
+</script>
 <!-- Fixed navbar -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container"> 
@@ -25,7 +35,7 @@
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li><a href="<c:url value='/ZAMONG/Main.do'/>">홈</a></li>
-					<li class="dropdown"><a href="<c:url value='/ZAMONG/MemberList.do'/>" class="dropdown-toggle"
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-expanded="false">회원관리<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu" role="menu">

@@ -16,14 +16,11 @@
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <link rel="icon" href="<c:url value='/Images/zamonglogo.gif'/>" />
 
-<title>공지사항</title>
+<title>자몽 - 아티스트 리스트</title>
 <!-- Bootstrap core CSS -->
 <!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 부가적인 테마(Bootstrap theme) -->
-<link rel="stylesheet"
-	href="<c:url value='/bootstrap/css/bootstrap-theme.min.css'/>">
 </head>
 
 <body role="document">
@@ -66,8 +63,7 @@
 						</tr>
 						<tr>
 							<th>번호</th>
-							<th colspan="2">가수</th>
-							<th>그룹명</th>
+							<th colspan="2">가수/그룹명</th>
 							<th>데뷔곡</th>
 							<th>등록일</th>
 							<th>좋아요</th>
@@ -83,18 +79,15 @@
 						<c:otherwise>
 							<c:forEach var="item" items="${list}" varStatus="loop">
 								<tr bgcolor="white" align="center">
-									<td>${item.at_no}</td>
+									<td>${loop.count}</td>
 									<td>
-										<a href='<c:url value="/ZAMONG/Artist/View.do?at_no=${item.at_no}&nowPage=${nowPage }"/>'>
-										<img src="<c:url value='/Images/Artist/${item.at_image}'/>" style="width: 50px; height: 70px;"/>
+										<a href='<c:url value="/ZAMONG/Artist/View.do?"/>${empty item.at_no ? "gp_no="+=item.gp_no : "at_no="+=item.at_no }&nowPage=${nowPage }'>
+										<img src="<c:url value='/Images/Artist/${item.at_image}'/>" style="width: 70px; height: 70px;"/>
 										</a>
 									</td>
 									<td>
-										${item.at_name} <br />
+										${empty item.at_no ? "(그룹)" : ""} ${item.at_name} <br />
 										${item.at_contry }/${item.at_gender }/${item.at_belong } 
-									</td>
-									<td>
-										${item.gp_name } 
 									</td>
 									<td>${item.at_debutsong }</td>
 									<td>${item.at_regidate }</td>

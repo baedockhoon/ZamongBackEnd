@@ -11,17 +11,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-	<title>공지사항</title>
-	<!-- Bootstrap core CSS -->
-	<!-- 합쳐지고 최소화된 최신 CSS -->
-	<link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	<!-- 부가적인 테마(Bootstrap theme) -->
-	<link rel="stylesheet" href="<c:url value='/bootstrap/css/bootstrap-theme.min.css'/>">
-	<script type="text/javascript" src="<c:url value='/Editor/js/service/HuskyEZCreator.js' />" charset="utf-8"></script>
-	
-	<!-- SmartEditor를 사용하기 위해서 다음 js파일을 추가 (경로 확인) -->
-	<script type="text/javascript" src="<%=ctx %>/SE2/js/HuskyEZCreator.js" charset="utf-8"></script>
+<link rel="icon" href="<c:url value='/Images/zamonglogo.gif'/>" />
+	<title>자몽 - 아티스트 등록</title>
 	<!-- jQuery를 사용하기위해 jQuery라이브러리 추가 -->
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 </head>
@@ -30,6 +21,7 @@
 	<jsp:include page="/Template/Top.jsp" />
 	<script type="text/javascript">
 		$(function(){
+			$("#grop_info").css("display", "none");
 			$("#artist_info").css("display", "none");
 			$("#artist_submit").css("display", "none");
 			
@@ -63,104 +55,110 @@
 						</td>
 					</tr>
 				</table>
-				<table class="table table-striped" id="grop_info" style="display: none;">
-					<tr>
-						<td>그룹명</td>
-						<td>
-							<input type="text" name="gp_name" />
-						</td>
-					</tr>
-					<tr>
-						<td>그룹 성별</td>
-						<td>
-							<input type="radio" name="gp_gender" value="혼성" />혼성 
-							<input type="radio" name="gp_gender" value="여성" />여성 
-							<input type="radio" name="gp_gender" value="님성" />남성
-						</td>
-					</tr>
-					<tr>
-						<td>소속사</td>
-						<td>
-							<input type="text" name="gp_belong" id="gp_belong" />
-						</td>
-					</tr>
-					<tr>
-						<td>데뷔일</td>
-						<td>
-							<input type="text" name="gp_debutdate" id="gp_debutdate" class="datePicker"/>
-						</td>
-					</tr>
-					<tr>
-						<td>그룹 타이틀 이미지</td>
-						<td><input type="file" name="gp_image" /></td>
-					</tr>
-					<!-- <tr bgcolor="white" align="center">
-						<td colspan="2">
-							<a herf="#" id="artist_next" class="btn btn-sm btn-info">다음</a>
-						</td>
-					</tr> -->
-				</table>
-				<table class="table table-striped" id="artist_info">
-					<tr class="artist_info">
-						<td>아티스트 명</td>
-						<td>
-							<input type="text" name="at_name" />
-						</td>
-					</tr>
-					<tr>
-						<td>소속사</td>
-						<td>
-							<input type="text" name="at_belong" id="at_belong" /> 
-							<span class="belong"><input type="checkbox" id="belong" value="1">그룹과 동일</span>
-						</td>
-					</tr>
-					<tr>
-						<td>데뷔일</td>
-						<td>
-							<input type="text" name="at_debutdate" id="at_debutdate" class="datePicker"/> 
-							<span class="debut"><input type="checkbox" id="debut" value="1">그룹과 동일</span>
-						</td>
-					</tr>
-					<tr>
-						<td>데뷔곡</td>
-						<td>
-							<input type="text" name="at_debutsong" />
-						</td>
-					</tr>
-					<tr>
-						<td>생일</td>
-						<td>
-							<input type="text" name="at_birth" class="datePicker"/>
-						</td>
-					</tr>
-					<tr>
-						<td>국적</td>
-						<td>
-							<input type="text" name="at_contry" />
-						</td>
-					</tr>
-					<tr>
-						<td>성별</td>
-						<td>
-							<input type="radio" name="at_gender" value="F" />여성 
-							<input type="radio" name="at_gender" value="M" />남성 
-						</td>
-					</tr>
-					<tr>
-						<td>아티스트 정보</td>
-						<td>
-							<input type="text" name="at_artistinfo" />
-						</td>
-					</tr>
-					<tr>
-						<td>아티스트 프로필 사진</td>
-						<td>
-							<input type="file" name="at_image" />
-						</td>
-					</tr>
-				</table>
-				<a id="artist_next" class="btn btn-sm btn-info">다음</a>
-				<input type="submit" id="artist_submit" class="btn btn-sm btn-info" value="등록">
+				<div  class="table table-striped" id="grop_info">
+					<table class="table table-striped">
+						<tr>
+							<td>그룹명</td>
+							<td>
+								<input type="text" name="gp_name" />
+							</td>
+						</tr>
+						<tr>
+							<td>그룹 성별</td>
+							<td>
+								<input type="radio" name="gp_gender" value="혼성" />혼성 
+								<input type="radio" name="gp_gender" value="여성" />여성 
+								<input type="radio" name="gp_gender" value="님성" />남성
+							</td>
+						</tr>
+						<tr>
+							<td>소속사</td>
+							<td>
+								<input type="text" name="gp_belong" id="gp_belong" />
+							</td>
+						</tr>
+						<tr>
+							<td>데뷔일</td>
+							<td>
+								<input type="text" name="gp_debutdate" id="gp_debutdate" class="datePicker"/>
+							</td>
+						</tr>
+						<tr>
+							<td>그룹 타이틀 이미지</td>
+							<td><input type="file" name="gp_image" /></td>
+						</tr>
+						<!-- <tr bgcolor="white" align="center">
+							<td colspan="2">
+								<a herf="#" id="artist_next" class="btn btn-sm btn-info">다음</a>
+							</td>
+						</tr> -->
+					</table>
+				</div>
+				<div class="table table-striped" id="artist_info">
+					<table class="table table-striped">
+						<tr class="artist_info">
+							<td>아티스트 명</td>
+							<td>
+								<input type="text" name="at_name" />
+							</td>
+						</tr>
+						<tr>
+							<td>소속사</td>
+							<td>
+								<input type="text" name="at_belong" id="at_belong" /> 
+								<span class="belong"><input type="checkbox" id="belong" value="1">그룹과 동일</span>
+							</td>
+						</tr>
+						<tr>
+							<td>데뷔일</td>
+							<td>
+								<input type="text" name="at_debutdate" id="at_debutdate" class="datePicker"/> 
+								<span class="debut"><input type="checkbox" id="debut" value="1">그룹과 동일</span>
+							</td>
+						</tr>
+						<tr>
+							<td>데뷔곡</td>
+							<td>
+								<input type="text" name="at_debutsong" />
+							</td>
+						</tr>
+						<tr>
+							<td>생일</td>
+							<td>
+								<input type="text" name="at_birth" class="datePicker"/>
+							</td>
+						</tr>
+						<tr>
+							<td>국적</td>
+							<td>
+								<input type="text" name="at_contry" />
+							</td>
+						</tr>
+						<tr>
+							<td>성별</td>
+							<td>
+								<input type="radio" name="at_gender" value="F" />여성 
+								<input type="radio" name="at_gender" value="M" />남성 
+							</td>
+						</tr>
+						<tr>
+							<td>아티스트 정보</td>
+							<td>
+								<textarea name="at_artistinfo" rows="10" cols="80%"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<td>아티스트 프로필 사진</td>
+							<td>
+								<input type="file" name="at_image" />
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="table table-striped" style="text-align: -webkit-center">
+					<button type="button" id="artist_next" class="btn btn-sm btn-info">다음</button>
+					<input type="submit" id="artist_submit" class="btn btn-sm btn-info" value="등록">
+				</div>
 			</form>
 		</div>
 	</div>

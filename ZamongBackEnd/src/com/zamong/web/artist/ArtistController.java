@@ -135,7 +135,6 @@ public class ArtistController extends HttpServlet{
 			ArtistDAO dao = new ArtistDAO(req.getServletContext());
 			String 	searchColumn = req.getParameter("searchColumn");
 			String 	searchWord = req.getParameter("searchWord");
-			String Notice_category = req.getParameter("Notice_category");		
 			String no = req.getParameter("at_no");
 		
 			dao.updateVisitCount(no);
@@ -197,6 +196,27 @@ public class ArtistController extends HttpServlet{
 			dao.close();
 
 			req.getRequestDispatcher("/Common/FindArtistPopup.jsp").forward(req, resp);
+		}
+		else if(url.toUpperCase().contains("VIEW.DO")) {
+			
+			req.setCharacterEncoding("UTF-8");
+			ArtistDAO dao = new ArtistDAO(req.getServletContext());
+			String 	at_no = req.getParameter("at_no");
+			String 	gp_no = req.getParameter("gp_no");
+			ArtistDTO dto = new ArtistDTO();
+			List<ArtistDTO> list = null;
+			if (at_no != null) {
+				dto = dao.selectArtistOne(at_no);
+				req.setAttribute("group", "A");
+			} else {
+				dto = dao.selectOne(gp_no);
+				req.setAttribute("group", "G");
+				list = dao.selectArtist(gp_no);
+			}
+			req.setAttribute("dto", dto);
+			req.setAttribute("list", list);
+			dao.close();
+			req.getRequestDispatcher("/bbs/artist/artistView.jsp").forward(req, resp);
 		}
 
 	}

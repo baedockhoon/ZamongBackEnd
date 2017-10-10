@@ -112,7 +112,7 @@ public class SoundController extends HttpServlet {
 						String ss_title = id3v2Tag.getTitle();
 						String ly_contents = id3v2Tag.getLyrics();
 						String al_releasedate = id3v2Tag.getYear();
-						if(al_releasedate.length() == 8) {
+						if(al_releasedate != null && al_releasedate.length() == 8) {
 							al_releasedate = al_releasedate.substring(0, 4)+"-"+al_releasedate.substring(4, 6)+"-"+al_releasedate.substring(6);
 						}
 						System.out.println(al_releasedate);
