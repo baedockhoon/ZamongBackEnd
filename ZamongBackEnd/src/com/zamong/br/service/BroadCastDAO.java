@@ -63,6 +63,7 @@ public class BroadCastDAO {
 					dto.setBr_hitcount(rs.getString(7));
 					dto.setBr_programname(rs.getString(8));
 					dto.setBr_endof(rs.getString(9));
+					dto.setBr_image(rs.getString(10));
 					list.add(dto);
 				}
 			}
@@ -74,7 +75,7 @@ public class BroadCastDAO {
 		//입력용]
 		public int insert(BroadCastDTO dto) {
 			int affected=0;
-			String sql="INSERT INTO BR_BROADCAST VALUES(BR_BROADCAST_SEQ.NEXTVAL,SYSDATE,?,?,?,?,0,?,?)";
+			String sql="INSERT INTO BR_BROADCAST VALUES(BR_BROADCAST_SEQ.NEXTVAL,SYSDATE,?,?,?,?,0,?,?,?)";
 			try {
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1, dto.getAt_no());
@@ -83,6 +84,7 @@ public class BroadCastDAO {
 				psmt.setString(4, dto.getBr_link());
 				psmt.setString(5, dto.getBr_programname());
 				psmt.setString(6, dto.getBr_endof());
+				psmt.setString(7, dto.getBr_image());
 				affected = psmt.executeUpdate();
 				
 			} catch (SQLException e) {e.printStackTrace();}
@@ -194,7 +196,8 @@ public class BroadCastDAO {
 							rs.getString(6),
 							rs.getString(7),
 							rs.getString(8),
-							rs.getString(9));
+							rs.getString(9),
+							rs.getString(10));
 					//dto.setName(rs.getString(7));
 					records.add(dto);
 				}
@@ -231,7 +234,7 @@ public class BroadCastDAO {
 				psmt.setString(1, no);
 				rs = psmt.executeQuery();
 				if (rs.next()) {// 이전글 존재
-					map.put("PREV", new BroadCastDTO(rs.getString(1),null,null,rs.getString(2),null,null,null,null,null));//BR_NO 및 MV_TITLE만 가져오기 
+					map.put("PREV", new BroadCastDTO(rs.getString(1),null,null,rs.getString(2),null,null,null,null,null,null));//BR_NO 및 MV_TITLE만 가져오기 
 
 				}
 				// 다음글 구하기
@@ -240,7 +243,7 @@ public class BroadCastDAO {
 				psmt.setString(1, no);
 				rs = psmt.executeQuery();
 				if (rs.next()) {// 다음글 존재
-					map.put("NEXT", new BroadCastDTO(rs.getString(1),null,null,rs.getString(2),null,null,null,null,null));
+					map.put("NEXT", new BroadCastDTO(rs.getString(1),null,null,rs.getString(2),null,null,null,null,null,null));
 				}
 
 			} catch (SQLException e) {

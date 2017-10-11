@@ -71,7 +71,7 @@
 						<th>번호</th>
                         <th>아티스트번호</th>
                         <th>음원번호</th>
-                        <th>뮤직비디오 제목 </th>
+                        <th>방송영상 제목 </th>
                         <!-- <th>링크 </th> -->
                         <!-- <th>뮤비 설명</th> -->
                         <th>조회수</th>
@@ -91,7 +91,8 @@
                        	<tr bgcolor="white" align="center">
                           <td>${item.br_no}</td>					                             
                           <td>${item.at_no}</td>
-                          <td align="left"><a href='<c:url value="/ZAMONG/BroadCastView.do?br_no=${item.br_no}"/>'>${item.br_title}</a></td>
+                          
+                          <td align="left"><a href='<c:url value="/ZAMONG/BroadCastView.do?br_no=${item.br_no}"/>'><img width="160" height="120" src="${item.br_image}"/>&nbsp;${item.br_title}</a></td>
                           <%-- <td>${item.mv_link}</td> --%>
                           <%-- <td>${item.mv_contents}</td> --%>
                           <td>${item.br_hitcount}</td>

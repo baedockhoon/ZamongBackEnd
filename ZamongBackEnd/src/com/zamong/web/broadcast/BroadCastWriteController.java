@@ -50,6 +50,15 @@ public class BroadCastWriteController extends HttpServlet {
 		String link = req.getParameter("link");
 		String programname = req.getParameter("programname");
 		String endof = req.getParameter("endof");
+		String image="";
+		
+		if(link.contains("<iframe") && link.contains("https://www.youtube.com/embed/")) {
+			int startNum=link.indexOf("https://www.youtube.com/embed/")+30;
+			image ="https://img.youtube.com/vi/"+link.substring(startNum,startNum+11)+"/0.jpg";
+		}
+		else {
+			image ="https://img.youtube.com/vi/0/0.jpg";
+		}
 		
 		//3]데이타를 전달할 DTO객체 생성및 데이타 설정
 		BroadCastDAO dao = new BroadCastDAO(req.getServletContext());
@@ -60,6 +69,7 @@ public class BroadCastWriteController extends HttpServlet {
 		dto.setBr_link(link);
 		dto.setBr_programname(programname);
 		dto.setBr_endof(endof);
+		dto.setBr_image(image);
 		//4]CRUD작업용 DAO계열 객체 생성
 		int sucorfail;//DB입력 성공시에는 1,실패시 0
 		sucorfail = dao.insert(dto);

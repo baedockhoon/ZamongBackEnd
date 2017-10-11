@@ -15,7 +15,7 @@
 <hr/>
 <div  align="center"  style="MARGIN: 10px 0px 10px 0px;clear:both">
 <font style="font-size:0.8em">
-서울시 금천구 가산동 월드메르디앙 4F 한국소프트웨어인재개발원  &nbsp; | &nbsp;팀 : 배덕훈,김찬혁,이수범,고동희,임지훈  &nbsp; |&nbsp; 사업자등록번호따윈 없음&nbsp; |&nbsp; 통신판매업 신고번호는 개나줘버려<br/>
+서울시 금천구 가산동 월드메르디앙 4F 한국소프트웨어인재개발원  &nbsp; | &nbsp;팀 : 배덕훈,김찬혁,이수범,고동희,임지훈  &nbsp; |&nbsp; 사업자등록번호 없음&nbsp; |&nbsp; 통신판매업 신고번호 없음<br/>
 문의전화(평일 09:30~18:30) : 1111-1234 (유료)이메일 : zamonginformation@zamong.com
 </font>
 </div>
