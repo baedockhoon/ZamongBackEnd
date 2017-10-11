@@ -102,7 +102,7 @@ public class MemberDAO {
 
 				rs = psmt.executeQuery();
 				while (rs.next()) {
-					MemberDTO dto = new MemberDTO(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4),
+					MemberDTO dto = new MemberDTO(rs.getString(1),rs.getDate(2), rs.getString(3), rs.getString(4),
 							rs.getString(5), rs.getString(6), rs.getString(7),
 							rs.getString(8), rs.getString(9), rs.getString(10),
 							rs.getString(11),rs.getString(12));
@@ -143,7 +143,7 @@ public class MemberDAO {
 				if(rs.next()){
 					dto = new MemberDTO();
 					dto.setMe_no(rs.getString(1));
-					dto.setMe_regidate(rs.getString(2));
+					dto.setMe_regidate(rs.getDate(2));
 					dto.setMe_id(rs.getString(3));
 					dto.setMe_pass(rs.getString(4));
 					dto.setMe_name(rs.getString(5));
@@ -214,7 +214,7 @@ public class MemberDAO {
 	                MemberDTO dto = new MemberDTO();
 	               
 	                dto.setMe_no(rs.getString(1));
-	                dto.setMe_regidate(rs.getString(2));
+	                dto.setMe_regidate(rs.getDate(2));
 	                dto.setMe_id(rs.getString(3));
 	                dto.setMe_pass(rs.getString(4));
 	                dto.setMe_name(rs.getString(5));

@@ -1,9 +1,11 @@
 package com.zamong.me.service;
 
+import java.sql.Date;
+
 public class MemberDTO {
 
 	private String me_no;
-	private String me_regidate;
+	private Date me_regidate;
 	private String me_id;
 	private String me_pass;
 	private String me_name;
@@ -17,7 +19,7 @@ public class MemberDTO {
 	
 	public MemberDTO() {}
 	
-	public MemberDTO(String me_no, String me_regidate, String me_id, String me_pass, String me_name, String me_nickname,
+	public MemberDTO(String me_no, Date me_regidate, String me_id, String me_pass, String me_name, String me_nickname,
 			String me_gender, String me_birth, String me_email, String me_tel, String me_addr, String me_photo) {
 		super();
 		this.me_no = me_no;
@@ -42,11 +44,11 @@ public class MemberDTO {
 		this.me_no = me_no;
 	}
 
-	public String getMe_regidate() {
+	public Date getMe_regidate() {
 		return me_regidate;
 	}
 
-	public void setMe_regidate(String me_regidate) {
+	public void setMe_regidate(Date me_regidate) {
 		this.me_regidate = me_regidate;
 	}
 
