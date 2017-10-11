@@ -107,7 +107,7 @@ function isList() {
 							<th>이름</th>
 							<th>아이디</th>
 							<th>휴대전화</th>
-							<th>주소</th>
+							<th>이미지</th>
 							<th>닉네임</th>
 							<th>이메일</th>
 							<th>등록일</th>
