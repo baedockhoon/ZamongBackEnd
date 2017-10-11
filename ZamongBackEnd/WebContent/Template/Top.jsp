@@ -40,7 +40,7 @@
 				</a>
 				<ul class="dropdown-menu" role="menu">
 				<li><a href="<c:url value='/ZAMONG/MemberList.do'/>">회원</a></li>
-				<li><a href="<c:url value='/ZAMONG/Cash/List.do'/>">결제내역</a></li>
+				<li><a href="<c:url value='/ZAMONG/Payment/List.do'/>">결제내역</a></li>
 				<li><a href="<c:url value='/ZAMONG/Product/List.do'/>">상품테이블</a></li>
 				</ul>
 				</li>

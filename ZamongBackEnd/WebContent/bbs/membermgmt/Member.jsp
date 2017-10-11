@@ -133,7 +133,7 @@ function isList() {
 										<!-- <td><a class="btn btn-sm btn-primary" href="javascript:iswrite()">충전</a><td> -->
 									  <td><input type="button" value="캐쉬잔액" class="btn btn-sm btn-primary" onclick="goPopup(${item.me_no});"/></td>  
 									<%--  <td><a class="btn btn-sm btn-primary" href='<c:url value="/bbs/payment/Payment.jsp?me_no=${item.me_no }"/>'>충전</a></td> --%>   
-										<td><a class="btn btn-sm btn-primary" href="javascript:isList()">포인트전환</a><td>
+									
 									</tr>
 								</c:forEach>
 							</c:otherwise>
