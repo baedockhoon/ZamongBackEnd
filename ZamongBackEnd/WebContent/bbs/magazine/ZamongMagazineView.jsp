@@ -82,9 +82,9 @@
           		</tr>
           		<tr bgcolor="white" align="center">
           			<td colspan="2">
-          			<a href="<c:url value='/ZAMONG/zamongMagazineEdit.do?mg_no=${dto.mg_no}&nowPage=${nowPage}'/>">수정</a> | 
-          			<a href="<c:url value='/ZAMONG/zamongMagazine.do?mg_no=${dto.mg_no}'/>">목록</a> |
-          			<a href="javascript:isDelete(${dto.mg_no})">삭제</a>
+          			<a href="<c:url value='/ZAMONG/zamongMagazineEdit.do?mg_no=${dto.mg_no}&nowPage=${nowPage}'/>" class="btn btn-sm btn-primary">수정</a> | 
+          			<a href="<c:url value='/ZAMONG/zamongMagazine.do?mg_no=${dto.mg_no}'/>" class="btn btn-sm btn-primary">목록</a> |
+          			<a href="javascript:isDelete(${dto.mg_no})" class="btn btn-sm btn-primary">삭제</a>
           			</td>
           		</tr>
           	</table>
