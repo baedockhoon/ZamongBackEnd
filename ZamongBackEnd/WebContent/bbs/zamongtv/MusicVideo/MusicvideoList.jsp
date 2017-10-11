@@ -95,7 +95,7 @@
                           <td>${item.mv_no}</td>					                             
                           <td>${item.at_no}</td>
                           <td>${item.ss_no}</td>
-                          <td align="left"><a href='<c:url value="/ZamongFrontEnd/MusicVideoView.do?mv_no=${item.mv_no}"/>'><img width="160" height="120" src="${item.mv_image}"/>&nbsp;${item.mv_title}</a></td>
+                          <td align="left"><a href='<c:url value="/ZAMONG/MusicVideoView.do?mv_no=${item.mv_no}"/>'><img width="160" height="120" src="${item.mv_image}"/>&nbsp;${item.mv_title}</a></td>
                           <!-- <td><img width="160" height="120" src="${item.mv_image}"/></td> -->
                           <%-- <td>${item.mv_contents}</td> --%>
                           <td>${item.mv_hitcount}</td>
