@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.PageContext;
 
 import com.zamong.nt.service.NotiDataDTO;
 import com.zamong.nt.service.impl.NotiDataDAO;
@@ -16,7 +17,7 @@ public class NoticeWriteController extends HttpServlet {
  
 	String getStringValue(String value){
 	      switch(value){
-
+	      
 	         case "서비스소식":return "서비스소식";
 	         case "서비스오픈":return "서비스오픈";
 	         case "서비스종료":return "서비스종료";
@@ -65,8 +66,8 @@ public class NoticeWriteController extends HttpServlet {
 					
 					dao.insert(dto);
 					dao.close();
-					
-					req.getRequestDispatcher("/bbs/notice/NoticeList.jsp").forward(req, resp);
+					resp.sendRedirect(req.getContextPath()+"/ZAMONG/NoticeList.do");
+					//req.getRequestDispatcher("/ZAMONG/NoticeList.do").forward(req, resp);
 	}
 }
 

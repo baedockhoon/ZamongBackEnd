@@ -67,7 +67,6 @@ public class NotiDataDAO {
 			
 			sql += " NT_CLASSIFICATION "+ notice;
 			sql+=" AND "+map.get("searchColumn")+ " LIKE " + searchWord;
-			System.out.println(notice);
 		}
 		sql+=" ORDER BY NT_NO DESC) T) WHERE R BETWEEN ? AND ?";
 

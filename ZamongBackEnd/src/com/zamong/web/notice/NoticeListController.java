@@ -39,13 +39,12 @@ public class NoticeListController extends HttpServlet {
 		String addQuery ="";
 		Map<String,Object> map = new HashMap<String,Object>();
 		//Map<String,Object> map1 = new HashMap<String,Object>();
-		if(searchWord !=null){
+		if(searchWord != null){
 			addQuery+="searchColumn="+searchColumn+"&searchWord="+searchWord+"&";
-			
 			map.put("searchColumn",searchColumn);
 			map.put("searchWord",searchWord);
 		}
-		if(Notice_category != null){
+		if(Notice_category != null && !Notice_category.equals("")){
 			map.put("Notice_category",Notice_category);
 		}
 		int totalRecordCount=dao.getTotalRecordCount(map);
