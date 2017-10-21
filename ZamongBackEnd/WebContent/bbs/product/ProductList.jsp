@@ -63,10 +63,9 @@
 				<li role="presentation" ><a
 					href="<c:url value='/ZAMONG/MemberList.do'/>">회원관리</a></li>
 				<li role="presentation" ><a
-					href="<c:url value='/ZAMONG/Cash/List.do'/>">결제내역</a></li>
-					
+					href="<c:url value='/ZAMONG/Cash/List.do'/>">결제내역</a></li>					
 				<li role="presentation"><a
-					href="<c:url value='/ZAMONG/UserQuestionList.do'/>">스트리밍</a></li>
+					href="<c:url value='/bbs/product/Producttest.jsp'/>">스트리밍</a></li>
 				<li role="presentation" class="active"><a
 					href="<c:url value='/ZAMONG/Product/List.do'/>">상품</a></li>
 			</ul>
