@@ -55,7 +55,7 @@ public List<ProductDTO> selectList(){
 		List<ProductDTO> records = new Vector<ProductDTO>();
 		
 		//페이징 미 적용
-		String sql="SELECT *  FROM PD_PRODUCT ";
+		String sql="SELECT *  FROM PD_PRODUCT ORDER BY PD_REGIDATE DESC ";
 		//페이징 적용-구간쿼리로 변경
 		
 		try {
@@ -67,7 +67,8 @@ public List<ProductDTO> selectList(){
 				ProductDTO dto = new ProductDTO(
 						rs.getString(1),					
 						rs.getString(2),
-						rs.getString(3));
+						rs.getString(3),
+						rs.getDate(4));
 
 				
 						
@@ -172,7 +173,7 @@ public List<ProductDTO> selectList(){
 		//입력용]
 		public int insert(ProductDTO dto) {
 			int affected=0;
-			String sql="INSERT INTO PD_PRODUCT(PD_NO,PD_NAME,PD_PRICE) VALUES(PD_SEQ.NEXTVAL,?,?)";
+			String sql="INSERT INTO PD_PRODUCT(PD_NO,PD_NAME,PD_PRICE,PD_REGIDATE) VALUES(PD_SEQ.NEXTVAL,?,?,SYSDATE)";
 			try {
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1, dto.getPd_name());
