@@ -257,5 +257,6 @@
 	</div>
 
 	<!-- /내용끝 -->
+	<jsp:include page="/Template/Foot.jsp" />
 </body>
 </html>

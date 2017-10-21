@@ -16,7 +16,7 @@ public class NoticeWriteController extends HttpServlet {
  
 	String getStringValue(String value){
 	      switch(value){
-	      	 case "분류":return "분류";
+
 	         case "서비스소식":return "서비스소식";
 	         case "서비스오픈":return "서비스오픈";
 	         case "서비스종료":return "서비스종료";

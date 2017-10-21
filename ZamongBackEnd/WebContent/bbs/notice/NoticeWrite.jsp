@@ -126,7 +126,7 @@ $(function(){
 						<tr>
 							<td>분류</td>
 							<td><select name="Notice_category" required="required" required="required">					
-									<option value="">분류</option>
+							
 									<option value="서비스소식">서비스소식</option>
 									<option value="서비스오픈">서비스오픈</option>
 									<option value="서비스종료">서비스종료</option>
@@ -157,7 +157,7 @@ $(function(){
 		</div>
 	</div>
 	<!-- /container(내용 끝) -->
-
+<jsp:include page="/Template/Foot.jsp" />
 
 	<!-- Bootstrap core JavaScript
     ================================================== -->

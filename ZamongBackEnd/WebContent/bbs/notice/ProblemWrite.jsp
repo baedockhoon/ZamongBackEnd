@@ -366,6 +366,7 @@ $(function(){
 	</div>
 	
 	<!-- /container(내용 끝) -->
+	<jsp:include page="/Template/Foot.jsp" />
 <script>
 function selChange(val){
     if(val=="sel"){

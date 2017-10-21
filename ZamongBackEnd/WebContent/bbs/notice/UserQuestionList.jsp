@@ -149,7 +149,7 @@
 			</form>
 		</div>
 	</div>
-
+<jsp:include page="/Template/Foot.jsp" />
 	<script>
 function isDelete(qu_no){
 	if(confirm("정말로 삭제 하시겠습니까?")){

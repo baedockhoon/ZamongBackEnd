@@ -128,7 +128,7 @@ dao.close();
 	</div>
 	<!-- /container(내용 끝) -->
 
-
+<jsp:include page="/Template/Foot.jsp" />
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->

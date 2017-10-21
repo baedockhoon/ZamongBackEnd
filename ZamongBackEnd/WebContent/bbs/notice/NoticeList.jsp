@@ -70,7 +70,6 @@
 
 			<form method="post">
 				<select name="Notice_category">
-					<option value="분류">분류</option>
 					<option value="서비스소식">서비스 소식</option>
 					<option value="서비스오픈">서비스 오픈</option>
 					<option value="서비스종료">서비스 종료</option>
@@ -141,7 +140,7 @@
 	</div>
 	</body>
 	<!-- /container(내용 끝) -->
-
+<jsp:include page="/Template/Foot.jsp" />
 
 	<!-- Bootstrap core JavaScript
     ================================================== -->
